@@ -23,9 +23,15 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     border-top: 5px solid #005BBB;
     box-sizing: border-box;
     padding: 20px 0 20px 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 20px #C0C0C0;
+    height: 111px;
 }
 
 a {
@@ -61,7 +67,7 @@ header img {
 }
 
 main {
-    margin-top: 30px;
+    margin-top: 150px;
 }
 
 .urgent {
@@ -71,8 +77,6 @@ main {
     padding: 10px;
 }
 
-/* Mobile */
-
 @media screen and (min-width: 768px) {
     div.container {
         width: 70%;
@@ -80,6 +84,14 @@ main {
 }
 
 @media screen and (max-width: 1200px)  {
+    
+    div.container {
+        width: 85%;
+    }
+
+}
+
+@media screen and (max-width: 1000px)  {
     
     div.container {
         width: auto;
