@@ -161,6 +161,24 @@ main {
         margin: 0 20px 0 20px;
     }
 
+    header {
+        height: auto;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    header ul {
+        float: none;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    main {
+        margin-top: 190px;
+    }
+
 }
 
 @media (prefers-color-scheme: dark) {
