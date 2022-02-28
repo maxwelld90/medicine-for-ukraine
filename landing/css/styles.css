@@ -18,8 +18,8 @@
 
 body {
     font-family: Inter, Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 14pt;
+    line-height: 18pt;
 }
 
 header {
@@ -38,7 +38,7 @@ a:hover {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 30pt;
     margin: 0 0 30px 0;
     padding: 0;
     font-weight: bold;
