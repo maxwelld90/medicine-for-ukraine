@@ -55,12 +55,6 @@ div.container {
     margin-left: 40px;
 }
 
-@media (min-width: 768px) {
-    div.container {
-        width: 70%;
-    }
-}
-
 header img {
     width: 300px;
     height: auto;
@@ -75,4 +69,29 @@ main {
     color: #000;
     border-radius: 8px;
     padding: 10px;
+}
+
+/* Mobile */
+
+@media screen and (min-width: 768px) {
+    div.container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1200px)  {
+    
+    div.container {
+        width: auto;
+        margin: 0 40px 0 40px;
+    }
+
+}
+
+@media screen and (max-width: 600px)  {
+    
+    div.container {
+        margin: 0 20px 0 20px;
+    }
+
 }
