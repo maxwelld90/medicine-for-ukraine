@@ -19,7 +19,7 @@
 body {
     font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 14pt;
-    line-height: 18pt;
+    line-height: 20pt;
 }
 
 header {
@@ -106,4 +106,40 @@ main {
         margin: 0 20px 0 20px;
     }
 
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #FFF;
+        background: #222831;
+    }
+
+    header {
+        background: #222831;
+        box-shadow: 0 0 20px #6E85B2;
+    }
+
+    a {
+        color: #99BDE4;
+        transition: 0.3s;
+    }
+    
+    a:hover {
+        color: #E4BF99;
+    }
+
+    .urgent {
+        background-color: #FFD369;
+        color: #222831;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .urgent a {
+        color: #222831;
+    }
+
+    .urgent a:hover {
+        color: #222831;
+    }
 }
