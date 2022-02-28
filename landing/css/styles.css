@@ -1,0 +1,72 @@
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-regular.woff2);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-semibold.woff2);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-bold.woff2);
+    font-weight: 900;
+}
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+header {
+    border-top: 5px solid #005BBB;
+    box-sizing: border-box;
+    padding: 20px 0 20px 0;
+}
+
+a {
+    color: #005BBB;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #BB6000;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 30px 0 30px 0;
+    padding: 0;
+}
+
+div.container {
+    width: 1000px;
+    margin-left: 40px;
+}
+
+header img {
+    width: 300px;
+    height: auto;
+}
+
+main {
+    margin-top: 30px;
+}
+
+.urgent {
+    background-color: #FFA8A7;
+    color: #000;
+    border-radius: 8px;
+    padding: 10px;
+}
