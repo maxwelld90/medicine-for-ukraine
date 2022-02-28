@@ -75,6 +75,8 @@ header ul {
     header ul li {
         display: inline-block;
         margin-right: 8px;
+        position: relative;
+        top: 13px;
     }
 
     header ul li:last-child {
@@ -91,6 +93,7 @@ header ul {
         min-height: 30px;
         min-width: 30px;
         line-height: 30px;
+        text-align: center;
         background: #005BBB;
         text-decoration: none;
         
@@ -119,6 +122,14 @@ main {
     color: #000;
     border-radius: 8px;
     padding: 10px;
+}
+
+.multilingual {
+    display: none;
+}
+
+.multilingual.en {
+    display: inherit;
 }
 
 @media screen and (min-width: 768px) {
