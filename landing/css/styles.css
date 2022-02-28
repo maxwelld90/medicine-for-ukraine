@@ -65,6 +65,51 @@ header img {
     height: auto;
 }
 
+header ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+    list-style-type: none;
+    font-size: 0;
+}
+    header ul li {
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    header ul li:last-child {
+        margin-right: 0;
+    }
+
+    header ul li a {
+        display: block;
+        border-radius: 5px;
+        font-size: 16pt;
+        font-weight: 900;
+        color: #FFF;
+        padding: 5px;
+        min-height: 30px;
+        min-width: 30px;
+        line-height: 30px;
+        background: #005BBB;
+        text-decoration: none;
+        
+    }
+
+    header ul li a.selected {
+        background: #FFF;
+        color: #000;
+    }
+
+    header ul li a:hover.selected {
+        background: #FFF;
+        cursor: default;
+    }
+
+    header ul li a:hover {
+        background: #FFD500;
+    }
+
 main {
     margin-top: 150px;
 }
@@ -139,5 +184,26 @@ main {
 
     .urgent a:hover {
         color: #222831;
+    }
+
+    header ul li a {
+        background: #FFF;
+        color: #005BBB;
+        
+    }
+
+    header ul li a:hover {
+        background: #FFD500;
+        color: #005BBB;
+    }
+
+    header ul li a.selected {
+        background: #222831;
+        color: #FFF;
+    }
+
+    header ul li a:hover.selected {
+        background: #222831;
+        cursor: default;
     }
 }
