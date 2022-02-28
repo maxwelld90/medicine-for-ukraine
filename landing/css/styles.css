@@ -30,7 +30,6 @@ header {
     box-sizing: border-box;
     padding: 20px 0 20px 0;
     background-color: #FFFFFF;
-    box-shadow: 0 0 20px #C0C0C0;
     height: 111px;
 }
 
@@ -116,7 +115,6 @@ main {
 
     header {
         background: #222831;
-        box-shadow: 0 0 20px #6E85B2;
     }
 
     a {
