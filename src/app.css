@@ -1,0 +1,191 @@
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  line-height: 20pt;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-top: 5px solid #005BBB;
+  box-sizing: border-box;
+  padding: 20px 0 20px 0;
+  background-color: #FFFFFF;
+  height: 111px;
+}
+
+a {
+  color: #005BBB;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #BB6000;
+}
+
+h1 {
+  font-size: 30pt;
+  margin: 0 0 30px 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 28px;
+  margin: 30px 0 30px 0;
+  padding: 0;
+}
+
+div.container {
+  width: 100%;
+  margin-left: 40px;
+}
+
+header img {
+  width: 300px;
+  height: auto;
+}
+
+header ul {
+  margin: 0;
+  padding: 0;
+  float: right;
+  list-style-type: none;
+  font-size: 0;
+}
+  header ul li {
+      display: inline-block;
+      margin-right: 8px;
+  }
+
+  header ul li:last-child {
+      margin-right: 0;
+  }
+
+  header ul li a {
+      display: block;
+      border-radius: 5px;
+      font-size: 16pt;
+      font-weight: 900;
+      color: #FFF;
+      padding: 5px;
+      min-height: 30px;
+      min-width: 30px;
+      line-height: 30px;
+      background: #005BBB;
+      text-decoration: none;
+      
+  }
+
+  header ul li a.selected {
+      background: #FFF;
+      color: #000;
+  }
+
+  header ul li a:hover.selected {
+      background: #FFF;
+      cursor: default;
+  }
+
+  header ul li a:hover {
+      background: #FFD500;
+  }
+
+main {
+  margin-top: 150px;
+}
+
+.urgent {
+  background-color: #FFA8A7;
+  color: #000;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  div.container {
+      width: 70%;
+  }
+}
+
+@media screen and (max-width: 1200px)  {
+  
+  div.container {
+      width: 85%;
+  }
+
+}
+
+@media screen and (max-width: 1000px)  {
+  
+  div.container {
+      width: auto;
+      margin: 0 40px 0 40px;
+  }
+
+}
+
+@media screen and (max-width: 600px)  {
+  
+  div.container {
+      margin: 0 20px 0 20px;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+      color: #FFF;
+      background: #222831;
+  }
+
+  header {
+      background: #222831;
+  }
+
+  a {
+      color: #99BDE4;
+      transition: 0.3s;
+  }
+  
+  a:hover {
+      color: #E4BF99;
+  }
+
+  .urgent {
+      background-color: #FFD369;
+      color: #222831;
+      border-radius: 8px;
+      padding: 10px;
+  }
+
+  .urgent a {
+      color: #222831;
+  }
+
+  .urgent a:hover {
+      color: #222831;
+  }
+
+  header ul li a {
+      background: #FFF;
+      color: #005BBB;
+      
+  }
+
+  header ul li a:hover {
+      background: #FFD500;
+      color: #005BBB;
+  }
+
+  header ul li a.selected {
+      background: #222831;
+      color: #FFF;
+  }
+
+  header ul li a:hover.selected {
+      background: #222831;
+      cursor: default;
+  }
+}
