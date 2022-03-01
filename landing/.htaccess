@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.medicineforukraine.org [NC]
+RewriteRule ^(.*)$ https://medicineforukraine.org/$1 [L,R=301]
