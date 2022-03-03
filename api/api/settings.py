@@ -29,8 +29,6 @@ if os.path.exists(key_location):
     SECRET_KEY = f.read().strip()
     f.close()
 
-print(SECRET_KEY)
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
