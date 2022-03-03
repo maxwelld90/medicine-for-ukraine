@@ -30,7 +30,7 @@ if os.path.exists(key_location):
     f.close()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['api.medicineforukraine.org']
 
