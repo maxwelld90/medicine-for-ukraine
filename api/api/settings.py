@@ -32,7 +32,7 @@ if os.path.exists(key_location):
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api.medicineforukraine.org']
 
 
 # Application definition
