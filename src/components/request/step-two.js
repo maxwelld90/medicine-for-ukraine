@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RequestContext } from "./request-context";
 
-export default function CountrySelector() {
+export default function StepTwo() {
   const [request] = useContext(RequestContext);
 
   return (

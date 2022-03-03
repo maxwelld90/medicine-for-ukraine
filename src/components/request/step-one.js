@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { RequestContext } from "./request-context";
 
-export default function Contact() {
-  const [request, setRequest] = useContext(RequestContext);
+export default function StepOne() {
+  const [, setRequest] = useContext(RequestContext);
 
   const onEmailChange = (event) => {
     setRequest({ contact: event.target.value });

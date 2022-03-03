@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import Contact from "./contact";
-import CountrySelector from "./country-selector";
-import DonationType from "./donation-type";
-import ProductList from "./product-list";
-import ReceiptScreenshot from "./receipt-screenshot";
-import OrderCompletion from "./order-completion";
+import StepOne from "./step-one";
+import StepTwo from "./step-two";
+import StepThree from "./step-three";
+import StepFour from "./step-four";
+import StepFive from "./step-five";
+import StepSix from "./step-six";
 import { RequestContext } from "./request-context";
 
 const FIRST_STEP = 1;
@@ -24,17 +24,17 @@ export default function Request() {
   const multiStepForm = () => {
     switch (step) {
       case 1:
-        return <Contact></Contact>;
+        return <StepOne></StepOne>;
       case 2:
-        return <CountrySelector>2</CountrySelector>;
+        return <StepTwo>2</StepTwo>;
       case 3:
-        return <DonationType>3</DonationType>;
+        return <StepThree>3</StepThree>;
       case 4:
-        return <ProductList>4</ProductList>;
+        return <StepFour>4</StepFour>;
       case 5:
-        return <ReceiptScreenshot>5</ReceiptScreenshot>;
+        return <StepFive>5</StepFive>;
       case 6:
-        return <OrderCompletion>5</OrderCompletion>;
+        return <StepSix>5</StepSix>;
       default:
       // do nothing
     }

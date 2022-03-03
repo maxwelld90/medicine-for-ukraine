@@ -1,8 +1,8 @@
 import "./app.css";
 import { Route, Routes } from "react-router-dom";
 
-import About from "./about";
-import Request from "./request/index";
+import About from "./components/about";
+import Request from "./components/request/index";
 
 
 function App() {
