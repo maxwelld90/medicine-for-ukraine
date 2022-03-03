@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import i18n from "./i18n";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+  const [t] = useTranslation(["translation", "common"]);
+
+  const changeLanguageOnClick = (language) => {
+    i18n.changeLanguage(language);
+  }
+
   return (
     <div>
       <h1>Help Ukraine!</h1>
+      <h2>{t("common:title")}</h2>
       <p>
         We need your help in buying and shipping the supplies that will save
         lives of Ukrainian soldiers: medical items and defence equipment. On{" "}
@@ -42,6 +51,10 @@ export default function About() {
         to buy them – for the delivery address please contact one of the
         volunteers mentioned above.
       </p>
+
+      <div>
+        <button type="button" onClick={() => changeLanguageOnClick("pl")}>Pl</button>
+      </div>
 
       <div>
         <button type="button"><Link to="/request">Start Request</Link></button>

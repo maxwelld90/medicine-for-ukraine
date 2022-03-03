@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const request = {
+let request = {
   userContact: "",
   country: "",
   donationType: "",
