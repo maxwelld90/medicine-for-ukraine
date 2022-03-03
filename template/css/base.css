@@ -1,0 +1,308 @@
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-regular.woff2);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-semibold.woff2);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/inter-bold.woff2);
+    font-weight: 900;
+}
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    line-height: 20pt;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    border-top: 5px solid #005BBB;
+    box-sizing: border-box;
+    padding: 22px 0 20px 0;
+    background-color: #FFFFFF;
+    height: 120px;
+}
+
+a {
+    color: #005BBB;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #BB6000;
+}
+
+h1 {
+    font-size: 30pt;
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 30px 0 30px 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: square;
+}
+
+p {
+    margin: 20px 0 20px 0;
+}
+
+div.container {
+    width: 100%;
+    margin-left: 40px;
+    position: relative;
+}
+
+header img {
+    width: 320px;
+    height: auto;
+}
+
+header div.links-container {
+    float: right;
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 0;
+}
+
+    header ul.links {
+        position: relative;
+        top: 38px;
+    }
+
+    header ul li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    header ul li:last-child {
+        margin-right: 0 !important;
+    }
+
+    header ul li a {
+        display: block;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    header ul.languages {
+        position: absolute;
+        top: -22px;
+        right: 0;
+    }
+
+    header ul.languages li {
+        margin-right: 8px;
+    }
+
+    header ul.languages li a {
+        font-size: 14px;
+        border-radius: 0 0 5px 5px;
+        min-height: 22px;
+        min-width: 22px;
+        line-height: 22px;
+        padding: 5px;
+        color: #FFF;
+        background: #005BBB;
+        text-decoration: none;
+    }
+
+    header ul.languages li a:hover {
+        color: #005BBB;
+        background: #FFD500;
+    }
+
+    header ul.languages li a.selected {
+        background: #FFF;
+        color: #000;
+    }
+
+    header ul.languages li a:hover.selected {
+        background: #FFF;
+        cursor: default;
+    }
+
+main {
+    margin-top: 160px;
+}
+
+.urgent {
+    background-color: #FF8869;
+    color: #000;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.multilingual {
+    display: none;
+}
+
+.multilingual.en {
+    display: inherit;
+}
+
+@media screen and (min-width: 768px) {
+    div.container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    div.container {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    div.container {
+        width: auto;
+        margin: 0 40px 0 40px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    header {
+        height: auto;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    header div.links-container {
+        float: none;
+    }
+
+    header ul {
+        float: none;
+        text-align: center;
+    }
+
+    header ul.languages, header ul.links {
+        position: static;
+    }
+
+    header ul.links {
+        margin: 15px 0 15px 0;
+    }
+
+        header ul li a {
+            padding: 5px;
+            border-radius: 5px;
+            line-height: 30px;
+            color: #FFF;
+            background: #005BBB;
+            text-decoration: none;
+        }
+
+        header ul.links li {
+            margin-right: 10px;
+        }
+
+        header ul li a:hover {
+            color: #000;
+            background: #FFD500;
+        }
+
+        header ul.languages li a {
+            border-radius: 5px;
+            font-size: 20px;
+            min-height: 25px;
+            min-width: 25px;
+            line-height: 25px;
+            padding: 5px;
+        }
+
+    div.container {
+        margin: 0 20px 0 20px;
+    }
+
+    main {
+        margin-top: 270px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #FFF;
+        background: #222831;
+    }
+
+    header {
+        background: #222831;
+    }
+
+    a {
+        color: #99BDE4;
+        transition: 0.3s;
+    }
+    
+    a:hover {
+        color: #E4BF99;
+    }
+
+    .urgent {
+        background: #FFD369;
+        color: #222831;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .urgent a {
+        color: #222831;
+    }
+
+    .urgent a:hover {
+        color: #222831;
+    }
+
+    header ul li a {
+        color: #FFF;
+    }
+
+    header ul li a:hover {
+        color: #FFD369;
+    }
+
+    header ul.languages li a {
+        background: #FFF;
+        color: #005BBB;
+    }
+
+    header ul.languages li a:hover {
+        background: #FFD369;
+        color: #005BBB;
+    }
+
+    header ul.languages li a.selected {
+        background: #222831;
+        color: #FFF;
+    }
+
+    header ul.languages li a:hover.selected {
+        background: #222831;
+        cursor: default;
+    }
+}
