@@ -4,9 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import About from "./components/about";
 import Request from "./components/request/index";
 
+import i18n from "./i18n";
 
 function App() {
   const publicFolder = process.env.PUBLIC_URL;
+
+  const changeLanguageOnClick = (language) => {
+    i18n.changeLanguage(language);
+  }
 
   return (
     <div>
@@ -25,9 +30,8 @@ function App() {
             </picture>
           </a>
           <ul>
-            {/* <li><a href="#" className="selected">EN</a></li>
-          <li><a href="#">UA</a></li>
-          <li><a href="#">DE</a></li> */}
+            <li onClick={() => changeLanguageOnClick("en")}><a href="#" class="multilingual-selector selected" data-language="EN" class="selected">EN</a></li>
+            <li onClick={() => changeLanguageOnClick("es")}><a href="#" class="multilingual-selector" data-language="ES">ES</a></li>
           </ul>
         </div>
       </header>
