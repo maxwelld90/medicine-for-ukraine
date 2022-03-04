@@ -95,6 +95,9 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
             'PORT': '5432',
         }
     }
+
+    f = open('/srv/medicine-for-ukraine/git-repo/api/POST', 'w')
+    f.close()
 else:
     DATABASES = {
         'default': {
@@ -102,6 +105,8 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    f = open('/srv/medicine-for-ukraine/git-repo/api/SQLITE', 'w')
+    f.close()
 
 
 # Password validation
