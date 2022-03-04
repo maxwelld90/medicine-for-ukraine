@@ -144,7 +144,7 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     STATIC_URL = 'https://static.medicineforukraine.org/'
     STATIC_ROOT = '/srv/medicine-for-ukraine/static/'
     STATICFILES_DIRS = (
-        '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/site-packages/django/contrib/admin/static'
+        '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/site-packages/django/contrib/admin/static',
     )
 
 # Default primary key field type
