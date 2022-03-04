@@ -16,23 +16,25 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-key_location = os.path.join(Path(__file__).parent.resolve().parent.parent.parent, 'DJANGO_KEY')
 SECRET_KEY = 'DEBUG_KEY'
 
-if os.path.exists(key_location):
-    f = open(key_location, 'r')
-    SECRET_KEY = f.read().strip()
-    f.close()
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    SECRET_KEY = os.getenv('MEDICINE_DJANGOKEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['api.medicineforukraine.org']
+if os.getenv('MEDICINE_DEBUG') == 'true':
+    DEBUG = True
+
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    ALLOWED_HOSTS = ['api.medicineforukraine.org']
+else:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'api_app',
 ]
 
