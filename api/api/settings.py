@@ -91,6 +91,18 @@ DATABASES = {
     }
 }
 
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('MEDICINE_DB_NAME'),
+            'USER': os.getenv('MEDICINE_DB_USER'),
+            'PASSWORD': os.getenv('MEDICINE_DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
