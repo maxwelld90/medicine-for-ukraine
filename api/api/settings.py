@@ -84,6 +84,13 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     DATABASES = {
         'default': {
@@ -95,18 +102,6 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
             'PORT': '5432',
         }
     }
-
-    f = open('/srv/medicine-for-ukraine/git-repo/api/POST', 'w')
-    f.close()
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-    f = open('/srv/medicine-for-ukraine/git-repo/api/SQLITE', 'w')
-    f.close()
 
 
 # Password validation
