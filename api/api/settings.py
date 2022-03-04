@@ -94,7 +94,7 @@ DATABASES = {
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.getenv('MEDICINE_DB_NAME'),
             'USER': os.getenv('MEDICINE_DB_USER'),
             'PASSWORD': os.getenv('MEDICINE_DB_PASSWORD'),
