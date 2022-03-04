@@ -98,8 +98,8 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
             'NAME': os.getenv('MEDICINE_DB_NAME'),
             'USER': os.getenv('MEDICINE_DB_USER'),
             'PASSWORD': os.getenv('MEDICINE_DB_PASSWORD'),
-            'HOST': 'localhost',
-            'PORT': '',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
 
