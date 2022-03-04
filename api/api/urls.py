@@ -21,5 +21,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api_app.urls')),
 ]
-
-handler404 = 'api_app.views.redirector'
