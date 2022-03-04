@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 def redirector(request):
-    return redirect('https://medicineforukraine.org')
+    return HttpResponseRedirect('https://medicineforukraine.org')
