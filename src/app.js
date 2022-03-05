@@ -30,8 +30,8 @@ function App() {
             </picture>
           </a>
           <ul>
-            <li onClick={() => changeLanguageOnClick("en")}><a href="#" class="multilingual-selector selected" data-language="EN" class="selected">EN</a></li>
-            <li onClick={() => changeLanguageOnClick("es")}><a href="#" class="multilingual-selector" data-language="ES">ES</a></li>
+            <li onClick={() => changeLanguageOnClick("en")}><a href="#" className="multilingual-selector selected" data-language="EN" className="selected">EN</a></li>
+            <li onClick={() => changeLanguageOnClick("es")}><a href="#" className="multilingual-selector" data-language="ES">ES</a></li>
           </ul>
         </div>
       </header>

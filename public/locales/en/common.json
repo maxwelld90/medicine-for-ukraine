@@ -1,3 +1,21 @@
 {
-  "title": "Help Ukraine!"
+  "TITLE": "Help Ukraine!",
+  "NEXT_BUTTON": "Next",
+  "STEP_ONE": {
+    "TITLE": "What is your email address?",
+    "FIRST_LINE": "We use your e-mail address to keep track of what has been ordered. Please enter your e-mail address in the box below.",
+    "SECOND_LINE": "If you would prefer to remain anonymous, please create a new address instead and use that.",
+    "EMAIL_LABEL": "Enter your e-mail address here"
+  },
+  "STEP_TWO": {
+    "TITLE": "Where do you want to send items to ?",
+    "FIRST_LINE": "We currently have volunteers ready to receive items in the following countries. Select a country that you can pay for items in to continue.",
+    "SECOND_LINE": "Select the country you wish to send items to, and click/tap continue."
+  },
+  "STEP_THREE": {
+    "TITLE": "What do you want to donate?",
+    "FIRST_LINE": "We have two categories of products you can donate. What would you like to donate?",
+    "MED_EQUIPMENT_LABEL": "I want to donate medical equipment",
+    "OTHER_EQUIPMENT_LABEL": "I want to donate other equipment"
+  }
 }

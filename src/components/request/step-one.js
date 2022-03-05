@@ -1,23 +1,35 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
+
 import { RequestContext } from "./request-context";
 
+import "./request.css";
+
 export default function StepOne() {
-  const [, setRequest] = useContext(RequestContext);
+  const [request, setRequest] = useContext(RequestContext);
+  const [t] = useTranslation(["translation", "common"]);
 
   const onEmailChange = (event) => {
-    setRequest({ contact: event.target.value });
+    setRequest({ ...request, contact: event.target.value });
   };
-  
+
   return (
     <div>
-      <h2>What is your E-mail Address?</h2>
+      <h1 className="multilingual en">
+        {t("common:STEP_ONE.TITLE")}
+        <span>1/9</span>
+      </h1>
 
-      <input
-        type="text"
-        name="email"
-        placeholder="Email"
-        onChange={onEmailChange}
-      ></input>
+      <p className="multilingual en">{t("common:STEP_ONE.FIRST_LINE")}</p>
+      <p>{t("common:STEP_ONE.SECOND_LINE")}</p>
+      <p className="form-element">
+        <input
+          type="text"
+          id="email"
+          placeholder={t("common:STEP_ONE.EMAIL_LABEL")}
+          onChange={onEmailChange}
+        />
+      </p>
     </div>
   );
 }
