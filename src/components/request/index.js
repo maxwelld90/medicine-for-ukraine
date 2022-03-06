@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import StepOne from "./step-one";
@@ -15,28 +15,41 @@ const LAST_STEP = 6;
 export default function Request() {
   const [step, setStep] = useState(FIRST_STEP);
   const [request, setRequest] = useState({ contact: "" });
+  const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);
 
   const nextStep = () => {
     if (step === LAST_STEP) return;
 
-    return setStep(step + 1);
+    setStep(step + 1);
+    setIsCompletedStep(false);
   };
+
+  const onComplete = () => {
+    setIsCompletedStep(true);
+  }
+
+  useEffect(() => {
+    window.onbeforeunload = confirmExit;
+    function confirmExit() {
+      return "show warning";
+    }
+  }, []);
 
   const multiStepForm = () => {
     switch (step) {
       case 1:
-        return <StepOne></StepOne>;
+        return <StepOne onComplete={onComplete}></StepOne>;
       case 2:
-        return <StepTwo>2</StepTwo>;
+        return <StepTwo onComplete={onComplete}>2</StepTwo>;
       case 3:
-        return <StepThree>3</StepThree>;
+        return <StepThree onComplete={onComplete}>3</StepThree>;
       case 4:
-        return <StepFour>4</StepFour>;
+        return <StepFour onComplete={onComplete}>4</StepFour>;
       case 5:
-        return <StepFive>5</StepFive>;
+        return <StepFive onComplete={onComplete}>5</StepFive>;
       case 6:
-        return <StepSix>5</StepSix>;
+        return <StepSix onComplete={onComplete}>5</StepSix>;
       default:
       // do nothing
     }
@@ -46,7 +59,11 @@ export default function Request() {
     <RequestContext.Provider value={[request, setRequest]}>
       <div>
         <div>{multiStepForm()}</div>
-        {step !== LAST_STEP && <button onClick={nextStep}>{t("common:NEXT_BUTTON")}</button>}
+        {step !== LAST_STEP && (
+          <button disabled={!isCompletedStep} onClick={nextStep}>
+            {t("common:NEXT_BUTTON")}
+          </button>
+        )}
       </div>
     </RequestContext.Provider>
   );

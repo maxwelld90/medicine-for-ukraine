@@ -17,5 +17,18 @@
     "FIRST_LINE": "We have two categories of products you can donate. What would you like to donate?",
     "MED_EQUIPMENT_LABEL": "I want to donate medical equipment",
     "OTHER_EQUIPMENT_LABEL": "I want to donate other equipment"
+  },
+  "STEP_FOUR": {
+    "TITLE": "What do you want to donate?",
+    "FIRST_LINE": "These items are required for frontline troops. Select one of the items below. Those in red are high priority items. Note the price is approximate."
+  },
+  "STEP_FIVE": {
+    "TITLE": "Add to your basket(s)",
+    "FIRST_LINE": "We have the following links for {{product}} that delivers to {{country}}. Please specify how many of the items you have put to the shopping basket."
+  },
+  "STEP_SIX": {
+    "TITLE": "Complete your order",
+    "FIRST_LINE": "You can now complete your order(s) on the chosen websites. Please send them to the address listed.",
+    "SECOND_LINE": "Once you have completed your purchases, please confirm that by uploading order screenshots. Be sure to avoid any personal information."
   }
 }

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 
-export default function StepTwo() {
+export default function StepTwo({onComplete}) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
@@ -14,14 +14,20 @@ export default function StepTwo() {
   ];
 
   const handleSelect = (country) => {
-    setRequest({...request, country: country})
+    setRequest({...request, country: country});
   };
+
+  useEffect(() => {
+    if(request.country && typeof onComplete === "function") {
+      onComplete()
+    }
+  }, [request, onComplete]);
 
   return (
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_TWO.TITLE")}
-        <span>2/9</span>
+        <span>2/6</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_TWO.FIRST_LINE")}</p>
