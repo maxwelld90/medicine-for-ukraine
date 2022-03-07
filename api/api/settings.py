@@ -158,3 +158,8 @@ if os.getenv('MEDICINE_DEBUG') != 'true':
             'rest_framework.renderers.JSONRenderer',
         )
     }
+
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    GOOGLE_API_SECRET_PATH = '/src/medicine-for-ukraine/google_api_secret.json'
+else:
+    GOOGLE_API_SECRET_PATH = 'client_secret.json'

@@ -7,6 +7,7 @@ import pickle
 import zlib
 import redis
 import os
+from django.conf import settings
 
 class CountryCodeError(Exception):
     pass
@@ -141,8 +142,7 @@ class MedicineReader():
     Reads the spreadsheet and returns dataframes with items.
     Place the client_secret.json file into the same directory; don't add the file to git!
     '''
-    def __init__(self, PATH_TO_CREDS='client_secret.json',
-                 SPREADSHEET_KEY='1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8', using_cache=True):
+    def __init__(self, SPREADSHEET_KEY='1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8', using_cache=True):
         '''
         NB: Possible problem in the future - if the user waits too long,
         pygsheets might stop working and we'll have to authorize again.
@@ -176,7 +176,7 @@ class MedicineReader():
                 return
 
         # If we get here, we need to pull the data from Google.
-        client = pygsheets.authorize(service_file=PATH_TO_CREDS)  # a file with the API credentials
+        client = pygsheets.authorize(service_file=settings.GOOGLE_API_SECRET_PATH)  # a file with the API credentials
         table = client.open_by_key(SPREADSHEET_KEY)
         worksheets = table.worksheets()
         sheets = {'meds': worksheets[0],
