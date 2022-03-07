@@ -313,6 +313,18 @@ input[type=text] {
     opacity: 1;
 }
 
+div.screenshot-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 5px;
+    line-height: 30px;
+    font-size: 28px;
+    border: none;
+    background: #D1D8E5;
+    margin-bottom: 15px
+}
+
 ul.item-list {
     margin: 20px 0 20px 0;
     padding: 0;

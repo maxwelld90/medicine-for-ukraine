@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import {fetchItems, fetchLinks} from "../../api";
 
 export default function StepFIve({onComplete}) {
-  const [request, setRequest] = useContext(RequestContext);
+  const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const onQuantityChange = (event) => {

@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
+import ImageLoader from "../imageLoader";
 
 export default function StepSix({onComplete}) {
   const [t] = useTranslation(["translation", "common"]);
@@ -14,9 +16,10 @@ export default function StepSix({onComplete}) {
     text: "22 Rue du Grenier Saint-Lazare\n75003 Paris\nFrance",
   };
 
-  useEffect(() => {
-    typeof onComplete === 'function' && onComplete()
-  },[onComplete])
+  const onUpload = (files) => {
+    console.log(files)
+    typeof onComplete === 'function' && onComplete();
+  }
 
   return (
     <div>
@@ -35,6 +38,7 @@ export default function StepSix({onComplete}) {
 
       <p className="multilingual en">{t("common:STEP_SIX.SECOND_LINE")}</p>
 
+      <ImageLoader onUpload={onUpload}></ImageLoader>
     </div>
   );
 }

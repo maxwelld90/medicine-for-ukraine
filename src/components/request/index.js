@@ -7,10 +7,11 @@ import StepThree from "./step-three";
 import StepFour from "./step-four";
 import StepFive from "./step-five";
 import StepSix from "./step-six";
+import StepSeven from "./step-seven";
 import { RequestContext } from "./request-context";
 
 const FIRST_STEP = 1;
-const LAST_STEP = 6;
+const LAST_STEP = 7;
 
 export default function Request() {
   const [step, setStep] = useState(FIRST_STEP);
@@ -34,7 +35,7 @@ export default function Request() {
 
   const onComplete = () => {
     setIsCompletedStep(true);
-  }
+  };
 
   useEffect(() => {
     window.onbeforeunload = confirmExit;
@@ -57,6 +58,8 @@ export default function Request() {
         return <StepFive onComplete={onComplete}>5</StepFive>;
       case 6:
         return <StepSix onComplete={onComplete}>5</StepSix>;
+      case 7:
+        return <StepSeven onComplete={onComplete}>5</StepSeven>;
       default:
       // do nothing
     }
