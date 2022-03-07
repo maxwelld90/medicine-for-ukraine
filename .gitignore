@@ -11,3 +11,5 @@ yarn-error.log*
 migrations/
 *.pyc
 db.sqlite3
+
+client_secret.json
