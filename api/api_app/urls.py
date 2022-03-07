@@ -7,5 +7,6 @@ app_name = 'api_app'
 urlpatterns = [
     path('countries/', country_views.CountryListing.as_view()),
     path('countries/address/<str:country_code>', country_views.CountryAddress.as_view()),
-    path('items/<str:equipment_type>/<str:country_code>', item_views.ItemsListForCountry.as_view())
+    path('items/<str:equipment_type>/<str:country_code>', item_views.ItemsListForCountry.as_view()),
+    path('links/<str:equipment_type>/<str:country_code>/<int:item_index>', item_views.LinksForItem.as_view()),
 ]

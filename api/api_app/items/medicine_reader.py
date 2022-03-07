@@ -14,6 +14,9 @@ class CountryCodeError(Exception):
 class RedisConnectionError(Exception):
     pass
 
+class UnknownItemError(IndexError):
+    pass
+
 url_validator = re.compile(
         r'^(?:http|ftp)s?://' # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
@@ -55,9 +58,16 @@ def get_links_for_item(df, country_code, item_index):
 
     returns a list of valid links for buying the item
     '''
-    row = df.iloc[item_index]
-    links_cell = row['Links {0}'.format(country_code)]
+    country_codes = get_country_codes(df)
+    if country_code not in country_codes:
+        raise CountryCodeError(f'Country code not found: {country_code}')
+    
+    try:
+        row = df.iloc[item_index]
+    except IndexError:
+        raise UnknownItemError(f'Item number {item_index} not found')
 
+    links_cell = row['Links {0}'.format(country_code)]
     links_list = split_and_filter_links(links_cell)
     if not links_list:
         warnings.warn('No valid URLs found for this item!')
