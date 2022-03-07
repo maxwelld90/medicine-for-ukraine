@@ -21,3 +21,11 @@ class Address(models.Model):
     
     def __str__(self):
         return f'{self.country.name} Address'
+
+class ItemPrice(models.Model):
+    url = models.URLField(primary_key=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    last_checked = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.url}'
