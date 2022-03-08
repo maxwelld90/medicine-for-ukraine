@@ -19,7 +19,7 @@ export default function StepFIve({onComplete}) {
 
 
   useEffect( () => {
-    fetchLinks(request.donationType, request.country, request.productId)
+    fetchLinks(request.donationType, request.countryCode, request.productId)
       .then(
         (result) => {
           setIsLoaded(true);
@@ -48,7 +48,7 @@ export default function StepFIve({onComplete}) {
       <p className="multilingual en">
         {t("common:STEP_FIVE.FIRST_LINE", {
           product: request.productName,
-          country: request.country,
+          country: request.countryCode,
         })}
       </p>
 

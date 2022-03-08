@@ -8,11 +8,11 @@ export default function StepTwo({onComplete}) {
   const [t] = useTranslation(["translation", "common"]);
 
   const handleSelect = (country) => {
-    setRequest({...request, country: country});
+    setRequest({...request, countryCode: country.code});
   };
 
   useEffect(() => {
-    if(request.country && typeof onComplete === "function") {
+    if(request.countryCode && typeof onComplete === "function") {
       onComplete()
     }
   }, [request, onComplete]);
@@ -52,8 +52,8 @@ export default function StepTwo({onComplete}) {
       <div>
         <ul className="item-list countries">
           {countries.map((country, i) => (
-            <li key={i} onClick={() => handleSelect(country.name)}
-              className={country.name === request.country ? 'selected' : ''}>
+            <li key={i} onClick={() => handleSelect(country)}
+              className={country.code === request.countryCode ? 'selected' : ''}>
               <img src={country.flag_url} alt="Flag of Spain"/>
               <span>{country.name}</span>
             </li>

@@ -22,7 +22,7 @@ export default function StepFour({ onComplete }) {
   const [productList, setProductList] = useState([]);
 
   useEffect( () => {
-    fetchItems(request.donationType, request.country)
+    fetchItems(request.donationType, request.countryCode)
       .then(
         (result) => {
           setIsLoaded(true);
