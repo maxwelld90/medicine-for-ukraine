@@ -7,8 +7,8 @@ export default function StepFour({ onComplete }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const selectProduct = (name) => {
-    setRequest({ ...request, productName: name });
+  const selectProduct = (product) => {
+    setRequest({ ...request, productName: product.name, productId: product.id });
   };
 
   useEffect(() => {
@@ -41,6 +41,17 @@ export default function StepFour({ onComplete }) {
     return <div>Loading...</div>;
   }
 
+  const getProductClasses = (product) => {
+    const classes = [];
+    if (product.highPriority) {
+      classes.push("high-priority")
+    }
+    if (product.id === request.productId) {
+      classes.push("selected")
+    }
+    return classes.join(' ');
+  }
+
   return (
     <div>
       <h1 className="multilingual en">
@@ -53,9 +64,9 @@ export default function StepFour({ onComplete }) {
       <ul className="item-list">
         {productList.map((product, i) => (
           <li
-            className={product.highPriority ? "high-priority" : ""}
+            className={getProductClasses(product)}
             key={i}
-            onClick={() => selectProduct(product.name)}
+            onClick={() => selectProduct(product)}
           >
             {product.name}
           </li>
