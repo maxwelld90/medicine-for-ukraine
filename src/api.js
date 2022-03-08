@@ -30,5 +30,14 @@ export const fetchItems = async (donationType, country) => {
 }
 
 export const fetchLinks = async (donationType, country, itemId) => {
-    return await fetch(`${API_HOST}/links/${donationType}/${country}/${itemId}`);
+    // @TODO uncomment when API will be available
+    // const jsonResponse = await (await fetch(`${API_HOST}/links/${donationType}/${country}/${itemId}`)).json();
+
+    // @TODO remove when API will be available
+    const jsonResponse = {"links":[{"url":"http://taktycznymedical.pl/drogi-oddechowe/72-micro-bvm-pocket-resuscytator-kompaktowy.html","price":null,"last_checked":null},{"url":"http://www.sklepratownika.pl/resuscytator-micro-bvm.html","price":null,"last_checked":null}],"df_str":"meds","country_code":"PL","count":2};
+
+    return jsonResponse.links.map(r => {
+        const url = new URL(r.url);
+        return {link: r.url, name: url.hostname};
+    });
 }

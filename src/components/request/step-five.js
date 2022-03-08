@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
+import {fetchItems, fetchLinks} from "../../api";
 
 export default function StepFIve({onComplete}) {
   const [request, setRequest] = useContext(RequestContext);
@@ -12,20 +13,30 @@ export default function StepFIve({onComplete}) {
     }
   };
 
-  const onlineStores = [
-    {
-      name: "Issosa",
-      link: "https://issosa.com/shop/gasa-hemostatico-chitogauze",
-    },
-    {
-      name: "Amazon ES",
-      link: "https://www.amazon.es/Celox-Rapid-Gasa-hemost%C3%A1tica-forma/dp/B07RWLJ3G7/ref=asc_df_B07RWLJ3G7/?tag=googshopes-21&linkCode=df0&hvadid=420332014314&hvpos=&hvnetw=g&hvrand=12962910197763725794&hvpone=&hvptwo=&hvqmt=&hvdev=m&hvdvcmdl=&hvlocint=&hvlocphy=1005424&hvtargid=pla-785149914233&psc=1&tag=&ref=&adgrpid=96502138512&hvpone=&hvptwo=&hvadid=420332014314&hvpos=&hvnetw=g&hvrand=12962910197763725794&hvqmt=&hvdev=m&hvdvcmdl=&hvlocint=&hvlocphy=1005424&hvtargid=pla-785149914233",
-    },
-    {
-      name: "Ekipol",
-      link: "https://www.ekipol.es/control-de-hemorragias/12548-venda-hemostatica-control-del-sangrado-celox-g.htmlhttps://www.ekipol.es/control-de-hemorragias/12548-venda-hemostatica-control-del-sangrado-celox-g.html",
-    },
-  ];
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [onlineStores, setOnlineStores] = useState([]);
+
+
+  useEffect( () => {
+    fetchLinks(request.donationType, request.country, request.productId)
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setOnlineStores(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [request]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
