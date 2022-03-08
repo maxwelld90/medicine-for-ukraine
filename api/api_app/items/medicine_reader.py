@@ -264,6 +264,8 @@ class MedicineReader(object):
             item_names_by_language.append(new_entry)
         
         item_priorities = list(df['Priority'])
+        item_order_count = list(df['Ordered'])
+        item_need_count = list(df['Need #'])
         res = []
 
         for i in range(len(index)):
@@ -275,7 +277,10 @@ class MedicineReader(object):
             
             res.append({'row_number': index[i],
                         'item_names_by_language': item_names_by_language[i],
-                        'is_high_priority': item_priorities[i].lower() == 'high'})
+                        'is_high_priority': item_priorities[i].lower() == 'high',
+                        'number_ordered': item_order_count[i],
+                        'number_needed': None if item_need_count[i] == '' else item_need_count[i],
+                        })
         
         return res
     
