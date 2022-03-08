@@ -1,26 +1,56 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
+import {fetchItems} from "../../api";
 
 export default function StepFour({ onComplete }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const selectProduct = (name) => {
-    setRequest({ ...request, productName: name });
+  const selectProduct = (product) => {
+    setRequest({ ...request, productName: product.name, productId: product.id });
   };
-
-  const productList = [
-    { name: "Hemostatic Celox", highPriority: true },
-    { name: "Aspirin 2", highPriority: false },
-    { name: "Aspirin 3", highPriority: false },
-  ];
 
   useEffect(() => {
     if (request.productName && typeof onComplete === "function") {
       onComplete();
     }
   }, [request, onComplete]);
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [productList, setProductList] = useState([]);
+
+  useEffect( () => {
+    fetchItems(request.donationType, request.countryCode)
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setProductList(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [request]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
+  const getProductClasses = (product) => {
+    const classes = [];
+    if (product.highPriority) {
+      classes.push("high-priority")
+    }
+    if (product.id === request.productId) {
+      classes.push("selected")
+    }
+    return classes.join(' ');
+  }
 
   return (
     <div>
@@ -34,9 +64,9 @@ export default function StepFour({ onComplete }) {
       <ul className="item-list">
         {productList.map((product, i) => (
           <li
-            className={product.highPriority ? "high-priority" : ""}
+            className={getProductClasses(product)}
             key={i}
-            onClick={() => selectProduct(product.name)}
+            onClick={() => selectProduct(product)}
           >
             {product.name}
           </li>

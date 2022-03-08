@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 export default function StepSix({onComplete}) {
   const [t] = useTranslation(["translation", "common"]);
 
+  //@TODO fetch from API
   const storageAddress = {
     street: "22 Rue du Grenier Saint-Lazare",
     postalCode: "75003",
