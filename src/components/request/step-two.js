@@ -1,17 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
+import {fetchCountries} from "../../api";
 
 export default function StepTwo({onComplete}) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
-
-  const publicFolder = process.env.PUBLIC_URL;
-
-  const countries = [
-    { name: "Poland", flag_url: `${publicFolder}img/flags/pl.svg` },
-    { name: "Spain", flag_url: `${publicFolder}img/flags/es.svg` },
-  ];
 
   const handleSelect = (country) => {
     setRequest({...request, country: country});
@@ -23,6 +17,29 @@ export default function StepTwo({onComplete}) {
     }
   }, [request, onComplete]);
 
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [countries, setCountries] = useState([]);
+
+  useEffect( () => {
+    fetchCountries()
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCountries(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <h1 className="multilingual en">
