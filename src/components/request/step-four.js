@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
+import {fetchItems} from "../../api";
 
 export default function StepFour({ onComplete }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -10,17 +11,35 @@ export default function StepFour({ onComplete }) {
     setRequest({ ...request, productName: name });
   };
 
-  const productList = [
-    { name: "Hemostatic Celox", highPriority: true },
-    { name: "Aspirin 2", highPriority: false },
-    { name: "Aspirin 3", highPriority: false },
-  ];
-
   useEffect(() => {
     if (request.productName && typeof onComplete === "function") {
       onComplete();
     }
   }, [request, onComplete]);
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [productList, setProductList] = useState([]);
+
+  useEffect( () => {
+    fetchItems(request.donationType, request.country)
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setProductList(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [request]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

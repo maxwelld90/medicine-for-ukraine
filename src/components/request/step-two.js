@@ -52,8 +52,9 @@ export default function StepTwo({onComplete}) {
       <div>
         <ul className="item-list countries">
           {countries.map((country, i) => (
-            <li key={i} onClick={() => handleSelect(country.name)}>
-              <img src={country.flag_url} alt="Flag of Spain" />
+            <li key={i} onClick={() => handleSelect(country.name)}
+              className={country.name === request.country ? 'selected' : ''}>
+              <img src={country.flag_url} alt="Flag of Spain"/>
               <span>{country.name}</span>
             </li>
           ))}

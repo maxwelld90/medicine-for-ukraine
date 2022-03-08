@@ -139,7 +139,8 @@ ul.item-list {
         transition: 0.3s;
     }
 
-    ul.item-list li:hover {
+    ul.item-list li:hover,
+    ul.item-list li.selected {
         background: #FFD500;
         color: #005BBB;
         cursor: pointer;
