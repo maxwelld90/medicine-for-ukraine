@@ -1,0 +1,42 @@
+{
+  "TITLE": "Helfen Sie der Ukraine!",
+  "PREV_BUTTON": "Zur\u00fcck",
+  "NEXT_BUTTON": "Weiter",
+  "ADD_IMAGE": "Weitere Bilder hinzuf\u00fcgen",
+  "UPLOAD_IMAGE": "Laden Sie ein Bild hoch",
+  "STEP_ONE": {
+    "TITLE": "Wie lautet Ihre E-Mail-Adresse?",
+    "FIRST_LINE": "Wir verwenden Ihre E-Mail-Adresse um Bestellungen zuordnen zu k\u00f6nnen. Bitte geben Sie Ihre E-Mail-Ad­res­se in das unten stehende Feld ein.",
+    "SECOND_LINE": "Wenn Sie lieber anonym bleiben m\u00f6chten, erstellen Sie bitte eine neue Adresse und verwenden Sie diese.",
+    "EMAIL_LABEL": "Geben Sie hier Ihre E-Mail-Adresse ein"
+  },
+  "STEP_TWO": {
+    "TITLE": "Wohin m\u00f6chten Sie Artikel schicken?",
+    "FIRST_LINE": "Wir haben derzeit Freiwillige in den folgenden L\u00e4ndern, die bereit sind Artikel entgegenzunehmen. W\u00e4hlen Sie ein Land aus, in dem Sie Artikel bezahlen k\u00f6nnen, um fortzufahren.",
+    "SECOND_LINE": "W\u00e4hlen Sie das Land aus, in das Sie Artikel senden m\u00f6chten, und klicken Sie auf Weiter."
+  },
+  "STEP_THREE": {
+    "TITLE": "Was m\u00f6chten Sie spenden?",
+    "FIRST_LINE": "Wir haben zwei Kategorien von Produkten, die Sie spenden k\u00f6nnen. Was m\u00f6chten Sie spenden?",
+    "MED_EQUIPMENT_LABEL": "Ich m\u00f6chte medizinische Ger\u00e4te spenden",
+    "OTHER_EQUIPMENT_LABEL": "Ich m\u00f6chte andere Ger\u00e4te spenden"
+  },
+  "STEP_FOUR": {
+    "TITLE": "Was m\u00f6chten Sie spenden?",
+    "FIRST_LINE": "Diese Gegenst\u00e4nde werden f\u00fcr Truppen an der Front ben\u00f6tigt. W\u00e4hlen Sie einen der folgenden Artikel aus. Rot gekennzeichnete Elemente haben eine hohe Priorit\u00e4t. Beachten Sie, dass der tats\u00e4chliche Preis abweichen kann."
+  },
+  "STEP_FIVE": {
+    "TITLE": "Zu Ihren Warenkorb hinzuf\u00fcgen",
+    "FIRST_LINE": "Wir haben die folgenden Links f\u00fcr {{product}}, das nach {{country}} geliefert wird. Bitte geben Sie an, wie viele der Artikel Sie in den Warenkorb gelegt haben."
+  },
+  "STEP_SIX": {
+    "TITLE": "Schlie\u00dfen Sie Ihre Bestellung ab",
+    "FIRST_LINE": "Sie k\u00f6nnen nun Ihre Bestellung(en) auf den ausgew\u00e4hlten Webseiten abschlie\u00dfen. Bitte senden Sie die Artikel an die angegebene Adresse.",
+    "SECOND_LINE": "Laden Sie bitte nach dem Abschluss Ihres Einkaufs Screenshots Ihrer Bestellung(en) hoch um uns diese zu best\u00e4tigen. Achten Sie darauf, pers\u00f6nliche Informationen in den Screenshots zu vermeiden."
+  },
+  "STEP_SEVEN": {
+    "TITLE": "Danke",
+    "FIRST_LINE": "Wir haben Ihre Bestellung in unserem Bestand erfasst. Wir wissen Ihre Unterst\u00fctzung sehr zu sch\u00e4tzen und danken Ihnen, dass Sie die Ukraine unterst\u00fctzen.",
+    "SECOND_LINE": "Wenn Sie einen weiteren Artikel bestellen m\u00f6chten, klicken Sie auf Weitere Artikel bestellen. Andernfalls k\u00f6nnen Sie dieses Fenster jetzt schlie\u00dfen."
+  }
+}

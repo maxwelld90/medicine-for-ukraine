@@ -1,0 +1,42 @@
+{
+  "TITLE": "Pom\u00f3\u017c Ukrainie!",
+  "PREV_BUTTON": "Plecy",
+  "NEXT_BUTTON": "Nast\u0119pny",
+  "ADD_IMAGE": "Dodaj wi\u0119cej zdj\u0119\u0107",
+  "UPLOAD_IMAGE": "Prze\u015blij obraz",
+  "STEP_ONE": {
+    "TITLE": "Jaki jest Tw\u00f3j adres e-mail?",
+    "FIRST_LINE": "U\u017cywamy Twojego adresu e-mail do \u015bledzenia tego, co zosta\u0142o zam\u00f3wione. Wpisz sw\u00f3j adres e-mail w polu poni\u017cej.",
+    "SECOND_LINE": "Je\u015bli wolisz pozosta\u0107 anonimowy, zamiast tego utw\u00f3rz nowy adres i u\u017cyj go.",
+    "EMAIL_LABEL": "Wpisz tutaj sw\u00f3j adres e-mail"
+  },
+  "STEP_TWO": {
+    "TITLE": "Dok\u0105d chcesz wys\u0142a\u0107 przedmioty?",
+    "FIRST_LINE": "Obecnie mamy wolontariuszy gotowych do odbioru przedmiot\u00f3w w nast\u0119puj\u0105cych krajach. Wybierz kraj, w kt\u00f3rym mo\u017cesz zap\u0142aci\u0107 za przedmioty, aby kontynuowa\u0107.",
+    "SECOND_LINE": "Wybierz kraj, do kt\u00f3rego chcesz wys\u0142a\u0107 elementy, i kliknij/dotknij Kontynuuj."
+  },
+  "STEP_THREE": {
+    "TITLE": "Co chcesz przekaza\u0107?",
+    "FIRST_LINE": "Mamy dwie kategorie produkt\u00f3w, kt\u00f3re mo\u017cesz przekaza\u0107. Co chcia\u0142by\u015b przekaza\u0107?",
+    "MED_EQUIPMENT_LABEL": "Chc\u0119 przekaza\u0107 sprz\u0119t medyczny",
+    "OTHER_EQUIPMENT_LABEL": "Chc\u0119 przekaza\u0107 inny sprz\u0119t"
+  },
+  "STEP_FOUR": {
+    "TITLE": "Co chcesz przekaza\u0107?",
+    "FIRST_LINE": "Te przedmioty s\u0105 wymagane dla oddzia\u0142\u00f3w frontowych. Wybierz jedn\u0105 z poni\u017cszych pozycji. Te zaznaczone na czerwono to przedmioty o wysokim priorytecie. Uwaga, cena jest przybli\u017cona."
+  },
+  "STEP_FIVE": {
+    "TITLE": "Dodaj do koszyka(\u00f3w)",
+    "FIRST_LINE": "Mamy nast\u0119puj\u0105ce linki do {{product}}, kt\u00f3ry dostarcza do {{country}}. Okre\u015bl, ile artyku\u0142\u00f3w w\u0142o\u017cy\u0142e\u015b do koszyka."
+  },
+  "STEP_SIX": {
+    "TITLE": "Zrealizuj swoje zam\u00f3wienie",
+    "FIRST_LINE": "Mo\u017cesz teraz sfinalizowa\u0107 swoje zam\u00f3wienia na wybranych stronach internetowych. Prosimy o przes\u0142anie ich na podany adres.",
+    "SECOND_LINE": "Po sfinalizowaniu zakup\u00f3w potwierd\u017a to, przesy\u0142aj\u0105c zrzuty ekranu z zam\u00f3wie\u0144. Pami\u0119taj, aby unika\u0107 jakichkolwiek danych osobowych."
+  },
+  "STEP_SEVEN": {
+    "TITLE": "Dzi\u0119kuj\u0119 Ci",
+    "FIRST_LINE": "Zarejestrowali\u015bmy Twoje zam\u00f3wienie w naszym ekwipunku. Naprawd\u0119 doceniamy twoje wsparcie. Dzi\u0119kuj\u0119 za wsparcie Ukrainy.",
+    "SECOND_LINE": "Je\u015bli chcesz zam\u00f3wi\u0107 kolejny przedmiot, kliknij Zam\u00f3w kolejny przedmiot. W przeciwnym razie mo\u017cesz teraz zamkn\u0105\u0107 t\u0119 kart\u0119."
+  }
+}
