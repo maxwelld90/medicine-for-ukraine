@@ -26,8 +26,8 @@ export default function StepThree({ onComplete }) {
       <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
 
       <ul className="item-list">
-        <li onClick={() => selectDonation("medical")}
-        className={"medical" === request.donationType ? 'selected' : ''}>
+        <li onClick={() => selectDonation("meds")}
+        className={"meds" === request.donationType ? 'selected' : ''}>
           {t("common:STEP_THREE.MED_EQUIPMENT_LABEL")}
         </li>
         <li onClick={() => selectDonation("other")}
