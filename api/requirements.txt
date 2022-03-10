@@ -38,3 +38,4 @@ sqlparse==0.4.2
 uritemplate==4.1.1
 urllib3==1.26.8
 wrapt==1.13.3
+django-cors-headers==3.11.0
