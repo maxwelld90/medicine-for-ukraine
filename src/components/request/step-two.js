@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import {fetchCountries} from "../../api";
+import { fetchCountries } from "../../api";
 
 export default function StepTwo({onComplete}) {
   const [request, setRequest] = useContext(RequestContext);

@@ -1,12 +1,37 @@
-import React, { useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
+import { saveRequest} from "../../api";
+import { RequestContext } from "./request-context";
 
-export default function StepSix({onComplete}) {
+export default function StepSeven({onComplete}) {
+  const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   useEffect(() => {
     typeof onComplete === 'function' && onComplete()
   },[onComplete])
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect( () => {
+    saveRequest(request)
+      .then(
+        (_) => {
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [request]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

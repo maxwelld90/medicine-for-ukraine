@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
+import { RequestContext } from "./request-context";
+
+// Check if each store has at least one file
+const isValidRequest = (request) => {
+  return Object.values(request.stores).every((s) => {
+    return s.files && s.files.length > 0;
+  });
+}
 
 export default function StepSix({onComplete}) {
+  const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   //@TODO fetch from API
@@ -16,10 +25,38 @@ export default function StepSix({onComplete}) {
     text: "22 Rue du Grenier Saint-Lazare\n75003 Paris\nFrance",
   };
 
-  const onUpload = (files) => {
-    console.log(files)
-    typeof onComplete === 'function' && onComplete();
+  // cache handlers to prevent infinity loop
+  const uploadHandlers = {};
+  const getOnUploadHandler = (index) => {
+    if (!uploadHandlers[index]) {
+      const cb = (files) => {
+        // Add new files to store
+        const currentStore = {
+          ...request.stores[index],
+          files: files,
+        };
+        // Update store at request object
+        setRequest({
+          ...request,
+          stores: {
+            ...request.stores,
+            [index]: currentStore
+          }
+        });
+      };
+      uploadHandlers[index] = cb
+    }
+    return uploadHandlers[index];
   }
+
+  useEffect(() => {
+    console.log('request:', request); // for debug
+    if (isValidRequest(request) && typeof onComplete === 'function'){
+      onComplete();
+    }
+  }, [request, onComplete]);
+
+  const stores = JSON.parse(JSON.stringify(request.stores));
 
   return (
     <div>
@@ -38,7 +75,14 @@ export default function StepSix({onComplete}) {
 
       <p className="multilingual en">{t("common:STEP_SIX.SECOND_LINE")}</p>
 
-      <ImageLoader onUpload={onUpload}></ImageLoader>
+      <ul className={'file-list'}>
+        {Object.entries(stores).map(([i, storeItem]) => (
+          <li key={i}>
+            <span>{storeItem.store.name}</span>
+            <ImageLoader onUpload={getOnUploadHandler(i)}/>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

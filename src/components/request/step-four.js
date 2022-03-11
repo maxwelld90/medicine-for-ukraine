@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import {fetchItems} from "../../api";
+import { fetchItems } from "../../api";
 
 export default function StepFour({ onComplete }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -33,7 +33,7 @@ export default function StepFour({ onComplete }) {
           setError(error);
         }
       )
-  }, [request]);
+  }, [request.donationType, request.countryCode]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

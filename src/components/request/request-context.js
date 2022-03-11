@@ -5,6 +5,7 @@ let request = {
   country: "",
   donationType: "",
   productLink: "",
+  stores: {},
 };
 
 const setRequest = (newRequest) => {

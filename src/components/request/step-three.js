@@ -20,7 +20,7 @@ export default function StepThree({ onComplete }) {
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_THREE.TITLE")}
-        <span>36</span>
+        <span>3/6</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
@@ -30,8 +30,8 @@ export default function StepThree({ onComplete }) {
         className={"meds" === request.donationType ? 'selected' : ''}>
           {t("common:STEP_THREE.MED_EQUIPMENT_LABEL")}
         </li>
-        <li onClick={() => selectDonation("other")}
-        className={"other" === request.donationType ? 'selected' : ''}>
+        <li onClick={() => selectDonation("defence")}
+        className={"defence" === request.donationType ? 'selected' : ''}>
           {t("common:STEP_THREE.OTHER_EQUIPMENT_LABEL")}
         </li>
       </ul>
