@@ -1,16 +1,19 @@
 import React, {useContext, useEffect, useState} from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import {fetchItems, fetchLinks} from "../../api";
+import { fetchLinks } from "../../api";
 
 export default function StepFIve({onComplete}) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const getOnQuantityChangeHandler = (index) => {
+  const getOnQuantityChangeHandler = (store, index) => {
     return (event) => {
       if (event.target.value > 0 && typeof onComplete === "function") {
-        setRequest({ ...request, stores: {...request.stores, [index]: event.target.value}});
+        setRequest({ ...request, stores: {...request.stores, [index]: {
+          store: store,
+          qty: event.target.value,
+        }}});
         onComplete();
       }
     };
@@ -33,7 +36,7 @@ export default function StepFIve({onComplete}) {
           setError(error);
         }
       )
-  }, [request]);
+  }, [request.donationType, request.countryCode, request.productId]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -62,7 +65,7 @@ export default function StepFIve({onComplete}) {
               {store.name}
             </a>
 
-            <input type="number" onChange={getOnQuantityChangeHandler(i)}/>
+            <input type="number" onChange={getOnQuantityChangeHandler(store, i)}/>
           </li>
         ))}
       </ul>

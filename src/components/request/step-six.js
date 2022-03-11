@@ -2,10 +2,10 @@ import React, {useContext, useEffect} from "react";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
-import {RequestContext} from "./request-context";
+import { RequestContext } from "./request-context";
 
 export default function StepSix({onComplete}) {
-  const [request, setRequest] = useContext(RequestContext);
+  const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   //@TODO fetch from API
@@ -44,7 +44,14 @@ export default function StepSix({onComplete}) {
 
       <p className="multilingual en">{t("common:STEP_SIX.SECOND_LINE")}</p>
 
-      <ImageLoader onUpload={onUpload}></ImageLoader>
+      <ul className={'file-list'}>
+        {Object.entries(request.stores).map(([i, storeItem]) => (
+          <li>
+            <span>{storeItem.store.name}</span>
+            <ImageLoader onUpload={onUpload}></ImageLoader>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
