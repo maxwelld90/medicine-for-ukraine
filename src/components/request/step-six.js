@@ -1,11 +1,18 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
 import { RequestContext } from "./request-context";
 
+// Check if each store has at least one file
+const isValidRequest = (request) => {
+  return Object.values(request.stores).every((s) => {
+    return s.files && s.files.length > 0;
+  });
+}
+
 export default function StepSix({onComplete}) {
-  const [request] = useContext(RequestContext);
+  const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   //@TODO fetch from API
@@ -18,9 +25,26 @@ export default function StepSix({onComplete}) {
     text: "22 Rue du Grenier Saint-Lazare\n75003 Paris\nFrance",
   };
 
-  const onUpload = (files) => {
-    console.log(files)
-    typeof onComplete === 'function' && onComplete();
+  const getOnUploadHandler = (index) => {
+    return (files) => {
+      // Add new files to store
+      const currentStore = {
+          ...request.stores[index],
+          files: [...(request.stores[index].files || []), ...files]
+      };
+      // Update store at request object
+      setRequest({
+        ...request,
+        stores: {
+          ...request.stores,
+          [index]: currentStore
+        }
+      });
+
+      if (isValidRequest(request) && typeof onComplete === 'function'){
+        onComplete();
+      }
+    }
   }
 
   useEffect(() => {
@@ -46,9 +70,9 @@ export default function StepSix({onComplete}) {
 
       <ul className={'file-list'}>
         {Object.entries(request.stores).map(([i, storeItem]) => (
-          <li>
+          <li key={i}>
             <span>{storeItem.store.name}</span>
-            <ImageLoader onUpload={onUpload}></ImageLoader>
+            <ImageLoader onUpload={getOnUploadHandler(i)}></ImageLoader>
           </li>
         ))}
       </ul>

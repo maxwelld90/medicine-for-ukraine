@@ -12,7 +12,10 @@ export default function ImageLoader({ onUpload }) {
   };
 
   const onImageChange = (event) => {
-    setFiles([...files, event.target.files[0]]);
+    const newFiles = [...event.target.files].filter((f) => {
+      return f.size / 1024 / 1024 <= 10; // less 10mb
+    });
+    setFiles([...files, ...newFiles]);
   };
 
   useEffect(() => {

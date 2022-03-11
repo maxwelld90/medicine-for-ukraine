@@ -26,3 +26,20 @@ export const fetchLinks = async (donationType, countryCode, itemId) => {
         return {link: r.url, name: url.hostname};
     });
 }
+
+export const saveRequest = async (request) => {
+    const formData = new FormData();
+    formData.append('email', request.contact);
+    formData.append('countryCode', request.countryCode);
+    formData.append('donationType', request.donationType);
+
+    // formData.append('files', selectedFile);
+    //@TODO
+    console.log('@TODO implement sending request to backend', request);
+    console.log(formData);
+
+    return await fetch(`${API_HOST}/request`, {
+        method: 'POST',
+        body: formData,
+    });
+}
