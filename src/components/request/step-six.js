@@ -25,31 +25,38 @@ export default function StepSix({onComplete}) {
     text: "22 Rue du Grenier Saint-Lazare\n75003 Paris\nFrance",
   };
 
+  // cache handlers to prevent infinity loop
+  const uploadHandlers = {};
   const getOnUploadHandler = (index) => {
-    return (files) => {
-      // Add new files to store
-      const currentStore = {
+    if (!uploadHandlers[index]) {
+      const cb = (files) => {
+        // Add new files to store
+        const currentStore = {
           ...request.stores[index],
-          files: [...(request.stores[index].files || []), ...files]
+          files: files,
+        };
+        // Update store at request object
+        setRequest({
+          ...request,
+          stores: {
+            ...request.stores,
+            [index]: currentStore
+          }
+        });
       };
-      // Update store at request object
-      setRequest({
-        ...request,
-        stores: {
-          ...request.stores,
-          [index]: currentStore
-        }
-      });
-
-      if (isValidRequest(request) && typeof onComplete === 'function'){
-        onComplete();
-      }
+      uploadHandlers[index] = cb
     }
+    return uploadHandlers[index];
   }
 
   useEffect(() => {
     console.log('request:', request); // for debug
+    if (isValidRequest(request) && typeof onComplete === 'function'){
+      onComplete();
+    }
   }, [request, onComplete]);
+
+  const stores = JSON.parse(JSON.stringify(request.stores));
 
   return (
     <div>
@@ -69,10 +76,10 @@ export default function StepSix({onComplete}) {
       <p className="multilingual en">{t("common:STEP_SIX.SECOND_LINE")}</p>
 
       <ul className={'file-list'}>
-        {Object.entries(request.stores).map(([i, storeItem]) => (
+        {Object.entries(stores).map(([i, storeItem]) => (
           <li key={i}>
             <span>{storeItem.store.name}</span>
-            <ImageLoader onUpload={getOnUploadHandler(i)}></ImageLoader>
+            <ImageLoader onUpload={getOnUploadHandler(i)}/>
           </li>
         ))}
       </ul>

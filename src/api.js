@@ -32,8 +32,15 @@ export const saveRequest = async (request) => {
     formData.append('email', request.contact);
     formData.append('countryCode', request.countryCode);
     formData.append('donationType', request.donationType);
+    formData.append('productName', request.productName);
 
-    // formData.append('files', selectedFile);
+    // Add each file from each store
+    Object.entries(request.stores).forEach(([i, s]) => {
+        formData.append(`stores[${i}][name]`, s.store.name);
+        formData.append(`stores[${i}][qty]`, s.qty);
+        s.files.forEach(f => formData.append(`files[${i}][]`, f));
+    })
+
     //@TODO
     console.log('@TODO implement sending request to backend', request);
     console.log(formData);
