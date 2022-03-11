@@ -20,7 +20,7 @@ export default function StepThree({ onComplete }) {
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_THREE.TITLE")}
-        <span>36</span>
+        <span>3/6</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
