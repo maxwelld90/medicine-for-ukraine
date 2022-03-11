@@ -45,6 +45,10 @@ div.progress.step9 {
     background: #FFD500 !important;
 }
 
+div.btn-wrap {
+    margin-bottom: 20px;
+}
+
 h1 span {
     float: right;
     position: relative;

@@ -3,19 +3,16 @@ import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchItems } from "../../api";
 
-export default function StepFour({ onComplete }) {
+export default function StepFour({ onNext }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const selectProduct = (product) => {
-    setRequest({ ...request, productName: product.name, productId: product.id });
-  };
-
-  useEffect(() => {
-    if (request.productName && typeof onComplete === "function") {
-      onComplete();
+    setRequest({ ...request, selectedProduct: product});
+    if (typeof onNext === "function") {
+      onNext();
     }
-  }, [request, onComplete]);
+  };
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,7 +43,7 @@ export default function StepFour({ onComplete }) {
     if (product.highPriority) {
       classes.push("high-priority")
     }
-    if (product.id === request.productId) {
+    if (request.selectedProduct && product.id === request.selectedProduct.id) {
       classes.push("selected")
     }
     return classes.join(' ');
@@ -56,7 +53,7 @@ export default function StepFour({ onComplete }) {
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_FOUR.TITLE")}
-        <span>4/6</span>
+        <span>4/7</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_FOUR.FIRST_LINE")}</p>

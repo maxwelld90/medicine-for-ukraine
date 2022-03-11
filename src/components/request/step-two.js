@@ -3,19 +3,17 @@ import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchCountries } from "../../api";
 
-export default function StepTwo({onComplete}) {
+export default function StepTwo({ onNext }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const handleSelect = (country) => {
     setRequest({...request, countryCode: country.code});
-  };
 
-  useEffect(() => {
-    if(request.countryCode && typeof onComplete === "function") {
-      onComplete()
+    if(typeof onNext === "function") {
+      onNext();
     }
-  }, [request, onComplete]);
+  };
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,7 +42,7 @@ export default function StepTwo({onComplete}) {
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_TWO.TITLE")}
-        <span>2/6</span>
+        <span>2/7</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_TWO.FIRST_LINE")}</p>
@@ -59,10 +57,6 @@ export default function StepTwo({onComplete}) {
             </li>
           ))}
         </ul>
-
-        <p className="multilingual en">
-          Select the country you wish to send items to, and click/tap continue.
-        </p>
       </div>
     </div>
   );

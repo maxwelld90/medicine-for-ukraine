@@ -30,11 +30,17 @@
     "FIRST_LINE": "We have the following links for {{product}} that delivers to {{country}}. Please specify how many of the items you have put to the shopping basket."
   },
   "STEP_SIX": {
+    "TITLE": "Would you like to donate more?",
+    "FIRST_LINE": "Would you like to register more items? If yes, you can select more",
+    "BACK_BUTTON": "Yes, I want to donate more.",
+    "NEXT_BUTTON": "No. Complete the process."
+  },
+  "STEP_SEVEN": {
     "TITLE": "Complete your order",
     "FIRST_LINE": "You can now complete your order(s) on the chosen websites. Please send them to the address listed.",
     "SECOND_LINE": "Once you have completed your purchases, please confirm that by uploading order screenshots. Be sure to avoid any personal information."
   },
-  "STEP_SEVEN": {
+  "STEP_EIGHT": {
     "TITLE": "Thank you",
     "FIRST_LINE": "We have recorded your order in our inventory. We really appreciate your support. Thank you for supporting Ukraine.",
     "SECOND_LINE": "If you want to order another item, click order another item. Otherwise, you can now close this tab."

@@ -3,18 +3,32 @@ import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchLinks } from "../../api";
 
-export default function StepFIve({onComplete}) {
+export default function StepFive({ onNext }) {
+  const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const getOnQuantityChangeHandler = (store, index) => {
+  const getOnQuantityChangeHandler = (item, index) => {
     return (event) => {
-      if (event.target.value > 0 && typeof onComplete === "function") {
-        setRequest({ ...request, stores: {...request.stores, [index]: {
-          store: store,
-          qty: event.target.value,
+      if (event.target.value > 0) {
+        const store = request.stores[item.domain] || {
+          store_domain: item.domain,
+          items: {}
+        };
+
+        const storeItem = store.items[item.link] || {
+          row_number: request.selectedProduct.id,
+          name: request.selectedProduct.name,
+          type: request.donationType,
+          url: item.link,
+        };
+        storeItem.quantity = event.target.value;
+
+        setRequest({ ...request, stores: {...request.stores, [item.domain]: {
+          ...store,
+          [item.link]: storeItem,
         }}});
-        onComplete();
+        setIsCompletedStep(true);
       }
     };
   };
@@ -25,7 +39,7 @@ export default function StepFIve({onComplete}) {
 
 
   useEffect( () => {
-    fetchLinks(request.donationType, request.countryCode, request.productId)
+    fetchLinks(request.donationType, request.countryCode, request.selectedProduct.id)
       .then(
         (result) => {
           setIsLoaded(true);
@@ -36,7 +50,7 @@ export default function StepFIve({onComplete}) {
           setError(error);
         }
       )
-  }, [request.donationType, request.countryCode, request.productId]);
+  }, [request.donationType, request.countryCode, request.selectedProduct]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -48,27 +62,32 @@ export default function StepFIve({onComplete}) {
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_FIVE.TITLE")}
-        <span>5/6</span>
+        <span>5/7</span>
       </h1>
 
       <p className="multilingual en">
         {t("common:STEP_FIVE.FIRST_LINE", {
-          product: request.productName,
+          product: request.selectedProduct.name,
           country: request.countryCode,
         })}
       </p>
 
       <ul className="item-list stores">
-        {onlineStores.map((store, i) => (
+        {onlineStores.map((item, i) => (
           <li key={i}>
-            <a href={store.link} target="_blank" rel="noreferrer noopener">
-              {store.name}
+            <a href={item.link} target="_blank" rel="noreferrer noopener">
+              {item.domain}
             </a>
 
-            <input type="number" onChange={getOnQuantityChangeHandler(store, i)}/>
+            <input type="number" onChange={getOnQuantityChangeHandler(item, i)}/>
           </li>
         ))}
       </ul>
+      <div className={'btn-wrap'}>
+        <button disabled={!isCompletedStep} onClick={onNext}>
+          {t("common:NEXT_BUTTON")}
+        </button>
+      </div>
     </div>
   );
 }

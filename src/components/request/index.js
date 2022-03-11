@@ -8,33 +8,34 @@ import StepFour from "./step-four";
 import StepFive from "./step-five";
 import StepSix from "./step-six";
 import StepSeven from "./step-seven";
+import StepEight from "./step-eight";
 import { RequestContext } from "./request-context";
 
 const FIRST_STEP = 1;
-const LAST_STEP = 7;
+const LAST_STEP = 8;
 
 export default function Request() {
   const [step, setStep] = useState(FIRST_STEP);
-  const [request, setRequest] = useState({ contact: "" });
-  const [isCompletedStep, setIsCompletedStep] = useState(false);
+  const [request, setRequest] = useState({
+    contact: "",
+    stores: {},
+  });
   const [t] = useTranslation(["translation", "common"]);
 
   const nextStep = () => {
     if (step === LAST_STEP) return;
 
     setStep(step + 1);
-    setIsCompletedStep(false);
   };
 
-  const prevStep = () => {
+  const prevStep = (toStep) => {
     if (step === FIRST_STEP) return;
 
-    setStep(step - 1);
-    setIsCompletedStep(false);
-  };
-
-  const onComplete = () => {
-    setIsCompletedStep(true);
+    if (typeof toStep === 'number') {
+      setStep(toStep);
+    } else {
+      setStep(step - 1);
+    }
   };
 
   useEffect(() => {
@@ -47,19 +48,21 @@ export default function Request() {
   const multiStepForm = () => {
     switch (step) {
       case 1:
-        return <StepOne onComplete={onComplete}/>;
+        return <StepOne onNext={nextStep}/>;
       case 2:
-        return <StepTwo onComplete={onComplete}/>;
+        return <StepTwo onNext={nextStep}/>;
       case 3:
-        return <StepThree onComplete={onComplete}/>;
+        return <StepThree onNext={nextStep}/>;
       case 4:
-        return <StepFour onComplete={onComplete}/>;
+        return <StepFour onNext={nextStep}/>;
       case 5:
-        return <StepFive onComplete={onComplete}/>;
+        return <StepFive onNext={nextStep}/>;
       case 6:
-        return <StepSix onComplete={onComplete}/>;
+        return <StepSix onNext={nextStep} onBack={prevStep}/>;
       case 7:
-        return <StepSeven onComplete={onComplete}/>;
+        return <StepSeven onNext={nextStep}/>;
+      case 8:
+        return <StepEight onNext={nextStep}/>;
       default:
       // do nothing
     }
@@ -69,11 +72,6 @@ export default function Request() {
     <RequestContext.Provider value={[request, setRequest]}>
       <div>
         <div>{multiStepForm()}</div>
-        {step !== LAST_STEP && (
-          <button disabled={!isCompletedStep} onClick={nextStep}>
-            {t("common:NEXT_BUTTON")}
-          </button>
-        )}
         {step !== FIRST_STEP && (
           <button className={'button-back'} onClick={prevStep}>
             {t("common:PREV_BUTTON")}

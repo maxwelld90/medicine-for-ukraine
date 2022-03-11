@@ -1,26 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 
-export default function StepThree({ onComplete }) {
+export default function StepThree({ onNext }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const selectDonation = (type) => {
     setRequest({ ...request, donationType: type });
-  };
-
-  useEffect(() => {
-    if (request.donationType && typeof onComplete === "function") {
-      onComplete();
+    if (typeof onNext === "function") {
+      onNext();
     }
-  }, [request, onComplete]);
+  };
 
   return (
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_THREE.TITLE")}
-        <span>3/6</span>
+        <span>3/7</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
