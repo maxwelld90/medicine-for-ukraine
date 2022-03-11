@@ -4,13 +4,16 @@ import { useTranslation } from "react-i18next";
 import {fetchItems, fetchLinks} from "../../api";
 
 export default function StepFIve({onComplete}) {
-  const [request] = useContext(RequestContext);
+  const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const onQuantityChange = (event) => {
-    if (event.target.value > 0 && typeof onComplete === "function") {
-      onComplete();
-    }
+  const getOnQuantityChangeHandler = (index) => {
+    return (event) => {
+      if (event.target.value > 0 && typeof onComplete === "function") {
+        setRequest({ ...request, stores: {...request.stores, [index]: event.target.value}});
+        onComplete();
+      }
+    };
   };
 
   const [error, setError] = useState(null);
@@ -52,15 +55,14 @@ export default function StepFIve({onComplete}) {
         })}
       </p>
 
-      <ul className="item-list">
+      <ul className="item-list stores">
         {onlineStores.map((store, i) => (
           <li key={i}>
-            {store.name}
             <a href={store.link} target="_blank" rel="noreferrer noopener">
-              Link
+              {store.name}
             </a>
 
-            <input type="number" onChange={onQuantityChange}></input>
+            <input type="number" onChange={getOnQuantityChangeHandler(i)}/>
           </li>
         ))}
       </ul>

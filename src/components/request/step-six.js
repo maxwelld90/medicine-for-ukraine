@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
+import {RequestContext} from "./request-context";
 
 export default function StepSix({onComplete}) {
+  const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   //@TODO fetch from API
@@ -20,6 +22,10 @@ export default function StepSix({onComplete}) {
     console.log(files)
     typeof onComplete === 'function' && onComplete();
   }
+
+  useEffect(() => {
+    console.log('request:', request); // for debug
+  }, [request, onComplete]);
 
   return (
     <div>

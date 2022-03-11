@@ -69,14 +69,14 @@ export default function Request() {
     <RequestContext.Provider value={[request, setRequest]}>
       <div>
         <div>{multiStepForm()}</div>
-        {step !== FIRST_STEP && (
-          <button onClick={prevStep}>
-            {t("common:PREV_BUTTON")}
-          </button>
-        )}
         {step !== LAST_STEP && (
           <button disabled={!isCompletedStep} onClick={nextStep}>
             {t("common:NEXT_BUTTON")}
+          </button>
+        )}
+        {step !== FIRST_STEP && (
+          <button className={'button-back'} onClick={prevStep}>
+            {t("common:PREV_BUTTON")}
           </button>
         )}
       </div>
