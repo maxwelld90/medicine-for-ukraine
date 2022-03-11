@@ -29,12 +29,12 @@
     "TITLE": "A\u00f1adir a su(s) cesta(s)",
     "FIRST_LINE": "Tenemos los siguientes enlaces para {{producto}} que entrega a {{pa\u00eds}}. Por favor, especifique cu\u00e1ntos de los art\u00edculos que ha puesto en la cesta de la compra."
   },
-  "STEP_SIX": {
+  "STEP_SEVEN": {
     "TITLE": "Completa tu pedido",
     "FIRST_LINE": "Ahora puede completar su(s) pedido(s) en los sitios web elegidos. Por favor env\u00edelos a la direcci\u00f3n indicada.",
     "SECOND_LINE": "Una vez que haya completado sus compras, conf\u00edrmelo cargando capturas de pantalla del pedido. Aseg\u00farese de evitar cualquier informaci\u00f3n personal."
   },
-  "STEP_SEVEN": {
+  "STEP_EIGHT": {
     "TITLE": "Gracias",
     "FIRST_LINE": "Hemos registrado su pedido en nuestro inventario. Apreciamos mucho tu ayuda. Gracias por apoyar a Ucrania.",
     "SECOND_LINE": "Si desea pedir otro art\u00edculo, haga clic en pedir otro art\u00edculo. De lo contrario, ahora puede cerrar esta pesta\u00f1a."

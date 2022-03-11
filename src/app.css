@@ -26,6 +26,7 @@ a:hover {
 
 button a {
     text-decoration: none;
+    color: #fff;
 }
 
 h1 {
@@ -155,6 +156,10 @@ main {
   
   a:hover {
       color: #E4BF99;
+  }
+
+  button a:hover {
+      color: #fff;
   }
 
   .urgent {

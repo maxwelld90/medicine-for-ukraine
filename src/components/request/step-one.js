@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./request-context";
@@ -9,16 +9,13 @@ const isValidEmail = (email) => {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
 }
 
-export default function StepOne({onComplete}) {
+export default function StepOne({ onNext }) {
+  const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const onEmailChange = (event) => {
     setRequest({ ...request, contact: event.target.value });
-
-    if (isValidRequest(request)) {
-      onComplete();
-    }
   };
 
   const isValidRequest = (request) => {
@@ -26,16 +23,14 @@ export default function StepOne({onComplete}) {
   }
 
   useEffect(() => {
-    if (isValidRequest(request)) {
-      onComplete();
-    }
-  }, [request, onComplete])
+    setIsCompletedStep(isValidRequest(request));
+  }, [request])
 
   return (
     <div>
       <h1 className="multilingual en">
         {t("common:STEP_ONE.TITLE")}
-        <span>1/6</span>
+        <span>1/7</span>
       </h1>
 
       <p className="multilingual en">{t("common:STEP_ONE.FIRST_LINE")}</p>
@@ -49,6 +44,12 @@ export default function StepOne({onComplete}) {
           onChange={onEmailChange}
         />
       </p>
+      <div>
+        <button disabled={!isCompletedStep} onClick={onNext}>
+          {t("common:NEXT_BUTTON")}
+        </button>
+      </div>
     </div>
+
   );
 }
