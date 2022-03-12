@@ -1,7 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from api_app.items.medicine_reader import call_medicine_reader
 from api_app.save import request_parser
 
 
