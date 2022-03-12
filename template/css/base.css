@@ -17,6 +17,9 @@
 }
 
 body {
+    display: flex; 
+    flex-direction: column;
+    height: 100vh;
     font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 14pt;
     line-height: 20pt;
@@ -146,6 +149,7 @@ header ul {
 
 main {
     margin-top: 160px;
+    margin-bottom: 50px;
 }
 
 .highlight {
@@ -161,7 +165,6 @@ main {
 }
 
 .highlight::before {
-    display: inline-block;
     float: left;
     content: '';
     background-image: url('../img/message.svg');
@@ -200,6 +203,70 @@ main {
 
 .multilingual.en {
     display: inherit;
+}
+
+footer {
+    margin-top: auto;
+    box-sizing: border-box;
+    padding: 20px 0 20px 0;
+    background: #E6E6E6;
+    color: #333;
+}
+
+footer div.container div.left {
+    float: left;
+    width: 450px;
+}
+
+footer div.container div.right {
+    float: right;
+}
+
+footer span {
+    display: inline-block;
+    font-size: 10pt;
+    line-height: 14pt;
+}
+
+footer span.header {
+    display: block;
+    font-size: 14pt;
+    padding-bottom: 5px;
+    line-height: 18pt;
+    font-weight: 700;
+}
+
+footer ul {
+    position: relative;
+    bottom: 2px;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    list-style-type: none;
+}
+
+footer ul li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+footer ul li:last-child {
+    margin-right: 0;
+}
+
+footer ul li a {
+    display: block;
+    width: 26px;
+    height: 26px;
+    font-size: 0;
+}
+
+footer ul li a:hover {
+    filter: opacity(0.5);
+}
+
+footer ul li a.instagram {
+    background: url('../img/instagram.svg') no-repeat;
 }
 
 @media screen and (min-width: 768px) {
@@ -281,6 +348,34 @@ main {
     main {
         margin-top: 270px;
     }
+
+    footer div.container div.left {
+        width: auto;
+        float: none;
+    }
+    
+    footer div.container div.right {
+        float: none;
+    }
+
+    footer span {
+        text-align: center;
+    }
+
+    footer ul {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    footer ul li {
+        margin-right: 10px;
+    }
+
+    footer ul li a {
+        width: 42px;
+        height: 42px;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -291,6 +386,11 @@ main {
 
     header {
         background: #222831;
+    }
+
+    footer {
+        background: #14181D;
+        color: #FFF;
     }
 
     a {

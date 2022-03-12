@@ -163,7 +163,7 @@ ul.item-list {
 
 @media (prefers-color-scheme: dark) {
     h1 span {
-        background-color: rgba(0,91,187,0.3);
+        background-color: #14181D;
     }
 
     button {
