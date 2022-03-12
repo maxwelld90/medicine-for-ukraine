@@ -1,17 +1,31 @@
-import "./app.css";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import About from "./components/about";
 import Request from "./components/request/index";
 
 import i18n from "./i18n";
+import "./app.css";
 
 function App() {
+  const [languages, setLanguage] = useState([
+    { name: "en", isActive: true },
+    { name: "pl", isActive: false },
+    { name: "es", isActive: false },
+    { name: "de", isActive: false },
+  ]);
+
   const publicFolder = process.env.PUBLIC_URL;
 
   const changeLanguageOnClick = (language) => {
     i18n.changeLanguage(language);
-  }
+
+    const newLanguageState = languages.map((lng) => {
+      lng.isActive = lng.name === language;
+      return lng;
+    });
+    setLanguage(newLanguageState);
+  };
 
   return (
     <div>
@@ -30,10 +44,17 @@ function App() {
             </picture>
           </a>
           <ul>
-            <li onClick={() => changeLanguageOnClick("en")}><a href="#" className="multilingual-selector selected" data-language="EN" className="selected">EN</a></li>
-            <li onClick={() => changeLanguageOnClick("es")}><a href="#" className="multilingual-selector" data-language="ES">ES</a></li>
-            <li onClick={() => changeLanguageOnClick("pl")}><a href="#" className="multilingual-selector" data-language="PL">PL</a></li>
-            <li onClick={() => changeLanguageOnClick("de")}><a href="#" className="multilingual-selector" data-language="DE">DE</a></li>
+            {languages.map((language, i) => (
+              <li key={i} onClick={() => changeLanguageOnClick(language.name)}>
+                <span
+                  className={`multilingual-selector ${
+                    language.isActive ? "selected" : ""
+                  }`}
+                >
+                  {language.name.toUpperCase()}
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
       </header>
@@ -42,7 +63,7 @@ function App() {
           <div className="basic-router">
             <Routes>
               <Route path="/" element={<About />} />
-              <Route path="/request"  element={<Request />} />
+              <Route path="/request" element={<Request />} />
             </Routes>
           </div>
         </div>
