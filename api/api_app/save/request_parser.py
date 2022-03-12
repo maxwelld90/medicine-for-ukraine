@@ -20,11 +20,6 @@ REQUEST_SCHEMA = {
             'description': 'The users\'s browser agent string',
             'type': 'string',
         },
-        'ip_address': {
-            'description': 'The user\'s IP address',
-            'type': 'string',
-            'format': 'ipv4',
-        },
         'email': {
             'description': 'The user\'s e-mail address',
             'type': 'string',
@@ -49,7 +44,6 @@ REQUEST_SCHEMA = {
     },
     'required': [
         'browser_agent',
-        'ip_address',
         'email',
         'country_to_deliver',
         'address',

@@ -45,17 +45,23 @@ export const saveRequest = async (request) => {
         'url': item.url,
         'name': item.name,
         'quantity': item.quantity,
+        'type': 'meds',
       }
+    });
+
+    const screenshots = Object.entries(store.screenshots).map(([_, screenshot]) => {
+      return screenshot.base64;
     });
 
     return {
       'store_domain': store.store_domain,
-      'screenshot': store.screenshots[0].base64,
+      'screenshots': screenshots,
       'items': items,
     }
   });
 
   const payload = {
+    'browser_agent': window.navigator.userAgent,
     'email': request.contact,
     'country_to_deliver': request.countryCode,
     'address': request.addressId,
