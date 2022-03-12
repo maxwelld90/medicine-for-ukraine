@@ -31,8 +31,14 @@ export default function ImageLoader({ onUpload, existingFiles }) {
     setFiles([...files, ...base64Files]);
   };
 
+  const deleteItem = (index) => {
+    const newFiles = [...files];
+    newFiles.splice(index, 1);
+    setFiles(newFiles);
+  }
+
   useEffect(() => {
-    if (files.length > 0 && typeof onUpload === "function") {
+    if (typeof onUpload === "function") {
       onUpload(files);
     }
   }, [files, onUpload]);
@@ -44,8 +50,12 @@ export default function ImageLoader({ onUpload, existingFiles }) {
       <button onClick={handleClick}>{buttonLabel}</button>
 
       {files.map((file, i) => (
-        <div className="screenshot-name" key={i}>
-          {file.name}
+        <div className="screenshot-item" key={i}>
+          <img src={file.base64} alt={file.name}/>
+          <span className="screenshot-title">{file.name}</span>
+          <div className="screenshot-remove-wrap">
+            <span className="screenshot-remove" onClick={() => deleteItem(i)}>&#10006;</span>
+          </div>
         </div>
       ))}
 
