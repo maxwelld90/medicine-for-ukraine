@@ -1,5 +1,5 @@
 import json
-from re import M
+import dotmap
 from jsonschema import validate
 from jsonschema import FormatChecker
 from jsonschema.exceptions import ValidationError
@@ -119,7 +119,12 @@ REQUEST_SCHEMA = {
     }
 }
 
+
 class RequestParser(object):
+    """
+    Class that represents a complete request's body.
+    Access the data using dot notation from data, i.e., data.browser_agent.
+    """
     def __init__(self, request):
         self.__parse(request.body)
     
@@ -131,7 +136,9 @@ class RequestParser(object):
             json_data = json.loads(body)
         except ValueError as e:
             raise ImproperlyFormattedBodyError(e)
-
+        
+        # Validate the JSON - if it doesn't match the schema above, an exception is raised.
+        # These exceptions should be handled by the calling class.
         try:
             validate(instance=json_data, schema=REQUEST_SCHEMA, format_checker=FormatChecker())
         except ValidationError as e:
@@ -139,5 +146,5 @@ class RequestParser(object):
         except ValueError as e:
             raise ValidationFailureError(e)
         
-        # https://stackoverflow.com/questions/38034377/object-like-attribute-access-for-nested-dictionary
-        # Turn dict into object
+        # If we get here, the request is valid - make the data available through self.data.
+        self.data = dotmap.DotMap(json_data)
