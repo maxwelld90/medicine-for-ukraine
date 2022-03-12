@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 
 import ImageLoader from "../imageLoader";
 import {RequestContext} from "./request-context";
+import {fetchAddress, fetchItems} from "../../api";
 
 // Check if each store has at least one file
 const isValidRequest = (request) => {
@@ -13,25 +14,40 @@ const isValidRequest = (request) => {
 
 export default function StepSeven({onNext}) {
   const [request] = useContext(RequestContext);
-  console.log('request:', request);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);
-
-  //@TODO fetch from API
-  const storageAddress = {
-    street: "22 Rue du Grenier Saint-Lazare",
-    postalCode: "75003",
-    city: "Paris",
-    countryCode: "FRA",
-    country: "France",
-    text: "22 Rue du Grenier Saint-Lazare\n75003 Paris\nFrance",
-  };
 
   const getOnUploadHandler = (index) => {
     return (files) => {
       request.stores[index].screenshots = files;
       setIsCompletedStep(isValidRequest(request));
     };
+  }
+
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [address, setAddress] = useState({});
+
+  useEffect( () => {
+    fetchAddress(request.countryCode)
+      .then(
+        (result) => {
+          setAddress(result);
+          request.addressId = result.id;
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [request.countryCode]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -43,11 +59,7 @@ export default function StepSeven({onNext}) {
 
       <p className="multilingual en">{t("common:STEP_SEVEN.FIRST_LINE")}</p>
 
-      <div>
-        <div>{storageAddress.street}</div>
-        <div>{storageAddress.postalCode} {storageAddress.city}</div>
-        <div>{storageAddress.country}</div>
-      </div>
+      <div className={'address-text'}>{address.address_lines}</div>
 
       <p className="multilingual en">{t("common:STEP_SEVEN.SECOND_LINE")}</p>
 
@@ -55,7 +67,7 @@ export default function StepSeven({onNext}) {
         {Object.entries(request.stores).map(([i, store]) => (
           <li key={i}>
             <span>{store.store_domain}</span>
-            <ImageLoader onUpload={getOnUploadHandler(i)}/>
+            <ImageLoader onUpload={getOnUploadHandler(i)} existingFiles={store.screenshots}/>
           </li>
         ))}
       </ul>

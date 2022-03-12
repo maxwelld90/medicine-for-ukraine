@@ -15,4 +15,4 @@ class AddressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Address
-        fields = ['address_lines']
+        fields = ['id', 'address_lines']

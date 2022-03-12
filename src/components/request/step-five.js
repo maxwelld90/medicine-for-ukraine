@@ -10,6 +10,7 @@ export default function StepFive({ onNext }) {
 
   const getOnQuantityChangeHandler = (item, index) => {
     return (event) => {
+
       if (event.target.value > 0) {
         const store = request.stores[item.domain] || {
           store_domain: item.domain,
@@ -22,16 +23,26 @@ export default function StepFive({ onNext }) {
           type: request.donationType,
           url: item.link,
         };
-        storeItem.quantity = event.target.value;
+        storeItem.quantity = parseInt(event.target.value) || 0;
 
         setRequest({ ...request, stores: {...request.stores, [item.domain]: {
           ...store,
-          [item.link]: storeItem,
+          items: {
+            ...store.items,
+            [item.link]: storeItem,
+          },
         }}});
         setIsCompletedStep(true);
       }
     };
   };
+
+  const getQty = (item) => {
+    if (request.stores[item.domain] && request.stores[item.domain].items[item.link]) {
+      return request.stores[item.domain].items[item.link].quantity;
+    }
+    return 0;
+  }
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -79,7 +90,7 @@ export default function StepFive({ onNext }) {
               {item.domain}
             </a>
 
-            <input type="number" onChange={getOnQuantityChangeHandler(item, i)}/>
+            <input type="number" value={getQty(item)} onChange={getOnQuantityChangeHandler(item, i)}/>
           </li>
         ))}
       </ul>

@@ -5,7 +5,6 @@ import { RequestContext } from "./request-context";
 
 export default function StepEight({ onNext }) {
   const [request] = useContext(RequestContext);
-  console.log('request:', request);
   const [t] = useTranslation(["translation", "common"]);
 
   const [error, setError] = useState(null);

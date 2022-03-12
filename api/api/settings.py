@@ -67,6 +67,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024
+
 ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [

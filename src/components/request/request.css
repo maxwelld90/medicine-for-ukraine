@@ -236,7 +236,8 @@ ul.file-list {
         background: #7A7E83;
         color: #FFF;
     }
-}div.progress {
+}
+div.progress {
     position: absolute;
     top: -5px;
     left: 0;
@@ -244,6 +245,10 @@ ul.file-list {
     height: 5px;
     background: #FFD500;
     background: linear-gradient(90deg, rgba(255,213,0,1) 85%, rgba(0,91,187,1) 100%);
+}
+
+div.address-text {
+   white-space: pre-wrap;
 }
 
 div.progress.step1 {
