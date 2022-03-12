@@ -136,6 +136,10 @@ ul.file-list {
     list-style-type: none;
 }
 
+ul.file-list {
+    margin-bottom: 0;
+}
+
     ul.item-list li {
         margin-bottom: 15px;
         border-radius: 5px;
