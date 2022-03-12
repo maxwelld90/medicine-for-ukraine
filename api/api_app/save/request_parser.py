@@ -5,6 +5,7 @@ from jsonschema import FormatChecker
 from jsonschema.exceptions import ValidationError
 from api_app.models import Address, Country
 
+
 class ImproperlyFormattedBodyError(Exception):
     pass
 
@@ -15,6 +16,15 @@ class ValidationFailureError(Exception):
 REQUEST_SCHEMA = {
     'type': 'object',
     'properties': {
+        'browser_agent': {
+            'description': 'The users\'s browser agent string',
+            'type': 'string',
+        },
+        'ip_address': {
+            'description': 'The user\'s IP address',
+            'type': 'string',
+            'format': 'ipv4',
+        },
         'email': {
             'description': 'The user\'s e-mail address',
             'type': 'string',
@@ -38,6 +48,8 @@ REQUEST_SCHEMA = {
         }
     },
     'required': [
+        'browser_agent',
+        'ip_address',
         'email',
         'country_to_deliver',
         'address',
@@ -54,9 +66,12 @@ REQUEST_SCHEMA = {
                     'type': 'string',
                     'format': 'hostname',
                 },
-                'screenshot': {
-                    'description': 'Base64 representation of the screenshot for the given store',
-                    'type': 'string',
+                'screenshots': {
+                    'type': 'array',
+                    'items': {
+                        'description': 'The Base64 representation of an image to be uploaded.',
+                        'type': 'string',
+                    },
                 },
                 'items': {
                     'type': 'array',
@@ -67,7 +82,7 @@ REQUEST_SCHEMA = {
             },
             'required': [
                 'store_domain',
-                'screenshot',
+                'screenshots',
                 'items'
             ]
         },
@@ -87,12 +102,18 @@ REQUEST_SCHEMA = {
                 'quantity': {
                     'description': 'The number of the given item ordered',
                     'type': 'integer',
+                },
+                'type': {
+                    'description': 'The sheet from which the item comes from (e.g., meds/defence)',
+                    'type': 'string',
+                    'enum': ['meds', 'defence'],
                 }
             },
             'required': [
                 'url',
                 'name',
                 'quantity',
+                'type',
             ]
         }
     }
@@ -117,3 +138,6 @@ class RequestParser(object):
             raise ValidationFailureError(e)
         except ValueError as e:
             raise ValidationFailureError(e)
+        
+        # https://stackoverflow.com/questions/38034377/object-like-attribute-access-for-nested-dictionary
+        # Turn dict into object
