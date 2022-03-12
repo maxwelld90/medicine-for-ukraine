@@ -101,6 +101,10 @@ REQUEST_SCHEMA = {
                     'description': 'The sheet from which the item comes from (e.g., meds/defence)',
                     'type': 'string',
                     'enum': ['meds', 'defence'],
+                },
+                'row_number': {
+                    'description': 'The row number from the sheet for the item selected',
+                    'type': 'integer',
                 }
             },
             'required': [
@@ -108,6 +112,7 @@ REQUEST_SCHEMA = {
                 'name',
                 'quantity',
                 'type',
+                'row_number',
             ]
         }
     }

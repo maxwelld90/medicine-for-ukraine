@@ -41,11 +41,13 @@ export const saveRequest = async (request) => {
 
   const stores = Object.entries(request.stores).map(([_, store]) => {
     const items = Object.entries(store.items).map(([_, item]) => {
+      console.log(item);
       return {
         'url': item.url,
         'name': item.name,
         'quantity': item.quantity,
-        'type': 'meds',
+        'row_number': item.row_number,
+        'type': item.type,
       }
     });
 
