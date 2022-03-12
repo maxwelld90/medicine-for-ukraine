@@ -1,9 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function ImageLoader({ onUpload }) {
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+export default function ImageLoader({ onUpload, existingFiles }) {
   const [t] = useTranslation(["translation", "common"]);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(existingFiles || []);
   const fileRef = useRef();
 
   // Programmatically click the hidden file input element when the Button component is clicked
@@ -11,11 +18,17 @@ export default function ImageLoader({ onUpload }) {
     fileRef.current.click();
   };
 
-  const onImageChange = (event) => {
+  const onImageChange = async (event) => {
     const newFiles = [...event.target.files].filter((f) => {
       return f.size / 1024 / 1024 <= 10; // less 10mb
     });
-    setFiles([...files, ...newFiles]);
+
+    const base64Files = await Promise.all(newFiles.map(async (file) => {
+      file.base64 = await toBase64(file);
+      return file;
+    }));
+
+    setFiles([...files, ...base64Files]);
   };
 
   useEffect(() => {
