@@ -150,6 +150,10 @@ ul.file-list {
         transition: 0.3s;
     }
 
+    ul.item-list li.high-priority {
+        background-color: #e98f8f
+    }
+
     ul.item-list li:hover,
     ul.item-list li.selected {
         background: #FFD500;
