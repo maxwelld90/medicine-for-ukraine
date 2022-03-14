@@ -1,4 +1,4 @@
-const API_HOST = process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000' : 'https://api.medicineforukraine.org';
+const API_HOST = process.env.REACT_APP_NODE_ENV !== 'production' ? 'http://127.0.0.1:8000' : 'https://api.medicineforukraine.org';
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
 export const fetchCountries = async () => {

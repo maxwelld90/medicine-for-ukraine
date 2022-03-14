@@ -37,6 +37,7 @@
   "STEP_EIGHT": {
     "TITLE": "Gracias",
     "FIRST_LINE": "Hemos registrado su pedido en nuestro inventario. Apreciamos mucho tu ayuda. Gracias por apoyar a Ucrania.",
-    "SECOND_LINE": "Si desea pedir otro art\u00edculo, haga clic en pedir otro art\u00edculo. De lo contrario, ahora puede cerrar esta pesta\u00f1a."
+    "SECOND_LINE": "Si desea pedir otro art\u00edculo, haga clic en pedir otro art\u00edculo. De lo contrario, ahora puede cerrar esta pesta\u00f1a.",
+    "RESTART_PROCESS": "Proceso de reinicio"
   }
 }

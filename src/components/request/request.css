@@ -181,6 +181,8 @@ ul.file-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
         justify-items: start;
+        height: 50px;
+        align-items: center;
     }
 
     ul.item-list.stores li:hover {

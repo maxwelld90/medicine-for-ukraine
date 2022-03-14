@@ -37,6 +37,7 @@
   "STEP_EIGHT": {
     "TITLE": "Dzi\u0119kuj\u0119 Ci",
     "FIRST_LINE": "Zarejestrowali\u015bmy Twoje zam\u00f3wienie w naszym ekwipunku. Naprawd\u0119 doceniamy twoje wsparcie. Dzi\u0119kuj\u0119 za wsparcie Ukrainy.",
-    "SECOND_LINE": "Je\u015bli chcesz zam\u00f3wi\u0107 kolejny przedmiot, kliknij Zam\u00f3w kolejny przedmiot. W przeciwnym razie mo\u017cesz teraz zamkn\u0105\u0107 t\u0119 kart\u0119."
+    "SECOND_LINE": "Je\u015bli chcesz zam\u00f3wi\u0107 kolejny przedmiot, kliknij Zam\u00f3w kolejny przedmiot. W przeciwnym razie mo\u017cesz teraz zamkn\u0105\u0107 t\u0119 kart\u0119.",
+    "RESTART_PROCESS": "Uruchom ponownie proces"
   }
 }

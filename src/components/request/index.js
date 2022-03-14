@@ -23,15 +23,17 @@ export default function Request() {
   const [t] = useTranslation(["translation", "common"]);
 
   const nextStep = () => {
-    if (step === LAST_STEP) return;
+    if (step === LAST_STEP) {
+      setRequest({ contact: request.contact, stores: {} });
+    }
 
-    setStep(step + 1);
+    setStep(step === LAST_STEP ? 1 : step + 1);
   };
 
   const prevStep = (toStep) => {
     if (step === FIRST_STEP) return;
 
-    if (typeof toStep === 'number') {
+    if (typeof toStep === "number") {
       setStep(toStep);
     } else {
       setStep(step - 1);
@@ -48,21 +50,21 @@ export default function Request() {
   const multiStepForm = () => {
     switch (step) {
       case 1:
-        return <StepOne onNext={nextStep}/>;
+        return <StepOne onNext={nextStep} />;
       case 2:
-        return <StepTwo onNext={nextStep}/>;
+        return <StepTwo onNext={nextStep} />;
       case 3:
-        return <StepThree onNext={nextStep}/>;
+        return <StepThree onNext={nextStep} />;
       case 4:
-        return <StepFour onNext={nextStep}/>;
+        return <StepFour onNext={nextStep} />;
       case 5:
-        return <StepFive onNext={nextStep}/>;
+        return <StepFive onNext={nextStep} />;
       case 6:
-        return <StepSix onNext={nextStep} onBack={prevStep}/>;
+        return <StepSix onNext={nextStep} onBack={prevStep} />;
       case 7:
-        return <StepSeven onNext={nextStep}/>;
+        return <StepSeven onNext={nextStep} />;
       case 8:
-        return <StepEight onNext={nextStep}/>;
+        return <StepEight onNext={nextStep} />;
       default:
       // do nothing
     }
@@ -73,7 +75,7 @@ export default function Request() {
       <div>
         <div>{multiStepForm()}</div>
         {step !== FIRST_STEP && (
-          <button className={'button-back'} onClick={prevStep}>
+          <button className={"button-back"} onClick={prevStep}>
             {t("common:PREV_BUTTON")}
           </button>
         )}

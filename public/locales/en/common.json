@@ -43,6 +43,7 @@
   "STEP_EIGHT": {
     "TITLE": "Thank you",
     "FIRST_LINE": "We have recorded your order in our inventory. We really appreciate your support. Thank you for supporting Ukraine.",
-    "SECOND_LINE": "If you want to order another item, click order another item. Otherwise, you can now close this tab."
+    "SECOND_LINE": "If you want to order another item, click order another item. Otherwise, you can now close this tab.",
+    "RESTART_PROCESS": "Restart process"
   }
 }

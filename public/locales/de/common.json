@@ -37,6 +37,7 @@
   "STEP_EIGHT": {
     "TITLE": "Danke",
     "FIRST_LINE": "Wir haben Ihre Bestellung in unserem Bestand erfasst. Wir wissen Ihre Unterst\u00fctzung sehr zu sch\u00e4tzen und danken Ihnen, dass Sie die Ukraine unterst\u00fctzen.",
-    "SECOND_LINE": "Wenn Sie einen weiteren Artikel bestellen m\u00f6chten, klicken Sie auf Weitere Artikel bestellen. Andernfalls k\u00f6nnen Sie dieses Fenster jetzt schlie\u00dfen."
+    "SECOND_LINE": "Wenn Sie einen weiteren Artikel bestellen m\u00f6chten, klicken Sie auf Weitere Artikel bestellen. Andernfalls k\u00f6nnen Sie dieses Fenster jetzt schlie\u00dfen.",
+    "RESTART_PROCESS": "Vorgang neu starten"
   }
 }
