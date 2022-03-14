@@ -1,0 +1,21 @@
+.picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picker .button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 5px 15px;
+  text-align: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.picker .number {
+  width: 30px;
+  text-align: center;
+}

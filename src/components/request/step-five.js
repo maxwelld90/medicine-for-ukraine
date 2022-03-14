@@ -1,20 +1,20 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchLinks } from "../../api";
+import QuantityPicker from "../quantity-picker";
 
 export default function StepFive({ onNext }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const getOnQuantityChangeHandler = (item, index) => {
-    return (event) => {
-
-      if (event.target.value > 0) {
+  const getOnQuantityChangeHandler = (item) => {
+    return (value) => {
+      if (value > 0) {
         const store = request.stores[item.domain] || {
           store_domain: item.domain,
-          items: {}
+          items: {},
         };
 
         const storeItem = store.items[item.link] || {
@@ -23,44 +23,53 @@ export default function StepFive({ onNext }) {
           type: request.donationType,
           url: item.link,
         };
-        storeItem.quantity = parseInt(event.target.value) || 0;
+        storeItem.quantity = parseInt(value) || 0;
 
-        setRequest({ ...request, stores: {...request.stores, [item.domain]: {
-          ...store,
-          items: {
-            ...store.items,
-            [item.link]: storeItem,
+        setRequest({
+          ...request,
+          stores: {
+            ...request.stores,
+            [item.domain]: {
+              ...store,
+              items: {
+                ...store.items,
+                [item.link]: storeItem,
+              },
+            },
           },
-        }}});
+        });
         setIsCompletedStep(true);
       }
     };
   };
 
-  const getQty = (item) => {
-    if (request.stores[item.domain] && request.stores[item.domain].items[item.link]) {
-      return request.stores[item.domain].items[item.link].quantity;
+  const getQty = ({ domain, link }) => {
+    const { stores } = request;
+    if (stores[domain] && stores[domain].items[link]) {
+      return stores[domain].items[link].quantity;
     }
     return 0;
-  }
+  };
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
 
-
-  useEffect( () => {
-    fetchLinks(request.donationType, request.countryCode, request.selectedProduct.id)
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setOnlineStores(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+  useEffect(() => {
+    fetchLinks(
+      request.donationType,
+      request.countryCode,
+      request.selectedProduct.id
+    ).then(
+      (result) => {
+        setIsLoaded(true);
+        setOnlineStores(result);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
   }, [request.donationType, request.countryCode, request.selectedProduct]);
 
   if (error) {
@@ -90,11 +99,14 @@ export default function StepFive({ onNext }) {
               {item.domain}
             </a>
 
-            <input type="number" value={getQty(item)} onChange={getOnQuantityChangeHandler(item, i)}/>
+            <QuantityPicker
+              value={getQty(item)}
+              onChange={getOnQuantityChangeHandler(item, i)}
+            />
           </li>
         ))}
       </ul>
-      <div className={'btn-wrap'}>
+      <div className={"btn-wrap"}>
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>
