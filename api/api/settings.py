@@ -177,7 +177,7 @@ if os.getenv('MEDICINE_DEBUG') != 'true':
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     GOOGLE_API_SECRET_PATH = '/srv/medicine-for-ukraine/google_api_secret.json'
 else:
-    GOOGLE_API_SECRET_PATH = 'client_secret.json'
+    GOOGLE_API_SECRET_PATH = os.path.join(Path(__file__).resolve().parent.parent.parent, 'client_secret.json')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
