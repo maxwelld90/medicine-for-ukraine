@@ -6,41 +6,51 @@ import QuantityPicker from "../quantity-picker";
 
 export default function StepFive({ onNext }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
+  const [onlineStores, setOnlineStores] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const getOnQuantityChangeHandler = (item) => {
-    return (value) => {
-      if (value > 0) {
-        const store = request.stores[item.domain] || {
-          store_domain: item.domain,
-          items: {},
-        };
+  const onQuantityChangeHandler = ({ domain, link }, value) => {
+    if (!request.stores[domain] && !value) return;
 
-        const storeItem = store.items[item.link] || {
-          row_number: request.selectedProduct.id,
-          name: request.selectedProduct.name,
-          type: request.donationType,
-          url: item.link,
-        };
-        storeItem.quantity = parseInt(value) || 0;
+    if (request.stores[domain] && !value) {
+      const { [domain]: remove, ...restStores } = request.stores;
 
-        setRequest({
-          ...request,
-          stores: {
-            ...request.stores,
-            [item.domain]: {
-              ...store,
-              items: {
-                ...store.items,
-                [item.link]: storeItem,
-              },
-            },
-          },
-        });
-        setIsCompletedStep(true);
-      }
+      setRequest({ ...request, stores: restStores });
+      setIsCompletedStep(!!Object.values(restStores).length);
+      return;
+    }
+
+    const store = request.stores[domain] || {
+      store_domain: domain,
+      items: {},
     };
+
+    const storeItem = store.items[link] || {
+      row_number: request.selectedProduct.id,
+      name: request.selectedProduct.name,
+      type: request.donationType,
+      url: link,
+    };
+
+    storeItem.quantity = parseInt(value) || 0;
+
+    const stores = {
+      ...request.stores,
+      [domain]: {
+        ...store,
+        items: {
+          ...store.items,
+          [link]: storeItem,
+        },
+      },
+    };
+
+    setRequest({ ...request, stores });
+    setIsCompletedStep(!!Object.values(stores).length);
   };
 
   const getQty = ({ domain, link }) => {
@@ -50,10 +60,6 @@ export default function StepFive({ onNext }) {
     }
     return 0;
   };
-
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [onlineStores, setOnlineStores] = useState([]);
 
   useEffect(() => {
     fetchLinks(
@@ -100,8 +106,9 @@ export default function StepFive({ onNext }) {
             </a>
 
             <QuantityPicker
+              key={i + i}
               value={getQty(item)}
-              onChange={getOnQuantityChangeHandler(item, i)}
+              onChange={(value) => onQuantityChangeHandler(item, value)}
             />
           </li>
         ))}
