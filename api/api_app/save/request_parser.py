@@ -1,10 +1,11 @@
 import json
 import dotmap
+import ipware
 from jsonschema import validate
 from jsonschema import FormatChecker
+from django.db.utils import OperationalError
 from jsonschema.exceptions import ValidationError
 from api_app.models import Address, Country
-
 
 class ImproperlyFormattedBodyError(Exception):
     pass
@@ -12,11 +13,19 @@ class ImproperlyFormattedBodyError(Exception):
 class ValidationFailureError(Exception):
     pass
 
+# Attempt to retrieve a list of Addresses and Countries; if this fails, the tables do not exist.
+try:
+    COUNTRIES = [country.code for country in Country.objects.all()]
+    ADDRESSES = [address.id for address in Address.objects.all()]
+except OperationalError:
+    COUNTRIES = []
+    ADDRESSES = []
+
 
 REQUEST_SCHEMA = {
     'type': 'object',
     'properties': {
-        'browser_agent': {
+        'user_agent': {
             'description': 'The users\'s browser agent string',
             'type': 'string',
         },
@@ -25,15 +34,15 @@ REQUEST_SCHEMA = {
             'type': 'string',
             'format': 'email',
         },
-        'country_to_deliver': {
+        'country_to': {
             'description': 'Country code for delivery',
             'type': 'string',
-            'enum': [country.code for country in Country.objects.all()]  # Get a series of countries from the database to compare against
+            'enum': COUNTRIES  # Get a series of countries from the database to compare against
         },
         'address': {
             'description': 'ID of address to deliver to',
             'type': 'integer',
-            'enum': [address.id for address in Address.objects.all()]  # Get the IDs of addresses that are currently active!
+            'enum': ADDRESSES  # Get the IDs of addresses that are currently active!
         },
         'selected': {
             'type': 'array',
@@ -43,9 +52,9 @@ REQUEST_SCHEMA = {
         }
     },
     'required': [
-        'browser_agent',
+        'user_agent',
         'email',
-        'country_to_deliver',
+        'country_to',
         'address',
         'selected',
     ],
@@ -67,7 +76,7 @@ REQUEST_SCHEMA = {
                         'type': 'string',
                     },
                 },
-                'items': {
+                'selected_items': {
                     'type': 'array',
                     'items': {
                         '$ref': '/schemas/item'
@@ -77,7 +86,7 @@ REQUEST_SCHEMA = {
             'required': [
                 'store_domain',
                 'screenshots',
-                'items'
+                'selected_items'
             ]
         },
         'item': {
@@ -119,10 +128,23 @@ REQUEST_SCHEMA = {
 }
 
 
+def get_client_ip(request):
+    """
+    Using django-ipware, attempts to retrieve the IP address of the client.
+    Adapted from https://stackoverflow.com/a/16203978
+    """
+    ip, is_routable = ipware.get_client_ip(request)
+
+    if ip is None:
+        return None
+
+    return ip
+
+
 class RequestParser(object):
     """
     Class that represents a complete request's body.
-    Access the data using dot notation from data, i.e., data.browser_agent.
+    Access the data using dot notation from data, i.e., data.user_agent.
     """
     def __init__(self, request):
         self.__parse(request.body)

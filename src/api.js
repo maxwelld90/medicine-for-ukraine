@@ -58,14 +58,14 @@ export const saveRequest = async (request) => {
     return {
       'store_domain': store.store_domain,
       'screenshots': screenshots,
-      'items': items,
+      'selected_items': items,
     }
   });
 
   const payload = {
-    'browser_agent': window.navigator.userAgent,
+    'user_agent': window.navigator.userAgent,
     'email': request.contact,
-    'country_to_deliver': request.countryCode,
+    'country_to': request.countryCode,
     'address': request.addressId,
     'selected': stores,
   }
