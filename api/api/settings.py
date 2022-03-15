@@ -149,12 +149,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'uploads/'
+MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent.parent, 'uploads')
+
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     STATIC_URL = 'https://static.medicineforukraine.org/'
     STATIC_ROOT = '/srv/medicine-for-ukraine/static/'
     STATICFILES_DIRS = (
         '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/site-packages/django/contrib/admin/static',
     )
+
+    MEDIA_URL = 'https://media.medicineforukraine.org/'
+    MEDIA_ROOT = '/srv/medicine-for-ukraine/uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -172,3 +178,14 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     GOOGLE_API_SECRET_PATH = '/srv/medicine-for-ukraine/google_api_secret.json'
 else:
     GOOGLE_API_SECRET_PATH = 'client_secret.json'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production' and not os.getenv('MEDICINE_DEBUG') == 'true':
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 25
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+    DEFAULT_FROM_EMAIL = 'Medicine for Ukraine <noreply@medicineforukraine.org>'
