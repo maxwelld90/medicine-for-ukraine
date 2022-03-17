@@ -136,6 +136,10 @@ ul.file-list {
     list-style-type: none;
 }
 
+ul.file-list {
+    margin-bottom: 0;
+}
+
     ul.item-list li {
         margin-bottom: 15px;
         border-radius: 5px;
@@ -368,7 +372,7 @@ input[type=text] {
     opacity: 1;
 }
 
-div.screenshot-name {
+div.screenshot-item {
     width: 100%;
     box-sizing: border-box;
     padding: 15px;
@@ -377,7 +381,40 @@ div.screenshot-name {
     font-size: 28px;
     border: none;
     background: #D1D8E5;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    grid-template-columns: min-content;
+    align-items: center;
+    min-height: 100px;
+}
+
+div.screenshot-item img {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+div.screenshot-item .screenshot-title {
+    color: #000;
+    user-select: none;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+div.screenshot-item .screenshot-remove-wrap {
+    text-align: right;
+}
+
+div.screenshot-item .screenshot-remove {
+    color: red;
+    cursor: pointer;
+    user-select: none;
+    font-size: 30px;
+    font-weight: 100;
+    padding: 2px;
 }
 
 ul.item-list {
