@@ -16,3 +16,5 @@ db.sqlite3
 client_secret.json
 
 landing/out/
+
+uploads/
