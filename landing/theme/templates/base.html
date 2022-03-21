@@ -18,8 +18,12 @@
                 {% block bodyblock %}{% endblock %}
             </div>
         </main>
-    </body>
 
-    {% include "sections/footer/%s.html" % DEFAULT_LANG %}
+        {% include "sections/footer/%s.html" % DEFAULT_LANG %}
+
+        <script type="text/javascript">
+            var SELECTED_LANGUAGE = '{{ DEFAULT_LANG }}';
+        </script>
+    </body>
 
 </html>

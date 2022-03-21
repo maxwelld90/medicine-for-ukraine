@@ -339,7 +339,7 @@ footer ul li a span {
             margin-right: 10px;
         }
 
-        header ul li a:hover {
+        header ul.links li a:hover {
             color: #000;
             background: #FFD500;
         }
