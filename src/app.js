@@ -8,6 +8,7 @@ import i18n from "./i18n";
 import "./app.css";
 
 function App() {
+  const [step, setStep] = useState(null);
   const [languages, setLanguage] = useState([
     { name: "en", isActive: true },
     { name: "pl", isActive: false },
@@ -25,6 +26,10 @@ function App() {
       return lng;
     });
     setLanguage(newLanguageState);
+  };
+
+  const onStepChange = (step) => {
+    setStep(step);
   };
 
   return (
@@ -63,7 +68,10 @@ function App() {
           <div className="basic-router">
             <Routes>
               <Route path="/" element={<About />} />
-              <Route path="/request" element={<Request />} />
+              <Route
+                path="/request"
+                element={<Request onStepChange={onStepChange} />}
+              />
             </Routes>
           </div>
         </div>

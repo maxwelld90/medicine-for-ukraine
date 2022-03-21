@@ -14,7 +14,7 @@ import { RequestContext } from "./request-context";
 const FIRST_STEP = 1;
 const LAST_STEP = 8;
 
-export default function Request() {
+export default function Request({ onStepChange }) {
   const [step, setStep] = useState(FIRST_STEP);
   const [request, setRequest] = useState({
     contact: "",
@@ -45,7 +45,11 @@ export default function Request() {
     function confirmExit() {
       return "show warning";
     }
-  }, []);
+
+    if (typeof onStepChange === "function") {
+      onStepChange(step);
+    }
+  }, [step]);
 
   const multiStepForm = () => {
     switch (step) {
