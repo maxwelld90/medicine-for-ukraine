@@ -15,4 +15,4 @@ db.sqlite3
 
 client_secret.json
 
-landing/live/
+landing/out/
