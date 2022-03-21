@@ -1,5 +1,6 @@
 const API_HOST = process.env.REACT_APP_NODE_ENV !== 'production' ? 'http://127.0.0.1:8000' : 'https://api.medicineforukraine.org';
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+const DEFAULT_LANGUAGE = 'EN';
 
 export const fetchCountries = async () => {
   const jsonResponse = await (await fetch(`${API_HOST}/countries`)).json();
@@ -14,8 +15,12 @@ export const fetchItems = async (donationType, countryCode) => {
   const jsonResponse = await (await fetch(`${API_HOST}/items/${donationType}/${countryCode}`)).json();
 
   return jsonResponse.items.map(r => {
-    return {id: r.row_number, name: r.item_names_by_language[countryCode], highPriority: r.is_high_priority};
-  });
+    return {
+      id: r.row_number,
+      name: r.item_names_by_language[countryCode] || r.item_names_by_language[DEFAULT_LANGUAGE],
+      highPriority: r.is_high_priority,
+    };
+  }).filter(r => r.name);
 }
 
 export const fetchLinks = async (donationType, countryCode, itemId) => {
