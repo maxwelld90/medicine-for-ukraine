@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import About from "./components/about";
 import Request from "./components/request/index";
+import ProgressBar from './components/progressBar';
 
 import i18n from "./i18n";
 import "./app.css";
@@ -35,6 +36,7 @@ function App() {
   return (
     <div>
       <header>
+        <ProgressBar currentStep={step} />
         <div className="container">
           <a href="https://medicineforukraine.org">
             <picture>
