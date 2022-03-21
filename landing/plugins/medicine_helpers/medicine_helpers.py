@@ -2,7 +2,8 @@ import os
 import logging
 
 __all__ = [
-    "hihi",
+    'link',
+    'switch_language_link',
 ]
 
 LOG_PREFIX = "[Medicine Helpers]"
