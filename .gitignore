@@ -9,6 +9,10 @@ yarn-debug.log*
 yarn-error.log*
 
 *.pyc
+__pycache__/
+
 db.sqlite3
 
 client_secret.json
+
+landing/live/

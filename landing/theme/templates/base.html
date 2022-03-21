@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+    </head>
+
+    <body>
+        {% block headerblock %}{% endblock %}
+
+        <main>
+            <div class="container">
+                {% block bodyblock %}{% endblock %}
+            </div>
+        </main>
+    </body>
+
+    {% include "sections/footer/%s.html" % DEFAULT_LANG %}
+
+</html>

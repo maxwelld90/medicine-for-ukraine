@@ -1,0 +1,47 @@
+{
+    "en": {
+        "NAME_NATIVE": "English",
+        "NAME_EN": "English",
+        "SITENAME": "Medicine for Ukraine",
+        "SITELINKS": [
+            {"TEXT": "Donate Now", "ID": "REQUEST"},
+            {"TEXT": "About", "ID": "ABOUT"}
+        ]
+    },
+    "es": {
+        "NAME_NATIVE": "Español",
+        "NAME_EN": "Spanish",
+        "SITENAME": "Medicina para Ucrania",
+        "SITELINKS": [
+            {"TEXT": "Done ahora", "ID": "REQUEST"},
+            {"TEXT": "Sobre", "ID": "ABOUT"}
+        ]
+    },
+    "de": {
+        "NAME_NATIVE": "Deutsche",
+        "NAME_EN": "German",
+        "SITENAME": "Medizin für die Ukraine",
+        "SITELINKS": [
+            {"TEXT": "Spende jetzt", "ID": "REQUEST"},
+            {"TEXT": "Über", "ID": "ABOUT"}
+        ]
+    },
+    "pl": {
+        "NAME_NATIVE": "Deutsche",
+        "NAME_EN": "Polish",
+        "SITENAME": "Medycyna dla Ukrainy",
+        "SITELINKS": [
+            {"TEXT": "Wpłać teraz", "ID": "REQUEST"},
+            {"TEXT": "O", "ID": "ABOUT"}
+        ]
+    },
+    "ua": {
+        "NAME_NATIVE": "український",
+        "NAME_EN": "Ukrainian",
+        "SITENAME": "Медицина для України",
+        "SITELINKS": [
+            {"TEXT": "Пожертвуйте зараз", "ID": "REQUEST"},
+            {"TEXT": "Про", "ID": "ABOUT"}
+        ]
+    }
+}
