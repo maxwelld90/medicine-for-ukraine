@@ -15,7 +15,7 @@ export const fetchItems = async (donationType, countryCode) => {
 
   return jsonResponse.items.map(r => {
     return {id: r.row_number, name: r.item_names_by_language[countryCode], highPriority: r.is_high_priority};
-  });
+  }).filter(r => r.name);
 }
 
 export const fetchLinks = async (donationType, countryCode, itemId) => {
