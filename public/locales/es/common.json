@@ -29,6 +29,12 @@
     "TITLE": "A\u00f1adir a su(s) cesta(s)",
     "FIRST_LINE": "Tenemos los siguientes enlaces para {{producto}} que entrega a {{pa\u00eds}}. Por favor, especifique cu\u00e1ntos de los art\u00edculos que ha puesto en la cesta de la compra."
   },
+  "STEP_SIX": {
+    "TITLE": "Te gustaría donar más?",
+    "FIRST_LINE": "Te gustaría registrar más artículos? En caso afirmativo, puede seleccionar más",
+    "BACK_BUTTON": "Sí, quiero donar más.",
+    "NEXT_BUTTON": "No. Complete el proceso."
+  },
   "STEP_SEVEN": {
     "TITLE": "Completa tu pedido",
     "FIRST_LINE": "Ahora puede completar su(s) pedido(s) en los sitios web elegidos. Por favor env\u00edelos a la direcci\u00f3n indicada.",

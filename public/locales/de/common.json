@@ -29,6 +29,12 @@
     "TITLE": "Zu Ihren Warenkorb hinzuf\u00fcgen",
     "FIRST_LINE": "Wir haben die folgenden Links f\u00fcr {{product}}, das nach {{country}} geliefert wird. Bitte geben Sie an, wie viele der Artikel Sie in den Warenkorb gelegt haben."
   },
+  "STEP_SIX": {
+    "TITLE": "Sie möchten mehr spenden?",
+    "FIRST_LINE": "Möchten Sie weitere Artikel registrieren? Wenn ja, können Sie weitere auswählen",
+    "BACK_BUTTON": "Ja, ich möchte mehr spenden.",
+    "NEXT_BUTTON": "Nein. Schließen Sie den Vorgang ab."
+  },
   "STEP_SEVEN": {
     "TITLE": "Schlie\u00dfen Sie Ihre Bestellung ab",
     "FIRST_LINE": "Sie k\u00f6nnen nun Ihre Bestellung(en) auf den ausgew\u00e4hlten Webseiten abschlie\u00dfen. Bitte senden Sie die Artikel an die angegebene Adresse.",

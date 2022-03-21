@@ -34,6 +34,12 @@
     "FIRST_LINE": "Mo\u017cesz teraz sfinalizowa\u0107 swoje zam\u00f3wienia na wybranych stronach internetowych. Prosimy o przes\u0142anie ich na podany adres.",
     "SECOND_LINE": "Po sfinalizowaniu zakup\u00f3w potwierd\u017a to, przesy\u0142aj\u0105c zrzuty ekranu z zam\u00f3wie\u0144. Pami\u0119taj, aby unika\u0107 jakichkolwiek danych osobowych."
   },
+  "STEP_SIX": {
+    "TITLE": "Czy chciałbyś przekazać więcej?",
+    "FIRST_LINE": "Czy chcesz zarejestrować więcej pozycji? Jeśli tak, możesz wybrać więcej",
+    "BACK_BUTTON": "Tak, chcę przekazać więcej.",
+    "NEXT_BUTTON": "Nie. Zakończ proces."
+  },
   "STEP_EIGHT": {
     "TITLE": "Dzi\u0119kuj\u0119 Ci",
     "FIRST_LINE": "Zarejestrowali\u015bmy Twoje zam\u00f3wienie w naszym ekwipunku. Naprawd\u0119 doceniamy twoje wsparcie. Dzi\u0119kuj\u0119 za wsparcie Ukrainy.",
