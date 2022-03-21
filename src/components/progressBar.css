@@ -1,0 +1,42 @@
+div.progress {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 12.5%;
+    height: 5px;
+    background: #FFD500;
+    background: linear-gradient(90deg, rgba(255, 213, 0, 1) 85%, rgba(0, 91, 187, 1) 100%);
+}
+
+div.progress.step1 {
+    width: 12.5%;
+}
+
+div.progress.step2 {
+    width: 25%;
+}
+
+div.progress.step3 {
+    width: 37.5%;
+}
+
+div.progress.step4 {
+    width: 50%;
+}
+
+div.progress.step5 {
+    width: 62.5%;
+}
+
+div.progress.step6 {
+    width: 75%;
+}
+
+div.progress.step7 {
+    width: 87.5%;
+}
+
+div.progress.step8 {
+    width: 100%;
+    background: #ffd500 !important;
+}

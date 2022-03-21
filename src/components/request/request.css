@@ -1,54 +1,3 @@
-div.progress {
-  position: absolute;
-  top: -5px;
-  left: 0;
-  width: 12.5%;
-  height: 5px;
-  background: #ffd500;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 213, 0, 1) 85%,
-    rgba(0, 91, 187, 1) 100%
-  );
-}
-
-div.progress.step1 {
-  width: 11.1111%;
-}
-
-div.progress.step2 {
-  width: 22.2222%;
-}
-
-div.progress.step3 {
-  width: 33.3333%;
-}
-
-div.progress.step4 {
-  width: 44.4444%;
-}
-
-div.progress.step5 {
-  width: 55.5555%;
-}
-
-div.progress.step6 {
-  width: 66.6666%;
-}
-
-div.progress.step7 {
-  width: 77.7777%;
-}
-
-div.progress.step8 {
-  width: 88.8888%;
-}
-
-div.progress.step9 {
-  width: 100%;
-  background: #ffd500 !important;
-}
-
 div.btn-wrap {
   margin-bottom: 20px;
 }
@@ -60,7 +9,7 @@ h1 span {
   font-size: 26px;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgba(0, 91, 187, 0.15);
+  background-color: rgba(0,91,187,0.15);
 }
 
 p.direction {
@@ -84,8 +33,8 @@ button {
   line-height: 30px;
   padding: 15px;
   border: none;
-  color: #fff;
-  background: #005bbb;
+  color: #FFF;
+  background: #005BBB;
   font-size: 28px;
   font-weight: 700;
   transition: 0.3s;
@@ -107,19 +56,17 @@ button:hover {
   cursor: pointer;
 }
 
-button:disabled,
-button[disabled] {
+button:disabled, button[disabled] {
   opacity: 0.4;
 }
 
-button:disabled:hover,
-button[disabled]:hover {
-  background: #005bbb;
-  color: #fff;
+button:disabled:hover, button[disabled]:hover {
+  background: #005BBB;
+  color: #FFF;
   cursor: default;
 }
 
-input[type="text"] {
+input[type=text] {
   width: 100%;
   box-sizing: border-box;
   padding: 15px;
@@ -127,7 +74,7 @@ input[type="text"] {
   line-height: 30px;
   font-size: 28px;
   border: none;
-  background: #d1d8e5;
+  background: #D1D8E5;
 }
 
 ::placeholder {
@@ -135,8 +82,7 @@ input[type="text"] {
   opacity: 1;
 }
 
-ul.item-list,
-ul.file-list {
+ul.item-list, ul.file-list {
   margin: 20px 0 20px 0;
   padding: 0;
   list-style-type: none;
@@ -150,12 +96,11 @@ ul.item-list li {
   margin-bottom: 15px;
   border-radius: 5px;
   line-height: 30px;
-  min-height: 30px;
-  height: 100%;
+  height: 30px;
   padding: 15px;
   border: none;
   color: #000;
-  background: #e6e6e6;
+  background: #E6E6E6;
   font-size: 28px;
   font-weight: 700;
   transition: 0.3s;
@@ -225,12 +170,12 @@ ul.file-list li > span {
 
 @media (prefers-color-scheme: dark) {
   h1 span {
-    background-color: rgba(0, 91, 187, 0.3);
+    background-color: #14181D;
   }
 
   button {
-    background: #005bbb;
-    color: #fff;
+    background: #005BBB;
+    color: #FFF;
   }
 
   button:disabled:hover,
@@ -255,137 +200,11 @@ ul.file-list li > span {
     color: #fff;
   }
 }
-div.progress {
-  position: absolute;
-  top: -5px;
-  left: 0;
-  width: 12.5%;
-  height: 5px;
-  background: #ffd500;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 213, 0, 1) 85%,
-    rgba(0, 91, 187, 1) 100%
-  );
-}
 
 div.address-text {
   white-space: pre-wrap;
   background-color: #efecec;
   padding: 15px;
-}
-
-div.progress.step1 {
-  width: 11.1111%;
-}
-
-div.progress.step2 {
-  width: 22.2222%;
-}
-
-div.progress.step3 {
-  width: 33.3333%;
-}
-
-div.progress.step4 {
-  width: 44.4444%;
-}
-
-div.progress.step5 {
-  width: 55.5555%;
-}
-
-div.progress.step6 {
-  width: 66.6666%;
-}
-
-div.progress.step7 {
-  width: 77.7777%;
-}
-
-div.progress.step8 {
-  width: 88.8888%;
-}
-
-div.progress.step9 {
-  width: 100%;
-  background: #ffd500 !important;
-}
-
-h1 span {
-  float: right;
-  position: relative;
-  bottom: 5px;
-  font-size: 26px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: rgba(0, 91, 187, 0.15);
-}
-
-p.direction {
-  float: right;
-  clear: right;
-  text-align: right;
-}
-
-p.direction button {
-  margin-left: auto;
-}
-
-p.form-element {
-  margin: 40px 0 40px 0;
-}
-
-button {
-  display: block;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  line-height: 30px;
-  padding: 15px;
-  border: none;
-  color: #fff;
-  background: #005bbb;
-  font-size: 28px;
-  font-weight: 700;
-  transition: 0.3s;
-}
-
-button:last-child {
-  margin-bottom: 0;
-}
-
-button:hover {
-  background: #ffd500;
-  color: #005bbb;
-  cursor: pointer;
-}
-
-button:disabled,
-button[disabled] {
-  opacity: 0.4;
-}
-
-button:disabled:hover,
-button[disabled]:hover {
-  background: #005bbb;
-  color: #fff;
-  cursor: default;
-}
-
-input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 15px;
-  border-radius: 5px;
-  line-height: 30px;
-  font-size: 28px;
-  border: none;
-  background: #d1d8e5;
-}
-
-::placeholder {
-  color: #808080;
-  opacity: 1;
 }
 
 div.screenshot-item {
@@ -431,12 +250,6 @@ div.screenshot-item .screenshot-remove {
   font-size: 30px;
   font-weight: 100;
   padding: 2px;
-}
-
-ul.item-list {
-  margin: 20px 0 20px 0;
-  padding: 0;
-  list-style-type: none;
 }
 
 @media (prefers-color-scheme: dark) {
