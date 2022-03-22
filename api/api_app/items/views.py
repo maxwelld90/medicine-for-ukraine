@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api_app.models import ItemPrice
 from api_app.items.medicine_reader import call_medicine_reader
-
+import random
 
 class ItemsListForCountry(APIView):
     def get(self, request, df_str, country_code):
@@ -14,6 +14,34 @@ class ItemsListForCountry(APIView):
         if response['status'] == 200:
             response['data']['df_str'] = df_str
             response['data']['count'] = len(response['data']['items'])
+
+        return Response(response['data'], status=response['status'])
+
+
+class HighPriorityItems(APIView):
+    def get(self, request, selection, df_str):
+        """
+        Selection can be 'all' (returns ALL high priority items), 'first' (returns the first item), or 'random' (random!)
+        """
+        df_str = df_str.lower()
+        selection = selection.lower()
+        response = call_medicine_reader('items',
+                                        'get_all_high_priority_items',
+                                        {'df_str': df_str})
+
+        if selection not in ['first', 'random']:
+            selection = 'all'
+            
+        if selection == 'first':
+            response['data']['items'] = [response['data']['items'][0]]
+        if selection == 'random':
+            response['data']['items'] = random.sample(response['data']['items'], k=1)
+        
+        if response['status'] == 200:
+            response['data']['df_str'] = df_str
+            response['data']['count'] = len(response['data']['items'])
+        
+        response['data']['selection'] = selection
 
         return Response(response['data'], status=response['status'])
 

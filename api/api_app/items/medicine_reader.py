@@ -207,6 +207,14 @@ class MedicineReader(object):
     
     def get_current_dataframes(self):
         return self.__dataframes.keys()
+    
+    def get_all_high_priority_items(self, df_str):
+        if df_str not in self.__dataframes:
+            raise UnknownDataframeError(f'The dataframe "{df_str}" is not recognised.')
+        
+        df = self.__dataframes[df_str]
+        df_high = df[df['Priority'].apply(lambda s: s.lower()) == 'high']
+        return self.__get_items_list(df_high)
 
     def get_items_list(self, df_str):
         """
@@ -216,6 +224,9 @@ class MedicineReader(object):
             raise UnknownDataframeError(f'The dataframe "{df_str}" is not recognised.')
         
         df = self.__dataframes[df_str]
+        return self.__get_items_list(df)
+    
+    def __get_items_list(self, df):
         index = list(df.index)
         lang_codes = get_language_codes(df)
         item_names_by_language = []
