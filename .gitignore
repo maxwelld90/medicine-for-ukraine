@@ -18,3 +18,5 @@ client_secret.json
 landing/out/
 
 uploads/
+
+front/src/LANGUAGES.json
