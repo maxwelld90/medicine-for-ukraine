@@ -48,3 +48,5 @@ PLUGINS = ['i18n_subsites', 'medicine_helpers']
 TIMEZONE = 'Europe/London'
 DEFAULT_LANG = 'en'
 I18N_SUBSITES = languages.get_pelican_languages_object(SITEURL)
+
+SITELINKS = I18N_SUBSITES['en']['SITELINKS']
