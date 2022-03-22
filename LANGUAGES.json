@@ -1,5 +1,6 @@
 {
     "en": {
+        "DEFAULT": true,
         "NAME_NATIVE": "English",
         "NAME_EN": "English",
         "SITENAME": "Medicine for Ukraine",
@@ -9,6 +10,7 @@
         ]
     },
     "es": {
+        "DEFAULT": false,
         "NAME_NATIVE": "Español",
         "NAME_EN": "Spanish",
         "SITENAME": "Medicina para Ucrania",
@@ -18,6 +20,7 @@
         ]
     },
     "de": {
+        "DEFAULT": false,
         "NAME_NATIVE": "Deutsche",
         "NAME_EN": "German",
         "SITENAME": "Medizin für die Ukraine",
@@ -27,6 +30,7 @@
         ]
     },
     "pl": {
+        "DEFAULT": false,
         "NAME_NATIVE": "Deutsche",
         "NAME_EN": "Polish",
         "SITENAME": "Medycyna dla Ukrainy",
@@ -36,6 +40,7 @@
         ]
     },
     "ua": {
+        "DEFAULT": false,
         "NAME_NATIVE": "український",
         "NAME_EN": "Ukrainian",
         "SITENAME": "Медицина для України",

@@ -8,19 +8,19 @@ import ProgressBar from './components/progressBar';
 import i18n from "./i18n";
 import "./app.css";
 
+import availableLanguages from './LANGUAGES.json';
+import {getStaticPath, getLanguagesObject} from "./helpers";
+
 function App() {
   const [step, setStep] = useState(null);
-  const [languages, setLanguage] = useState([
-    { name: "en", isActive: true },
-    { name: "pl", isActive: false },
-    { name: "es", isActive: false },
-    { name: "de", isActive: false },
-  ]);
+  const [languages, setLanguage] = useState(getLanguagesObject(availableLanguages));
 
   const publicFolder = process.env.PUBLIC_URL;
 
   const changeLanguageOnClick = (language) => {
     i18n.changeLanguage(language);
+
+    window.localStorage.setItem('MEDICINE-LANGUAGE', language);
 
     const newLanguageState = languages.map((lng) => {
       lng.isActive = lng.name === language;
@@ -41,11 +41,11 @@ function App() {
           <a href="https://medicineforukraine.org">
             <picture>
               <source
-                srcSet={publicFolder + "static/frontapp/img/animated-dark.svg"}
+                srcSet={getStaticPath("/img/animated-dark.svg")}
                 media="(prefers-color-scheme: dark)"
               />
               <img
-                src={publicFolder + "static/frontapp/img/animated.svg"}
+                src={getStaticPath("/img/animated.svg")}
                 alt="Medicine for Ukraine"
               />
             </picture>

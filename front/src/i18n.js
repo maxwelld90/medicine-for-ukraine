@@ -3,11 +3,23 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 import availableLanguages from './LANGUAGES.json';
+import {getStaticPath} from './helpers';
 
 // the translations
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const languages = Object.keys(availableLanguages);
+
+let defaultLanguage = languages.filter(function (el) {
+  return availableLanguages[el].DEFAULT === true;
+});
+
+if (defaultLanguage.length == 0) {
+  defaultLanguage = 'en';
+}
+else {
+  defaultLanguage = defaultLanguage[0];
+}
 
 i18n
   /*
@@ -22,7 +34,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    lng: defaultLanguage, // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
     whitelist: languages,
     debug: false,
@@ -33,7 +45,7 @@ i18n
       useSuspense: false
     },
     backend: {
-      loadPath: '/static/frontapp/locales/{{lng}}/{{ns}}.json',
+      loadPath: getStaticPath('/locales/{{lng}}/{{ns}}.json'),
     },
   });
 
