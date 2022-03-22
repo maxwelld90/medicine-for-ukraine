@@ -94,6 +94,7 @@ function App() {
               href="https://www.instagram.com/medhelpua/"
               className="instagram"
               target="_blank"
+              rel="noreferrer noopener"
             >
               <span>medhelpua</span>
               <i class="gg-instagram"></i>
@@ -102,6 +103,7 @@ function App() {
               href="https://www.instagram.com/hospitallers.ukraine_paramedic/"
               className="instagram"
               target="_blank"
+              rel="noreferrer noopener"
             >
               <span>hospitallers.ukraine_paramedic</span>{" "}
               <i class="gg-instagram"></i>

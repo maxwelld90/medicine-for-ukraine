@@ -161,7 +161,7 @@ footer {
   font-size: 12pt;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .instagram .gg-instagram {
