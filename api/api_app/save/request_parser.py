@@ -17,7 +17,7 @@ class ValidationFailureError(Exception):
 try:
     COUNTRIES = [country.code for country in Country.objects.all()]
     ADDRESSES = [address.id for address in Address.objects.all()]
-except OperationalError:
+except:
     COUNTRIES = []
     ADDRESSES = []
 
