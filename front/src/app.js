@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import About from "./components/about";
 import Request from "./components/request/index";
-import ProgressBar from './components/progressBar';
+import ProgressBar from "./components/progressBar";
 
 import i18n from "./i18n";
 import "./app.css";
@@ -34,11 +34,11 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <header>
         <ProgressBar currentStep={step} />
         <div className="container">
-          <a href={getHeaderLogoLink()}>
+          <a className="flag"  href={getHeaderLogoLink()}>
             <picture>
               <source
                 srcSet={getStaticPath("/img/animated-dark.svg")}
@@ -78,6 +78,37 @@ function App() {
           </div>
         </div>
       </main>
+      <footer>
+        <div className="footer-container">
+          <div className="left">
+            <span className="header">&copy; Medicine for Ukraine, 2022.</span>
+            <div className="content">
+              Medicine for Ukraine is run by a{" "}
+              <a href="{{ SITEURL_ABSOLUTE }}about/">group of volunteers</a>{" "}
+              that want to help. <br />
+              We get medicine and supplies to those who need it the most.
+            </div>
+          </div>
+          <div className="right">
+            <a
+              href="https://www.instagram.com/medhelpua/"
+              className="instagram"
+              target="_blank"
+            >
+              <span>medhelpua</span>
+              <i class="gg-instagram"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/hospitallers.ukraine_paramedic/"
+              className="instagram"
+              target="_blank"
+            >
+              <span>hospitallers.ukraine_paramedic</span>{" "}
+              <i class="gg-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

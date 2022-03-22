@@ -1,16 +1,26 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 14pt;
   line-height: 20pt;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 header {
-  position: fixed;
-  top: 0;
   width: 100%;
   border-top: 5px solid #005bbb;
   box-sizing: border-box;
-  padding: 20px 0 20px 0;
   background-color: #ffffff;
   height: 111px;
 }
@@ -50,6 +60,11 @@ div.container {
 header img {
   width: 300px;
   height: auto;
+}
+
+header .flag {
+  display: inline-block;
+  padding: 20px 0;
 }
 
 header ul {
@@ -98,12 +113,13 @@ header ul li a:hover.selected,
 header ul li a:hover,
 .multilingual-selector:hover {
   background: #ffd500;
-  color: #BB6000;
+  color: #bb6000;
   cursor: pointer;
 }
 
 main {
-  margin-top: 150px;
+  flex: auto;
+  margin-top: 35px;
 }
 
 .urgent {
@@ -113,15 +129,62 @@ main {
   padding: 10px;
 }
 
+footer {
+  background: #e6e6e6;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  color: #333;
+}
+
+.footer-container .header {
+  display: block;
+  font-size: 14pt;
+  padding-bottom: 5px;
+  line-height: 18pt;
+  font-weight: 700;
+}
+
+.footer-container .content {
+  font-size: 10pt;
+  line-height: 14pt;
+}
+
+.footer-container .instagram {
+  text-decoration: none;
+  display: block;
+  font-size: 12pt;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.instagram .gg-instagram {
+  margin-left: 15px;
+}
+
 @media screen and (min-width: 768px) {
   div.container {
-    width: 70%;
+    width: 85%;
+  }
+
+  .footer-container {
+    width: 85%;
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1000px) {
   div.container {
-    width: 85%;
+    width: 70%;
+  }
+
+  .footer-container {
+    width: 70%;
   }
 }
 
