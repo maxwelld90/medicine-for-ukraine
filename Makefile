@@ -28,17 +28,21 @@ landing/out/request: front/build
 	mkdir landing/out/request; \
 	cp -r front/build/* landing/out/request; \
 	rsync -a landing/out/request/static landing/out;
+	rm -rf landing/out/request/static/; \
+	mv landing/out/request/asset-manifest.json landing/out; \
+	mv landing/out/request/manifest.json landing/out;
 
 # all: virtualenvs/landing landing/out front/node_modules front/build landing/out/request
 all: virtualenvs/landing landing/out front/build landing/out/request
 
 devserver: all
 	. virtualenvs/landing/bin/activate; \
-	cd landing; \
-	make devserver;
+	cd landing/out; \
+	$(PYTHON) -m http.server 8000;
 
 clean:
 	rm -rf virtualenvs
 	rm -rf landing/out
 	rm -rf front/build
+	rm front/src/LANGUAGES.json
 #	rm -rf front/node_modules
