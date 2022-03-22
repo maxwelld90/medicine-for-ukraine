@@ -44,8 +44,19 @@ function getLanguagesObject(languages) {
     return returnArray;
 }
 
+function getHeaderLogoLink() {
+    let currentDefault = window.localStorage.getItem('MEDICINE-LANGUAGE');
+
+    if (currentDefault) {
+        return '/' + currentDefault + '/';
+    }
+
+    return '/en/';
+}
+
 export {
     isProduction,
     getStaticPath,
-    getLanguagesObject
+    getLanguagesObject,
+    getHeaderLogoLink,
 }

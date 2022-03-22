@@ -9,7 +9,7 @@ import i18n from "./i18n";
 import "./app.css";
 
 import availableLanguages from './LANGUAGES.json';
-import {getStaticPath, getLanguagesObject} from "./helpers";
+import {getStaticPath, getLanguagesObject, getHeaderLogoLink} from "./helpers";
 
 function App() {
   const [step, setStep] = useState(null);
@@ -38,7 +38,7 @@ function App() {
       <header>
         <ProgressBar currentStep={step} />
         <div className="container">
-          <a href="https://medicineforukraine.org">
+          <a href={getHeaderLogoLink()}>
             <picture>
               <source
                 srcSet={getStaticPath("/img/animated-dark.svg")}
