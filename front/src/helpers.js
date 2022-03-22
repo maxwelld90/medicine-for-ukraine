@@ -1,6 +1,4 @@
-
-
-exports.isProduction = function(){
+function isProduction(){
     if (process.env.REACT_APP_MEDICINE_ENVIRONMENT === 'production') {
         return true;
     }
@@ -8,15 +6,15 @@ exports.isProduction = function(){
     return false;
 }
 
-exports.getStaticPath = function(path) {
-    if (exports.isProduction()) {
+function getStaticPath(path) {
+    if (isProduction()) {
         return process.env.REACT_APP_STATIC_ROOT + '/' + path;
     }
 
     return '/static/' + path;
 }
 
-exports.getLanguagesObject = function(languages) {
+function getLanguagesObject(languages) {
     let returnArray = [];
     let currentDefault = window.localStorage.getItem('MEDICINE-LANGUAGE');
     let setLanguage = false;
@@ -43,7 +41,11 @@ exports.getLanguagesObject = function(languages) {
         }
     }
 
-    console.log(returnArray);
-
     return returnArray;
+}
+
+export {
+    isProduction,
+    getStaticPath,
+    getLanguagesObject
 }
