@@ -21,9 +21,9 @@
                     <ul class="languages">
                         {% for language in I18N_SUBSITES %}
                         {% if language|upper == DEFAULT_LANG|upper %}
-                        <li><a class="multilingual-selector selected" class="selected">{{ language|upper }}</a></li>
+                        <li><a class="multilingual-selector selected" class="selected" data-language="{{ language|lower }}">{{ language|upper }}</a></li>
                         {% else %}
-                        <li><a href="{{ ROOT_URL | switch_language_link(language, output_file) }}" class="multilingual-selector">{{ language|upper }}</a></li>
+                        <li><a href="{{ ROOT_URL | switch_language_link(language, output_file) }}" class="multilingual-selector" data-language="{{ language|lower }}">{{ language|upper }}</a></li>
                         {% endif %}
                         {% endfor %}
                     </ul>
