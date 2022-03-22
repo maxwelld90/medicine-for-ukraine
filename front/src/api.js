@@ -6,7 +6,7 @@ export const fetchCountries = async () => {
   const jsonResponse = await (await fetch(`${API_HOST}/countries`)).json();
 
   return jsonResponse.map(r => {
-    r.flag_url = PUBLIC_FOLDER + 'img/flags/' + r.flag_url;
+    r.flag_url = PUBLIC_FOLDER + 'static/frontapp/img/flags/' + r.flag_url;
     return r;
   });
 }

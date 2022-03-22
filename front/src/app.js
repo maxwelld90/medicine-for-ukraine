@@ -41,11 +41,11 @@ function App() {
           <a href="https://medicineforukraine.org">
             <picture>
               <source
-                srcSet={publicFolder + "img/animated-dark.svg"}
+                srcSet={publicFolder + "static/frontapp/img/animated-dark.svg"}
                 media="(prefers-color-scheme: dark)"
               />
               <img
-                src={publicFolder + "img/animated.svg"}
+                src={publicFolder + "static/frontapp/img/animated.svg"}
                 alt="Medicine for Ukraine"
               />
             </picture>
