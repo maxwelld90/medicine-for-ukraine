@@ -31,7 +31,10 @@ i18n
     },
     react: {
       useSuspense: false
-    }
+    },
+    backend: {
+      loadPath: '/static/frontapp/locales/{{lng}}/{{ns}}.json',
+    },
   });
 
 export default i18n;
