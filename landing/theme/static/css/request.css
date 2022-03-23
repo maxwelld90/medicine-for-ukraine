@@ -41,11 +41,17 @@ div.progress.step8 {
     background: #FFD500 !important;
 }
 
+h1 {
+    width: 90%;
+    width: calc(100% - 60px);
+}
+
 h1 span {
-    float: right;
-    position: relative;
-    bottom: 5px;
+    position: absolute;
+    top: 9px;
+    right: 0;
     font-size: 26px;
+    line-height: 26px;
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(0,91,187,0.15);
@@ -256,6 +262,17 @@ user-select: none;
 font-size: 30px;
 font-weight: 100;
 padding: 2px;
+}
+
+@media screen and (max-width: 710px) {
+
+    h1 span {
+        right: -20px;
+        padding-right: 20px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
 }
 
 @media (prefers-color-scheme: dark) {

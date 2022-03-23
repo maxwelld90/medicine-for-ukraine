@@ -9,47 +9,49 @@ div.progress {
 }
 
 div.progress.step1 {
-    width: 11.1111%;
+    width: 12.5%;
 }
 
 div.progress.step2 {
-    width: 22.2222%;
+    width: 25%;
 }
 
 div.progress.step3 {
-    width: 33.3333%;
+    width: 37.5%;
 }
 
 div.progress.step4 {
-    width: 44.4444%;
+    width: 50%;
 }
 
 div.progress.step5 {
-    width: 55.5555%;
+    width: 62.5%;
 }
 
 div.progress.step6 {
-    width: 66.6666%;
+    width: 75%;
 }
 
 div.progress.step7 {
-    width: 77.7777%;
+    width: 87.5%;
 }
 
 div.progress.step8 {
-    width: 88.8888%;
-}
-
-div.progress.step9 {
     width: 100%;
     background: #FFD500 !important;
 }
 
+h1 {
+    width: 90%;
+    width: calc(100% - 60px);
+}
+
 h1 span {
-    float: right;
-    position: relative;
-    bottom: 5px;
+    position: absolute;
+    top: 9px;
+    right: 0;
     font-size: 26px;
+    line-height: 26px;
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(0,91,187,0.15);
@@ -82,6 +84,12 @@ button {
     font-weight: 700;
     transition: 0.3s;
 }
+
+button.button-back {
+    padding: 10px;
+    font-size: 22px;
+    background: #7a7e83;
+  }
 
 button:last-child {
     margin-bottom: 0;
@@ -119,47 +127,153 @@ input[type=text] {
     opacity: 1;
 }
 
-ul.item-list {
+ul.item-list, ul.file-list {
     margin: 20px 0 20px 0;
     padding: 0;
     list-style-type: none;
 }
 
-    ul.item-list li {
-        margin-bottom: 15px;
-        border-radius: 5px;
-        line-height: 30px;
-        height: 30px;
-        padding: 15px;
-        border: none;
-        color: #000;
-        background: #E6E6E6;
-        font-size: 28px;
-        font-weight: 700;
-        transition: 0.3s;
-    }
+ul.file-list {
+    margin-bottom: 0;
+}
 
-    ul.item-list li:hover {
-        background: #FFD500;
-        color: #005BBB;
-        cursor: pointer;
-    }
+ul.item-list li {
+margin-bottom: 15px;
+border-radius: 5px;
+line-height: 30px;
+height: 30px;
+padding: 15px;
+border: none;
+color: #000;
+background: #E6E6E6;
+font-size: 28px;
+font-weight: 700;
+transition: 0.3s;
+}
 
-    ul.item-list li:last-child {
-        margin-bottom: 0;
-    }
+ul.item-list li.high-priority {
+background-color: #e98f8f;
+}
 
-    ul.item-list.countries li img {
-        height: 100%;
-        min-width: 50px;
-        display: inline-block;
-        margin-right: 8px;
-    }
+ul.item-list li:hover,
+ul.item-list li.selected {
+background: #FFD500;
+color: #005BBB;
+cursor: pointer;
+}
 
-    ul.item-list.countries li span {
-        position: relative;
-        bottom: 4px;
+ul.item-list li:last-child {
+margin-bottom: 0;
+}
+
+ul.item-list.countries li img {
+height: 100%;
+min-width: 50px;
+display: inline-block;
+margin-right: 8px;
+}
+
+ul.item-list.countries li span {
+position: relative;
+bottom: 4px;
+}
+
+ul.item-list.stores li {
+display: grid;
+grid-template-columns: 1fr 1fr;
+justify-items: start;
+height: 50px;
+align-items: center;
+}
+
+ul.item-list.stores li:hover {
+cursor: default;
+}
+
+ul.item-list.stores li input {
+font-size: 20px;
+}
+
+ul.item-list.stores li a {
+color: #fff;
+}
+
+ul.item-list.stores li:hover a {
+color: #005bbb;
+}
+
+ul.file-list li {
+padding: 10px 0;
+}
+
+ul.file-list li > span {
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 5px;
+display: inline-block;
+}
+
+div.address-text {
+white-space: pre-wrap;
+background-color: #efecec;
+padding: 15px;
+}
+
+div.screenshot-item {
+width: 100%;
+box-sizing: border-box;
+padding: 15px;
+border-radius: 5px;
+line-height: 30px;
+font-size: 28px;
+border: none;
+background: #d1d8e5;
+margin-bottom: 15px;
+
+display: grid;
+grid-auto-flow: column;
+grid-auto-columns: auto;
+grid-template-columns: min-content;
+align-items: center;
+min-height: 100px;
+}
+
+div.screenshot-item img {
+max-width: 100px;
+margin-right: 20px;
+border-radius: 4px;
+}
+
+div.screenshot-item .screenshot-title {
+color: #000;
+user-select: none;
+font-size: 22px;
+margin-right: 10px;
+}
+
+div.screenshot-item .screenshot-remove-wrap {
+text-align: right;
+}
+
+div.screenshot-item .screenshot-remove {
+color: red;
+cursor: pointer;
+user-select: none;
+font-size: 30px;
+font-weight: 100;
+padding: 2px;
+}
+
+@media screen and (max-width: 710px) {
+
+    h1 span {
+        right: -20px;
+        padding-right: 20px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
+    
+}
 
 @media (prefers-color-scheme: dark) {
     h1 span {
@@ -192,3 +306,27 @@ ul.item-list {
         color: #FFF;
     }
 }
+
+.picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .picker .button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 5px 15px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .picker .number {
+    width: 30px;
+    text-align: center;
+  }
+  

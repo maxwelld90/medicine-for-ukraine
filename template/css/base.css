@@ -25,6 +25,10 @@ body {
 
 body > div {
     height: 100vh;
+}
+
+body > div > div {
+    height: 100vh;
     display: flex; 
     flex-direction: column;
 }
@@ -52,9 +56,11 @@ a:hover {
 
 h1 {
     font-size: 30pt;
+    line-height: 35pt;
     margin: 0 0 30px 0;
     padding: 0;
     font-weight: bold;
+    word-wrap: break-word;
 }
 
 h2 {
@@ -137,6 +143,7 @@ header ul {
     }
 
     header ul.languages li a:hover {
+        cursor: pointer;
         color: #005BBB;
         background: #FFD500;
     }
@@ -304,67 +311,7 @@ footer ul li a span {
     }
 }
 
-@media screen and (max-width: 710px) {
-    header {
-        height: auto;
-    }
-
-    header {
-        text-align: center;
-    }
-
-    header div.links-container {
-        float: none;
-    }
-
-    header ul {
-        float: none;
-        text-align: center;
-    }
-
-    header ul.languages, header ul.links {
-        position: static;
-    }
-
-    header ul.links {
-        margin: 15px 0 15px 0;
-    }
-
-        header ul li a {
-            padding: 5px;
-            border-radius: 5px;
-            line-height: 30px;
-            color: #FFF;
-            background: #005BBB;
-            text-decoration: none;
-        }
-
-        header ul.links li {
-            margin-right: 10px;
-        }
-
-        header ul li a:hover {
-            color: #000;
-            background: #FFD500;
-        }
-
-        header ul.languages li a {
-            border-radius: 5px;
-            font-size: 20px;
-            min-height: 25px;
-            min-width: 25px;
-            line-height: 25px;
-            padding: 5px;
-        }
-
-    div.container {
-        margin: 0 20px 0 20px;
-    }
-
-    main {
-        margin-top: 270px;
-    }
-
+@media screen and (max-width: 780px) {
     footer div.container div.left {
         width: auto;
         float: none;
@@ -419,6 +366,68 @@ footer ul li a span {
     
     footer ul li a.instagram:after {
         background: url('../img/instagram.svg') no-repeat;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    header {
+        height: auto;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    header div.links-container {
+        float: none;
+    }
+
+    header ul {
+        float: none;
+        text-align: center;
+    }
+
+    header ul.languages, header ul.links {
+        position: static;
+    }
+
+    header ul.links {
+        margin: 15px 0 15px 0;
+    }
+
+        header ul li a {
+            padding: 5px;
+            border-radius: 5px;
+            line-height: 30px;
+            color: #FFF;
+            background: #005BBB;
+            text-decoration: none;
+        }
+
+        header ul.links li {
+            margin-right: 10px;
+        }
+
+        header ul.links li a:hover {
+            color: #000;
+            background: #FFD500;
+        }
+
+        header ul.languages li a {
+            border-radius: 5px;
+            font-size: 20px;
+            min-height: 25px;
+            min-width: 25px;
+            line-height: 25px;
+            padding: 5px;
+        }
+
+    div.container {
+        margin: 0 20px 0 20px;
+    }
+
+    main {
+        margin-top: 270px;
     }
 }
 
