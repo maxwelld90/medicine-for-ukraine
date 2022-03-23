@@ -4,6 +4,12 @@
   "NEXT_BUTTON": "Pr\u00f3ximo",
   "ADD_IMAGE": "A\u00f1adir m\u00e1s im\u00e1genes",
   "UPLOAD_IMAGE": "Sube la imagen",
+  "REQUEST_GREETING": {
+    "TITLE": "Bienvenidas",
+    "FIRST_LINE": "Gracias por apoyar a Ucrania!",
+    "SECOND_LINE": "Este es el cuestionario para dar la ayuda en el estructurado",
+    "BUTTON": "Comienzo"
+  },
   "STEP_ONE": {
     "TITLE": "Cu\u00e1l es tu direcci\u00f3n de correo electr\u00f3nico?",
     "FIRST_LINE": "Utilizamos su direcci\u00f3n de correo electr\u00f3nico para realizar un seguimiento de lo que se ha pedido. Por favor, introduzca su direcci\u00f3n de correo electr\u00f3nico en el cuadro de abajo.",
