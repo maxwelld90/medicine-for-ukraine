@@ -22,6 +22,7 @@ $ pip install -Ur requirements.txt
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py runserver
+```
 
 Then run the `Makefile` in the repository root.
 
