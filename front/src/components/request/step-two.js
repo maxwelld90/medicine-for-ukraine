@@ -52,7 +52,7 @@ export default function StepTwo({ onNext }) {
           {countries.map((country, i) => (
             <li key={i} onClick={() => handleSelect(country)}
               className={country.code === request.countryCode ? 'selected' : ''}>
-              <img src={country.flag_url} alt="Flag of Spain"/>
+              <img src={country.flag_url} alt={`Flag of ${country.name}`}/>
               <span>{country.name}</span>
             </li>
           ))}

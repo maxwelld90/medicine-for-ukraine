@@ -19,10 +19,8 @@
   },
   "homepage": ".",
   "scripts": {
-    "start": "cp ../LANGUAGES.json ./src/LANGUAGES.json && react-scripts start",
-    "build": "cp ../LANGUAGES.json ./src/LANGUAGES.json && react-scripts build",
-    "test": "cp ../LANGUAGES.json ./src/LANGUAGES.json && react-scripts test",
-    "eject": "cp ../LANGUAGES.json ./src/LANGUAGES.json && react-scripts eject"
+    "start": "./pre.sh && react-scripts start",
+    "build": "./pre.sh && react-scripts build"
   },
   "eslintConfig": {
     "extends": [

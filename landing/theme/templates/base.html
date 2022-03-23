@@ -11,15 +11,19 @@
     </head>
 
     <body>
-        {% block headerblock %}{% endblock %}
+        <div>
+            <div>
+                {% block headerblock %}{% endblock %}
 
-        <main>
-            <div class="container">
-                {% block bodyblock %}{% endblock %}
+                <main>
+                    <div class="container">
+                        {% block bodyblock %}{% endblock %}
+                    </div>
+                </main>
+
+                {% include "sections/footer/%s.html" % DEFAULT_LANG %}
             </div>
-        </main>
-
-        {% include "sections/footer/%s.html" % DEFAULT_LANG %}
+        </div>
 
         <script type="text/javascript">
             var SELECTED_LANGUAGE = '{{ DEFAULT_LANG }}';

@@ -1,12 +1,15 @@
+import {getStaticPath} from './helpers';
+
 const API_HOST = process.env.REACT_APP_NODE_ENV !== 'production' ? 'http://127.0.0.1:8000' : 'https://api.medicineforukraine.org';
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const DEFAULT_LANGUAGE = 'EN';
+
 
 export const fetchCountries = async () => {
   const jsonResponse = await (await fetch(`${API_HOST}/countries`)).json();
 
   return jsonResponse.map(r => {
-    r.flag_url = PUBLIC_FOLDER + 'static/frontapp/img/flags/' + r.flag_url;
+    r.flag_url = getStaticPath('/img/flags/' + r.flag_url);
     return r;
   });
 }

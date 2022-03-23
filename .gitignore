@@ -20,3 +20,6 @@ landing/out/
 uploads/
 
 front/src/LANGUAGES.json
+front/public/static/css
+front/public/static/fonts
+front/public/static/img/*.svg

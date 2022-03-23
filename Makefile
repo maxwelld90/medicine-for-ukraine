@@ -38,7 +38,7 @@ all: virtualenvs/landing landing/out front/build landing/out/request
 devserver: all
 	. virtualenvs/landing/bin/activate; \
 	cd landing/out; \
-	$(PYTHON) -m http.server 8000;
+	$(PYTHON) -m http.server 3000;
 
 clean:
 	rm -rf virtualenvs

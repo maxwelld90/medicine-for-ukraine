@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./request-context";
 
-import "./request.css";
+//import "./request.css";
 
 const isValidEmail = (email) => {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));

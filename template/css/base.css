@@ -17,12 +17,16 @@
 }
 
 body {
-    display: flex; 
-    flex-direction: column;
     height: 100vh;
     font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 14pt;
     line-height: 20pt;
+}
+
+body > div {
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;
 }
 
 header {

@@ -34,7 +34,7 @@ PAGE_SAVE_AS = '{slug}/index.html'
 THEME = './theme/'  # Path to theme directory (in the project root)
 THEME_STATIC_DIR = 'static'  # Path for the output static directory
 
-SITEURL = 'http://127.0.0.1:8000/'  # https://medicineforukraine.org/
+SITEURL = 'http://127.0.0.1:3000/'  # https://medicineforukraine.org/
 STATIC_URL = '/static/'  # https://static.medicineforukraine.org/
 
 ROOT_URL = SITEURL  # Make a copy of SITEURL so we have the absolute root of the project (for language switching)
