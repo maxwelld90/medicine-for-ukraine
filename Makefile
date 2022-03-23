@@ -44,5 +44,8 @@ clean:
 	rm -rf virtualenvs
 	rm -rf landing/out
 	rm -rf front/build
+	rm -rf front/public/static/css
+	rm -rf front/public/static/fonts
+	rm -rf front/public/static/img/*.svg
 	rm front/src/LANGUAGES.json
 #	rm -rf front/node_modules
