@@ -4,6 +4,12 @@
   "NEXT_BUTTON": "Nast\u0119pny",
   "ADD_IMAGE": "Dodaj wi\u0119cej zdj\u0119\u0107",
   "UPLOAD_IMAGE": "Prze\u015blij obraz",
+  "REQUEST_GREETING": {
+    "TITLE": "Witamy",
+    "FIRST_LINE": "Dziękujemy za wsparcie Ukrainy!",
+    "SECOND_LINE": "To jest kwestionariusz do udzielenia pomocy w zorganizowanym",
+    "BUTTON": "Początek"
+  },
   "STEP_ONE": {
     "TITLE": "Jaki jest Tw\u00f3j adres e-mail?",
     "FIRST_LINE": "U\u017cywamy Twojego adresu e-mail do \u015bledzenia tego, co zosta\u0142o zam\u00f3wione. Wpisz sw\u00f3j adres e-mail w polu poni\u017cej.",

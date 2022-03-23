@@ -4,6 +4,12 @@
   "NEXT_BUTTON": "Weiter",
   "ADD_IMAGE": "Weitere Bilder hinzuf\u00fcgen",
   "UPLOAD_IMAGE": "Laden Sie ein Bild hoch",
+  "REQUEST_GREETING": {
+    "TITLE": "Willkommen",
+    "FIRST_LINE": "Danke, dass Sie die Ukraine unterstützen!",
+    "SECOND_LINE": "Dies ist der Fragebogen für die Hilfestellung im Strukturierten",
+    "BUTTON": "Start"
+  },
   "STEP_ONE": {
     "TITLE": "Wie lautet Ihre E-Mail-Adresse?",
     "FIRST_LINE": "Wir verwenden Ihre E-Mail-Adresse um Bestellungen zuordnen zu k\u00f6nnen. Bitte geben Sie Ihre E-Mail-Ad­res­se in das unten stehende Feld ein.",
