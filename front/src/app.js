@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import About from "./components/about";
 import Request from "./components/request/index";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -43,7 +42,6 @@ function App() {
         <div className="container">
           <div className="basic-router">
             <Routes>
-              <Route path="/" element={<About />} />
               <Route
                 path="/request"
                 element={<Request onStepChange={onStepChange} />}
