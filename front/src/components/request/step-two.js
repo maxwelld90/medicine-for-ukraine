@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchCountries } from "../../api";
+import Loader from "../loader";
 
 export default function StepTwo({ onNext }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -34,9 +35,9 @@ export default function StepTwo({ onNext }) {
   }, []);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="text-center">Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
   return (
     <div>

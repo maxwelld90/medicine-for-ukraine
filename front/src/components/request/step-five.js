@@ -3,6 +3,7 @@ import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchLinks } from "../../api";
 import QuantityPicker from "../quantity-picker";
+import Loader from "../loader";
 
 export default function StepFive({ onNext }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
@@ -79,9 +80,9 @@ export default function StepFive({ onNext }) {
   }, [request.donationType, request.countryCode, request.selectedProduct]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="text-center">Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   return (

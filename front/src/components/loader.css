@@ -1,0 +1,26 @@
+.loader-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.loader-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #005bbb;
+  border-color: #005bbb transparent #005bbb transparent;
+  animation: loader-ring 1.2s linear infinite;
+}
+
+@keyframes loader-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

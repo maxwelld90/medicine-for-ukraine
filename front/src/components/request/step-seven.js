@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import ImageLoader from "../imageLoader";
 import { RequestContext } from "./request-context";
 import { fetchAddress } from "../../api";
+import Loader from "../loader";
 
 // Check if each store has at least one file
 const isValidRequest = (request) => {
@@ -43,9 +44,9 @@ export default function StepSeven({ onNext }) {
   }, [request.countryCode]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="text-center">Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   return (
