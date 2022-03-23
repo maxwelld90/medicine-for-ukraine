@@ -3,12 +3,24 @@ import uuid
 from django.db import models
 
 
+class LowercaseCharField(models.CharField):
+    """
+    Solution from: https://stackoverflow.com/a/49181581
+    Provides a CharField that guarantees the string representation is lowercased.
+    """
+    def __init__(self, *args, **kwargs):
+        super(LowercaseCharField, self).__init__(*args, **kwargs)
+
+    def get_prep_value(self, value):
+        return str(value).lower()
+
+
 class Country(models.Model):
     """
     Stores country information. Code is the PK (as a string, e.g., "PL").
     Codes must match the language codes that are returned from the spreadsheet!
     """
-    code = models.CharField(max_length=5, primary_key=True)
+    code = LowercaseCharField(max_length=5, primary_key=True)
     name = models.CharField(max_length=256, unique=True)
     flag_url = models.CharField(max_length=256, unique=True)
 
