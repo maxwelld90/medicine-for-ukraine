@@ -34,7 +34,9 @@ export default function StepOne({ onNext }) {
       </h1>
 
       <p className="multilingual en">{t("common:STEP_ONE.FIRST_LINE")}</p>
+      
       <p>{t("common:STEP_ONE.SECOND_LINE")}</p>
+
       <p className="form-element">
         <input
           type="text"
@@ -44,11 +46,12 @@ export default function StepOne({ onNext }) {
           onChange={onEmailChange}
         />
       </p>
-      <div>
+
+      <p class="direction">
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>
-      </div>
+      </p>
     </div>
 
   );

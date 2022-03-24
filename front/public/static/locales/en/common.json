@@ -12,8 +12,8 @@
     "BUTTON": "Start"
   },
   "STEP_ONE": {
-    "TITLE": "What is your email address?",
-    "FIRST_LINE": "We use your e-mail address to keep track of what has been ordered. Please enter your e-mail address in the box below.",
+    "TITLE": "What is your E-Mail Address?",
+    "FIRST_LINE": "We record your e-mail address to keep track of what has been ordered. Please enter your e-mail address in the box below.",
     "SECOND_LINE": "If you would prefer to remain anonymous, please create a new address instead and use that.",
     "EMAIL_LABEL": "Enter your e-mail address here"
   },
