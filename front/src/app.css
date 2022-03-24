@@ -280,6 +280,16 @@ padding: 2px;
   margin-bottom: 20px;
 }
 
+footer span.header > span.version {
+  font-size: 8pt;
+  font-weight: normal;
+  font-style: italic;
+}
+
+footer span.header > span.version::before {
+  content: "Version ";
+}
+
 @media screen and (max-width: 710px) {
 
   h1 span {
