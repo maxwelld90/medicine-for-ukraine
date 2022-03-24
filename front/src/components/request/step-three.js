@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 
-export default function StepThree({ onNext }) {
+export default function StepThree({ onNext, onBack }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
@@ -23,15 +23,22 @@ export default function StepThree({ onNext }) {
       <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
 
       <ul className="item-list">
-        <li onClick={() => selectDonation("meds")}
-        className={"meds" === request.donationType ? 'selected' : ''}>
+        <li
+          onClick={() => selectDonation("meds")}
+          className={"meds" === request.donationType ? "selected" : ""}
+        >
           {t("common:STEP_THREE.MED_EQUIPMENT_LABEL")}
         </li>
-        <li onClick={() => selectDonation("defence")}
-        className={"defence" === request.donationType ? 'selected' : ''}>
+        <li
+          onClick={() => selectDonation("defence")}
+          className={"defence" === request.donationType ? "selected" : ""}
+        >
           {t("common:STEP_THREE.OTHER_EQUIPMENT_LABEL")}
         </li>
       </ul>
+      <button className={"button-back"} onClick={onBack}>
+        {t("common:PREV_BUTTON")}
+      </button>
     </div>
   );
 }

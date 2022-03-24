@@ -57,23 +57,22 @@ export default function Request({ onStepChange }) {
     switch (step) {
       case 0:
         return <Greeting onNext={nextStep} />;
-
       case 1:
-        return <StepOne onNext={nextStep} />;
+        return <StepOne onNext={nextStep} onBack={prevStep}/>;
       case 2:
-        return <StepTwo onNext={nextStep} />;
+        return <StepTwo onNext={nextStep} onBack={prevStep}/>;
       case 3:
-        return <StepThree onNext={nextStep} />;
+        return <StepThree onNext={nextStep} onBack={prevStep}/>;
       case 4:
-        return <StepFour onNext={nextStep} />;
+        return <StepFour onNext={nextStep} onBack={prevStep}/>;
       case 5:
-        return <StepFive onNext={nextStep} />;
+        return <StepFive onNext={nextStep} onBack={prevStep}/>;
       case 6:
         return <StepSix onNext={nextStep} onBack={prevStep} />;
       case 7:
-        return <StepSeven onNext={nextStep} />;
+        return <StepSeven onNext={nextStep} onBack={prevStep}/>;
       case 8:
-        return <StepEight onNext={nextStep} />;
+        return <StepEight onNext={nextStep} onBack={prevStep}/>;
       default:
       // do nothing
     }
@@ -83,11 +82,6 @@ export default function Request({ onStepChange }) {
     <RequestContext.Provider value={[request, setRequest]}>
       <div>
         <div>{multiStepForm()}</div>
-        {step !== FIRST_STEP && (
-          <button className={"button-back"} onClick={prevStep}>
-            {t("common:PREV_BUTTON")}
-          </button>
-        )}
       </div>
     </RequestContext.Provider>
   );

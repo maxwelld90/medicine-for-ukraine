@@ -5,7 +5,7 @@ import { RequestContext } from "./request-context";
 import Loader from "../loader";
 import Error from "../error";
 
-export default function StepEight({ onNext }) {
+export default function StepEight({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
@@ -24,25 +24,29 @@ export default function StepEight({ onNext }) {
     );
   }, [request]);
 
-  if (error) {
-    return <Error />;
-  } else if (!isLoaded) {
-    return <Loader/>;
-  }
-
   return (
-    <div>
-      <h1 className="multilingual en">{t("common:STEP_EIGHT.TITLE")}</h1>
+    <>
+      {error && <Error />}
+      {!isLoaded && <Loader />}
+      {!error && isLoaded && (
+        <div>
+          <h1 className="multilingual en">{t("common:STEP_EIGHT.TITLE")}</h1>
 
-      <p className="multilingual en">{t("common:STEP_EIGHT.FIRST_LINE")}</p>
+          <p className="multilingual en">{t("common:STEP_EIGHT.FIRST_LINE")}</p>
 
-      <p className="multilingual en">{t("common:STEP_EIGHT.SECOND_LINE")}</p>
-
+          <p className="multilingual en">
+            {t("common:STEP_EIGHT.SECOND_LINE")}
+          </p>
+        </div>
+      )}
       <div className={"btn-wrap"}>
+        <button className={"button-back"} onClick={onBack}>
+          {t("common:PREV_BUTTON")}
+        </button>
         <button onClick={onNext}>
           {t("common:STEP_EIGHT.RESTART_PROCESS")}
         </button>
       </div>
-    </div>
+    </>
   );
 }

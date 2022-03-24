@@ -9,7 +9,7 @@ const isValidEmail = (email) => {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
 }
 
-export default function StepOne({ onNext }) {
+export default function StepOne({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
@@ -47,7 +47,10 @@ export default function StepOne({ onNext }) {
         />
       </p>
 
-      <p class="direction">
+      <p className="direction">
+        <button className={"button-back"} onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+        </button>
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>
