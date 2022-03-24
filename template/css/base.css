@@ -292,6 +292,65 @@ footer ul li a span {
     bottom: 8px;
 }
 
+ul.about-contributors {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 50px;
+    list-style-type: none;
+    /* background: red; */
+}
+
+    ul.about-contributors li {
+        text-align: center;
+        /* background-color: blue; */
+    }
+
+        ul.about-contributors li img {
+            width: 250px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        ul.about-contributors li span.name {
+            display: block;
+            margin: 5px 0 10px;
+            font-weight: bold;
+            font-size: 18pt;
+        }
+
+            ul.about-contributors li span.name a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            ul.about-contributors li span.name a:hover {
+                text-decoration: underline;
+            }
+
+            ul.about-contributors li span.blurb {
+                display: block;
+                font-size: 14pt;
+            }
+        
+        ul.about-contributors li ul.personal-links {
+            margin: 20px 0 0 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+            ul.about-contributors li ul.personal-links li {
+                margin: 0;
+            }
+
+@media screen and (min-width: 1440px) {
+    div.container {
+        width: 1030px !important;
+    }
+}
+
 @media screen and (min-width: 768px) {
     div.container {
         width: 70%;
@@ -309,6 +368,38 @@ footer ul li a span {
         width: auto;
         margin: 0 40px 0 40px;
     }
+
+    ul.about-contributors {
+        display: block;
+    }
+
+    ul.about-contributors li {
+        display: flex;
+        align-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+        ul.about-contributors li img {
+            width: 200px;
+        }
+
+        ul.about-contributors li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        ul.about-contributors li ul.personal-links {
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+
+            ul.about-contributors li ul.personal-links li {
+                display: inline;
+                margin-right: 10px;
+            }
 }
 
 @media screen and (max-width: 780px) {
@@ -429,6 +520,12 @@ footer ul li a span {
     main {
         margin-top: 270px;
     }
+
+    ul.about-contributors li {
+        display: block;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -488,5 +585,9 @@ footer ul li a span {
     header ul.languages li a:hover.selected {
         background: #222831;
         cursor: default;
+    }
+
+    ul.about-contributors li span.name a {
+        color: #FFF;
     }
 }
