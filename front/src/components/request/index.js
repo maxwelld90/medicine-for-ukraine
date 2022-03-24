@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import Greeting from "./components/Greeting";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 import StepThree from "./step-three";
@@ -9,9 +10,10 @@ import StepFive from "./step-five";
 import StepSix from "./step-six";
 import StepSeven from "./step-seven";
 import StepEight from "./step-eight";
+
 import { RequestContext } from "./request-context";
 
-const FIRST_STEP = 1;
+const FIRST_STEP = 0;
 const LAST_STEP = 8;
 
 export default function Request({ onStepChange }) {
@@ -53,6 +55,9 @@ export default function Request({ onStepChange }) {
 
   const multiStepForm = () => {
     switch (step) {
+      case 0:
+        return <Greeting onNext={nextStep} />;
+
       case 1:
         return <StepOne onNext={nextStep} />;
       case 2:
