@@ -14,10 +14,13 @@ const isValidRequest = (request) => {
   });
 };
 
-export default function StepSeven({ onNext }) {
+export default function StepSeven({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [address, setAddress] = useState({});
 
   const getOnUploadHandler = (index) => {
     return (files) => {
@@ -25,10 +28,6 @@ export default function StepSeven({ onNext }) {
       setIsCompletedStep(isValidRequest(request));
     };
   };
-
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [address, setAddress] = useState({});
 
   useEffect(() => {
     fetchAddress(request.countryCode).then(
@@ -44,42 +43,46 @@ export default function StepSeven({ onNext }) {
     );
   }, [request.countryCode]);
 
-  if (error) {
-    return <Error />;
-  } else if (!isLoaded) {
-    return <Loader/>;
-  }
-
   return (
-    <div>
-      <h1 className="multilingual en">
-        {t("common:STEP_SEVEN.TITLE")}
-        <span>7/7</span>
-      </h1>
+    <>
+      {error && <Error />}
+      {!isLoaded && <Loader />}
+      {!error && isLoaded && (
+        <div>
+          <h1 className="multilingual en">
+            {t("common:STEP_SEVEN.TITLE")}
+            <span>7/7</span>
+          </h1>
 
-      <p className="multilingual en">{t("common:STEP_SEVEN.FIRST_LINE")}</p>
+          <p className="multilingual en">{t("common:STEP_SEVEN.FIRST_LINE")}</p>
 
-      <div className="address-text">{address.address_lines}</div>
+          <div className="address-text">{address.address_lines}</div>
 
-      <p className="multilingual en">{t("common:STEP_SEVEN.SECOND_LINE")}</p>
+          <p className="multilingual en">
+            {t("common:STEP_SEVEN.SECOND_LINE")}
+          </p>
 
-      <ul className={"file-list"}>
-        {Object.entries(request.stores).map(([i, store]) => (
-          <li key={i}>
-            <span>{store.store_domain}</span>
-            <ImageLoader
-              onUpload={getOnUploadHandler(i)}
-              existingFiles={store.screenshots}
-            />
-          </li>
-        ))}
-      </ul>
-
+          <ul className={"file-list"}>
+            {Object.entries(request.stores).map(([i, store]) => (
+              <li key={i}>
+                <span>{store.store_domain}</span>
+                <ImageLoader
+                  onUpload={getOnUploadHandler(i)}
+                  existingFiles={store.screenshots}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className={"btn-wrap"}>
+        <button className={"button-back"} onClick={onBack}>
+          {t("common:PREV_BUTTON")}
+        </button>
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>
       </div>
-    </div>
+    </>
   );
 }

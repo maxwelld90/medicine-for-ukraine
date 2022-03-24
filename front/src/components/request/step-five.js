@@ -6,7 +6,7 @@ import QuantityPicker from "../quantity-picker";
 import Loader from "../loader";
 import Error from "../error";
 
-export default function StepFive({ onNext }) {
+export default function StepFive({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
   const [error, setError] = useState(null);
@@ -80,46 +80,49 @@ export default function StepFive({ onNext }) {
     );
   }, [request.donationType, request.countryCode, request.selectedProduct]);
 
-  if (error) {
-    return <Error />;
-  } else if (!isLoaded) {
-    return <Loader/>;
-  }
-
   return (
-    <div>
-      <h1 className="multilingual en">
-        {t("common:STEP_FIVE.TITLE")}
-        <span>5/7</span>
-      </h1>
+    <>
+      {error && <Error />}
+      {!isLoaded && <Loader />}
+      {!error && isLoaded && (
+        <div>
+          <h1 className="multilingual en">
+            {t("common:STEP_FIVE.TITLE")}
+            <span>5/7</span>
+          </h1>
 
-      <p className="multilingual en">
-        {t("common:STEP_FIVE.FIRST_LINE", {
-          product: request.selectedProduct.name,
-          country: request.countryCode,
-        })}
-      </p>
+          <p className="multilingual en">
+            {t("common:STEP_FIVE.FIRST_LINE", {
+              product: request.selectedProduct.name,
+              country: request.countryCode,
+            })}
+          </p>
 
-      <ul className="item-list stores">
-        {onlineStores.map((item, i) => (
-          <li key={i}>
-            <a href={item.link} target="_blank" rel="noreferrer noopener">
-              {item.domain}
-            </a>
+          <ul className="item-list stores">
+            {onlineStores.map((item, i) => (
+              <li key={i}>
+                <a href={item.link} target="_blank" rel="noreferrer noopener">
+                  {item.domain}
+                </a>
 
-            <QuantityPicker
-              key={i + i}
-              value={getQty(item)}
-              onChange={(value) => onQuantityChangeHandler(item, value)}
-            />
-          </li>
-        ))}
-      </ul>
+                <QuantityPicker
+                  key={i + i}
+                  value={getQty(item)}
+                  onChange={(value) => onQuantityChangeHandler(item, value)}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className={"btn-wrap"}>
+        <button className={"button-back"} onClick={onBack}>
+          {t("common:PREV_BUTTON")}
+        </button>
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>
       </div>
-    </div>
+    </>
   );
 }
