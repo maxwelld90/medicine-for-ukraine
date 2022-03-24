@@ -6,7 +6,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 
 import i18n from "./i18n";
-// import "./app.css";
+import "./app.css";
 
 import availableLanguages from './LANGUAGES.json';
 import {getStaticPath, getLanguagesObject, getHeaderLogoLink} from "./helpers";
