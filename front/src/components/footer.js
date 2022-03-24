@@ -7,8 +7,10 @@ export default function Header({}) {
         <div className="container">
             <div className="left">
                 <span className="header">&copy; Medicine for Ukraine, 2022. <span className="version">{process.env.REACT_APP_VERSION}</span></span>
-                <span>Medicine for Ukraine is run by a <a href={`/${getCurrentLanguage()}/about/`} target="_blank" rel="noreferrer noopener">group of volunteers</a> that want to help.
-          We get medicine and supplies to those who need it the most.</span>
+                <span>
+                    Medicine for Ukraine is run by a <a href={`/${getCurrentLanguage()}/about/`} target="_blank" rel="noreferrer noopener">group of volunteers</a> that want to help.
+                    We get medicine and supplies to those who need it the most.
+                </span>
             </div>
             <div className="right">
                 <ul>
