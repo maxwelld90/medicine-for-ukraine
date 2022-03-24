@@ -6,17 +6,20 @@ export default function Greeting({ onNext }) {
 
   return (
     <div>
-      <h1 className='multilingual en'>
+      <h1>
         {t('common:REQUEST_GREETING.TITLE')}
       </h1>
 
-      <p className='multilingual en'>{t('common:REQUEST_GREETING.FIRST_LINE')}</p>
+      <p>{t('common:REQUEST_GREETING.FIRST_LINE')}</p>
+
       <p>{t('common:REQUEST_GREETING.SECOND_LINE')}</p>
-      <div>
+
+      <p className="direction">
         <button onClick={onNext}>
           {t('common:REQUEST_GREETING.BUTTON')}
         </button>
-      </div>
+      </p>
+      
     </div>
   )
 }

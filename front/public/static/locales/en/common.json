@@ -6,9 +6,9 @@
   "UPLOAD_IMAGE": "Upload the image",
   "DEFAULT_ERROR_TEXT": "Oops! Something went wrong.",
   "REQUEST_GREETING": {
-    "TITLE": "Welcome",
-    "FIRST_LINE": "Thank you for supporting Ukraine!",
-    "SECOND_LINE": "This is the questionary for giving the help in the structured",
+    "TITLE": "Donate to Ukraine",
+    "FIRST_LINE": "Thank you for your interest in supporting Ukraine. We have set this simple step-by-step process up to help you get medicine and other equipment to those who need it.",
+    "SECOND_LINE": "To begin the process, please click or tap Start below.",
     "BUTTON": "Start"
   },
   "STEP_ONE": {
