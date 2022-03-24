@@ -3,6 +3,7 @@ import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
 import { fetchItems } from "../../api";
 import Loader from "../loader";
+import Error from "../error";
 
 export default function StepFour({ onNext }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -34,7 +35,7 @@ export default function StepFour({ onNext }) {
   }, [request.donationType, request.countryCode]);
 
   if (error) {
-    return <div className="text-center">Error: {error.message}</div>;
+    return <Error />;
   } else if (!isLoaded) {
     return <Loader/>;
   }

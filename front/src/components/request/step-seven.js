@@ -5,6 +5,7 @@ import ImageLoader from "../imageLoader";
 import { RequestContext } from "./request-context";
 import { fetchAddress } from "../../api";
 import Loader from "../loader";
+import Error from "../error";
 
 // Check if each store has at least one file
 const isValidRequest = (request) => {
@@ -44,7 +45,7 @@ export default function StepSeven({ onNext }) {
   }, [request.countryCode]);
 
   if (error) {
-    return <div className="text-center">Error: {error.message}</div>;
+    return <Error />;
   } else if (!isLoaded) {
     return <Loader/>;
   }

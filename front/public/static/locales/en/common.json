@@ -4,6 +4,7 @@
   "NEXT_BUTTON": "Next",
   "ADD_IMAGE": "Add more images",
   "UPLOAD_IMAGE": "Upload the image",
+  "DEFAULT_ERROR_TEXT": "Oops! Something went wrong.",
   "REQUEST_GREETING": {
     "TITLE": "Welcome",
     "FIRST_LINE": "Thank you for supporting Ukraine!",

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { saveRequest } from "../../api";
 import { RequestContext } from "./request-context";
 import Loader from "../loader";
+import Error from "../error";
 
 export default function StepEight({ onNext }) {
   const [request] = useContext(RequestContext);
@@ -24,7 +25,7 @@ export default function StepEight({ onNext }) {
   }, [request]);
 
   if (error) {
-    return <div className="text-center">Error: {error.message}</div>;
+    return <Error />;
   } else if (!isLoaded) {
     return <Loader/>;
   }

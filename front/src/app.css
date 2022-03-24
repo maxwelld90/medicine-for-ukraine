@@ -264,6 +264,22 @@ font-weight: 100;
 padding: 2px;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.error-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 5px;
+  line-height: 30px;
+  font-size: 16pt;
+  border: none;
+  background: #e98f8f;
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 710px) {
 
   h1 span {
