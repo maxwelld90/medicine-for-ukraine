@@ -6,8 +6,16 @@ showlinks: yes
 
 # Help Ukraine!
 
-Help us!
+We need your help to provide life-saving supplies for Ukraine: medical items and defence equipment.
+The process is simple:
+1. You choose an item from our list and buy it online, specifying one of our addresses for the delivery 
+2. Your order arrives, and our volunteers deliver it to Ukraine
+3. Your contribution saves lives!
 
-<p class="highlight info">
-    We need 2,000 walkie-talkies for frontline troops. Here is the model <a href="https://www.onedirect.es/productos/motorola/motorola-xt420?___store=es"><b>Motorola XT420</b></a> – for the delivery address please contact one of the volunteers mentioned above.
-</p>
+Right now we have delivery addresses in Poland and Spain.
+
+[Click here - link to app] to view and donate the supplies
+
+The following items are needed most urgently:
+	* medical supplies: <med_supply_name_from_api>
+	* defence equipment: <defence_equipment_name_from_api>
