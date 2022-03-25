@@ -1,4 +1,4 @@
-.picker {
+/* .picker {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,5 +18,44 @@
 
 .picker .number {
   width: 30px;
+  text-align: center;
+} */
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker {
+  position: relative;
+  top: 1px;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  background: #005BBB;
+  text-align: center;
+  color: #FFF;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button:hover {
+  background: #FFD500;
+  color: #000;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button.minus {
+  margin-right: 15px;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button.plus {
+  margin-left: 15px;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker span.quantity {
+  display: inline-block;
+  min-width: 50px;
+  font-weight: normal;
   text-align: center;
 }

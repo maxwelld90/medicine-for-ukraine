@@ -103,18 +103,27 @@ export default function StepFive({ onNext, onBack }) {
             })}
           </p>
 
-          {/* <ul className="item-list stores nohover">
+          <ul className="item-list stores nohover">
             {onlineStores.map((item, i) => (
               <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener">{item.domain}</a>
-                <span>
-
-                </span>
+                <a href={item.link} target="_blank" rel="noreferrer noopener"><span>{item.domain}</span></a>
+                <ul className="right-options">
+                  <li className="price">
+                    <span class="approx">Approx.</span>
+                    <span class="price">&euro;3.50</span>
+                    <span class="date">Checked 2022-03-15</span>
+                  </li>
+                  <QuantityPicker
+                    key={i + i}
+                    value={getQty(item)}
+                    onChange={(value) => onQuantityChangeHandler(item, value)}
+                  />
+                </ul>
               </li>
             ))}
-          </ul> */}
+          </ul>
 
-          <ul className="item-list stores">
+          {/* <ul className="item-list stores">
             {onlineStores.map((item, i) => (
               <li key={i}>
                 <a href={item.link} target="_blank" rel="noreferrer noopener">
@@ -128,7 +137,7 @@ export default function StepFive({ onNext, onBack }) {
                 />
               </li>
             ))}
-          </ul>
+          </ul> */}
 
           <p className="direction">
             <button className={"button-back"} onClick={onBack}>

@@ -19,14 +19,10 @@ export default function QuantityPicker({ value = 0, max, onChange }) {
   }, [quantity]);
 
   return (
-    <div className="picker">
-      <div className="button minus-button" onClick={onMinusClick}>
-        -
-      </div>
-      <div className="number">{quantity}</div>
-      <div className="button plus-button" onClick={onPlusClick}>
-        +
-      </div>
-    </div>
+    <li className="quantity-picker">
+      <span className="button minus" onClick={onMinusClick}>-</span>
+      <span className="quantity">{quantity}</span>
+      <span className="button plus" onClick={onPlusClick}>+</span>
+    </li>
   );
 }
