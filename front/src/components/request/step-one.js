@@ -22,6 +22,13 @@ export default function StepOne({ onNext, onBack }) {
     return request.contact && isValidEmail(request.contact);
   }
 
+  const handleKeypress = (event) => {
+    console.log(event.keyCode)
+    if (event.charCode === 13 && isCompletedStep) {
+      onNext();
+    }
+  }
+
   useEffect(() => {
     setIsCompletedStep(isValidRequest(request));
   }, [request])
@@ -44,6 +51,7 @@ export default function StepOne({ onNext, onBack }) {
           placeholder={t("common:STEP_ONE.EMAIL_LABEL")}
           value={request.contact}
           onChange={onEmailChange}
+          onKeyPress={handleKeypress}
         />
       </p>
 
