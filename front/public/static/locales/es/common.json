@@ -4,6 +4,8 @@
   "NEXT_BUTTON": "Pr\u00f3ximo",
   "ADD_IMAGE": "A\u00f1adir m\u00e1s im\u00e1genes",
   "UPLOAD_IMAGE": "Sube la imagen",
+  "DEFAULT_ERROR_TEXT": "Vaya! Algo salió mal.",
+  "FINAL_BUTTON": "Proceso completo",
   "REQUEST_GREETING": {
     "TITLE": "Bienvenidas",
     "FIRST_LINE": "Gracias por apoyar a Ucrania!",

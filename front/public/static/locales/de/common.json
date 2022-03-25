@@ -4,6 +4,8 @@
   "NEXT_BUTTON": "Weiter",
   "ADD_IMAGE": "Weitere Bilder hinzuf\u00fcgen",
   "UPLOAD_IMAGE": "Laden Sie ein Bild hoch",
+  "DEFAULT_ERROR_TEXT": "Hoppla! Etwas ist schief gelaufen.",
+  "FINAL_BUTTON": "Vollständiger Prozess",
   "REQUEST_GREETING": {
     "TITLE": "Willkommen",
     "FIRST_LINE": "Danke, dass Sie die Ukraine unterstützen!",

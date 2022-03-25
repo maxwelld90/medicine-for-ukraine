@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import "./loader.css";
 
-export default function Error({ errorText }) {
+export default function Error({ errorText = 'common:DEFAULT_ERROR_TEXT' }) {
   const [t] = useTranslation(["translation", "common"]);
 
   return (
