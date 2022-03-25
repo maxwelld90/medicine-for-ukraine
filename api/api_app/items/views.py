@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api_app.models import ItemPrice
+from api_app.models import ItemPrice, Country
+from api_app.countries.serializers import CountrySerializer
 from api_app.items.medicine_reader import call_medicine_reader
 import random
 
@@ -55,7 +56,7 @@ class LinksForItem(APIView):
         
         if response['status'] == 200:
             response['data']['df_str'] = df_str
-            response['data']['country_code'] = country_code
+            response['data']['country'] = CountrySerializer(Country.objects.get(code=country_code)).data
             response['data']['count'] = len(response['data']['links'])
 
             if response['data']['count'] == 0:

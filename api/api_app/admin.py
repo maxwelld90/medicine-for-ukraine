@@ -44,9 +44,6 @@ class ItemPriceAdminDisplay(admin.ModelAdmin):
         store_domain = f'{store_domain.domain}.{store_domain.suffix}'
 
         return format_html(f'<a href="{obj.url}" target="_blank">{store_domain}</a>')
-    
-    def has_add_permission(self, request, obj=None):
-        return False
 
     spreadsheet_data.short_description = "Spreadsheet Location"
     price_formatted.short_description = format_html("Price (&euro;)")

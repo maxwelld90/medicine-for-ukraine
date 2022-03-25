@@ -48,9 +48,9 @@ export default function StepOne({ onNext, onBack }) {
       </p>
 
       <p className="direction">
-        <button className={"button-back"} onClick={onBack}>
+        {/* <button onClick={onBack}>
               {t("common:PREV_BUTTON")}
-        </button>
+        </button> */}
         <button disabled={!isCompletedStep} onClick={onNext}>
           {t("common:NEXT_BUTTON")}
         </button>

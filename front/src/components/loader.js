@@ -2,5 +2,5 @@ import React from "react";
 import "./loader.css";
 
 export default function Loader() {
-  return <div className="text-center"><div className="loader-ring"></div></div>;
+  return <div className="loader"><div></div><span>Please wait...</span></div>;
 }

@@ -5,10 +5,12 @@ import { fetchLinks } from "../../api";
 import QuantityPicker from "../quantity-picker";
 import Loader from "../loader";
 import Error from "../error";
+import ItemDeliveryConfirmation from "../itemDeliveryConfirmation";
 
 export default function StepFive({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
+  const [country, setCountry] = useState(null);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -70,8 +72,9 @@ export default function StepFive({ onNext, onBack }) {
       request.selectedProduct.id
     ).then(
       (result) => {
+        setCountry(result.country);
+        setOnlineStores(result.links);
         setIsLoaded(true);
-        setOnlineStores(result);
       },
       (error) => {
         setIsLoaded(true);
@@ -79,24 +82,37 @@ export default function StepFive({ onNext, onBack }) {
       }
     );
   }, [request.donationType, request.countryCode, request.selectedProduct]);
-
+  
   return (
     <>
       {error && <Error />}
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1 className="multilingual en">
+          <h1>
             {t("common:STEP_FIVE.TITLE")}
             <span>5/7</span>
           </h1>
 
-          <p className="multilingual en">
+          <ItemDeliveryConfirmation itemName={request.selectedProduct.name} country={country} />
+
+          <p>
             {t("common:STEP_FIVE.FIRST_LINE", {
               product: request.selectedProduct.name,
               country: request.countryCode,
             })}
           </p>
+
+          {/* <ul className="item-list stores nohover">
+            {onlineStores.map((item, i) => (
+              <li key={i}>
+                <a href={item.link} target="_blank" rel="noreferrer noopener">{item.domain}</a>
+                <span>
+
+                </span>
+              </li>
+            ))}
+          </ul> */}
 
           <ul className="item-list stores">
             {onlineStores.map((item, i) => (
@@ -113,16 +129,17 @@ export default function StepFive({ onNext, onBack }) {
               </li>
             ))}
           </ul>
+
+          <p className="direction">
+            <button className={"button-back"} onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+            </button>
+            <button disabled={!isCompletedStep} onClick={onNext}>
+              {t("common:NEXT_BUTTON")}
+            </button>
+          </p>
         </div>
       )}
-      <div className={"btn-wrap"}>
-        <button className={"button-back"} onClick={onBack}>
-          {t("common:PREV_BUTTON")}
-        </button>
-        <button disabled={!isCompletedStep} onClick={onNext}>
-          {t("common:NEXT_BUTTON")}
-        </button>
-      </div>
     </>
   );
 }

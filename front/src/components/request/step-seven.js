@@ -49,16 +49,18 @@ export default function StepSeven({ onNext, onBack }) {
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1 className="multilingual en">
+          <h1>
             {t("common:STEP_SEVEN.TITLE")}
             <span>7/7</span>
           </h1>
 
-          <p className="multilingual en">{t("common:STEP_SEVEN.FIRST_LINE")}</p>
+          <p>{t("common:STEP_SEVEN.FIRST_LINE")}</p>
 
           <div className="address-text">{address.address_lines}</div>
 
-          <p className="multilingual en">
+          <h2>Upload Screenshot(s)</h2>
+
+          <p>
             {t("common:STEP_SEVEN.SECOND_LINE")}
           </p>
 
@@ -73,16 +75,17 @@ export default function StepSeven({ onNext, onBack }) {
               </li>
             ))}
           </ul>
+
+          <p className="direction">
+            {/* <button onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+            </button> */}
+            <button disabled={!isCompletedStep} onClick={onNext}>
+              {t("common:FINAL_BUTTON")}
+            </button>
+          </p>
         </div>
       )}
-      <div className={"btn-wrap"}>
-        <button className={"button-back"} onClick={onBack}>
-          {t("common:PREV_BUTTON")}
-        </button>
-        <button disabled={!isCompletedStep} onClick={onNext}>
-          {t("common:NEXT_BUTTON")}
-        </button>
-      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import "./quantity-picker.css";
+import "./quantity-picker.css";
 
 export default function QuantityPicker({ value = 0, max, onChange }) {
   const [quantity, serQuantity] = useState(value);

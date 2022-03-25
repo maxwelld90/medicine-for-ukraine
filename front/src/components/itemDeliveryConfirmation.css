@@ -1,0 +1,63 @@
+p.item-delivery-confirmation {
+    display: grid;
+    grid-template-columns: auto max-content;
+}
+
+p.item-delivery-confirmation > span {
+    padding: 10px;
+}
+
+p.item-delivery-confirmation > span > span > span.header {
+    display: block;
+    font-size: 10pt;
+}
+
+p.item-delivery-confirmation > span > span > span.text {
+    display: block;
+    font-weight: bold;
+    font-size: 12pt;
+    line-height: 12pt;
+}
+
+p.item-delivery-confirmation span.item-name {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: #4D8CCF;
+    color: #FFF;
+}
+
+p.item-delivery-confirmation span.country {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: right;
+    color: #000;
+    background: #FFE24D;
+}
+
+    p.item-delivery-confirmation span.country > span {
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+    }
+
+    p.item-delivery-confirmation span.country > img {
+        width: 50px;
+        height: auto;
+        position: relative;
+        top: 9px;
+        float: right;
+    }
+
+@media (prefers-color-scheme: dark) {
+
+    p.item-delivery-confirmation span.item-name {
+        background: #004083;
+        color: #FFF;
+    }
+
+    p.item-delivery-confirmation span.country {
+        color: #000;
+        background: #B39500;
+    }
+
+}

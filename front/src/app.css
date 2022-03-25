@@ -8,6 +8,10 @@ div.progress {
   background: linear-gradient(90deg, rgba(255,213,0,1) 85%, rgba(0,91,187,1) 100%);
 }
 
+div.progress.step0 {
+  width: 0%;
+}
+
 div.progress.step1 {
   width: 12.5%;
 }
@@ -72,8 +76,9 @@ p.form-element {
 }
 
 button {
-  display: block;
+  display: inline-block;
   margin-bottom: 15px;
+  margin-right: 20px;
   border-radius: 5px;
   line-height: 30px;
   padding: 15px;
@@ -85,10 +90,13 @@ button {
   transition: 0.3s;
 }
 
-button.button-back {
-  padding: 10px;
-  font-size: 22px;
-  background: #7a7e83;
+button:last-child {
+  margin-right: 0;
+}
+
+button.one-per-line {
+  display: block;
+  margin-right: 0;
 }
 
 button:last-child {
@@ -145,14 +153,19 @@ height: 30px;
 padding: 15px;
 border: none;
 color: #000;
-background: #E6E6E6;
+background: #D3D4D6;
 font-size: 28px;
 font-weight: 700;
 transition: 0.3s;
 }
 
+ul.item-list.direction li {
+  background: #005BBB;
+  color: #FFF;
+}
+
 ul.item-list li.high-priority {
-background-color: #e98f8f;
+background-color: #D63B2F;
 }
 
 ul.item-list li:hover,
@@ -160,6 +173,12 @@ ul.item-list li.selected {
 background: #FFD500;
 color: #005BBB;
 cursor: pointer;
+}
+
+ul.item-list.nohover li:hover,
+ul.item-list.nohover li.selected {
+  background: #D3D4D6;
+  cursor: default;
 }
 
 ul.item-list li:last-child {
@@ -178,12 +197,76 @@ position: relative;
 bottom: 4px;
 }
 
+ul.item-list.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+  ul.item-list.items li {
+    position: relative;
+    margin-bottom: 0;
+    padding: 10px;
+
+    min-height: 100px;
+    height: auto;
+  }
+
+  ul.item-list.items li span.name {
+    display: inline-block;
+    width: 75%;
+    word-wrap: break-word;
+    font-size: 16pt;
+    font-weight: bold;
+  }
+
+  ul.item-list.items li span.right-background {
+    display: block;
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  ul.item-list.items li span.high-priority {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: url('../public/static/img/warning.svg') no-repeat;
+  }
+
+  ul.item-list.items li span.from {
+    display: inline-block;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    font-size: 10pt;
+    line-height: 10pt;
+    font-weight: normal;
+  }
+
+  ul.item-list.items li span.price {
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12pt;
+    line-height: 12pt;
+  }
+
 ul.item-list.stores li {
-display: grid;
-grid-template-columns: 1fr 1fr;
-justify-items: start;
-height: 50px;
-align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+  height: 50px;
+  align-items: center;
 }
 
 ul.item-list.stores li:hover {
@@ -264,10 +347,6 @@ font-weight: 100;
 padding: 2px;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .error-container {
   width: 100%;
   box-sizing: border-box;
@@ -288,6 +367,20 @@ footer span.header > span.version {
 
 footer span.header > span.version::before {
   content: "Version ";
+}
+
+@media screen and (max-width: 930px) {
+  ul.item-list.items {
+    display: block;
+  }
+
+  ul.item-list.items li {
+    margin-bottom: 15px;
+  }
+
+  ul.item-list.items li:last-child {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 710px) {
@@ -311,12 +404,6 @@ footer span.header > span.version::before {
       color: #FFF;
   }
 
-  button:disabled:hover, button[disabled]:hover {
-      background: #FFF;
-      color: #005BBB;
-      cursor: default;
-  }
-
   input[type=text] {
       background: #E8F0FE;
       color: #000;
@@ -327,31 +414,9 @@ footer span.header > span.version::before {
       opacity: 1;
   }
 
-  ul.item-list li {
-      background: #7A7E83;
+  ul.item-list li, ul.item-list.nohover li:hover, ul.item-list.nohover li.selected {
+      background: #64696F;
       color: #FFF;
   }
-}
 
-.picker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.picker .button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 5px 15px;
-  text-align: center;
-  border: 1px solid black;
-  cursor: pointer;
-  user-select: none;
-}
-
-.picker .number {
-  width: 30px;
-  text-align: center;
 }

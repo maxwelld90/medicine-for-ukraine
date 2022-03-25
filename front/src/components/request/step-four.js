@@ -50,29 +50,35 @@ export default function StepFour({ onNext, onBack }) {
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1 className="multilingual en">
+          <h1>
             {t("common:STEP_FOUR.TITLE")}
             <span>4/7</span>
           </h1>
 
-          <p className="multilingual en">{t("common:STEP_FOUR.FIRST_LINE")}</p>
+          <p>{t("common:STEP_FOUR.FIRST_LINE")}</p>
 
-          <ul className="item-list">
+          <ul className="item-list items direction">
             {productList.map((product, i) => (
               <li
                 className={getProductClasses(product)}
                 key={i}
                 onClick={() => selectProduct(product)}
               >
-                {product.name}
+                <span className="name">{product.name}</span>
+                <span className="right-background"></span>
+                {product.highPriority && <span className="high-priority"></span>}
+                {product.lowestPrice && <><span className="from">From</span><span className="price">&euro;100.50</span></>}
               </li>
             ))}
           </ul>
+
+          <p className="direction">
+            <button className={"button-back"} onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+            </button>
+          </p>
         </div>
       )}
-      <button className={"button-back"} onClick={onBack}>
-        {t("common:PREV_BUTTON")}
-      </button>
     </>
   );
 }

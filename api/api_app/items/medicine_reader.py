@@ -9,6 +9,8 @@ import pandas as pd
 from copy import deepcopy
 from django.conf import settings
 from rest_framework import status
+from api_app.models import ItemPrice
+from django.db.models import Min
 
 
 # Global module variables
@@ -291,11 +293,21 @@ class MedicineReader(object):
             if not links_valid:  # Skip this row; no valid links were found.
                 continue
             
+            lowest_price = None
+
+            # Compute the lowest price from all the URLs that are present in the database for this item row.
+            link_lowest_price = ItemPrice.objects.filter(row_number=index[i], type=df_str).annotate(Min('price')).order_by('price')
+
+            if len(link_lowest_price) > 0:
+                lowest_price = link_lowest_price[0].price
+                lowest_price = f'{lowest_price:.2f}'
+            
             res.append({'row_number': index[i],
                         'item_names_by_language': item_names_by_language[i],
                         'is_high_priority': item_priorities[i].lower() == 'high',
                         'number_ordered': item_order_count[i],
                         'number_needed': None if item_need_count[i] == '' else item_need_count[i],
+                        'lowest_price': lowest_price,
                         })
         
         return res

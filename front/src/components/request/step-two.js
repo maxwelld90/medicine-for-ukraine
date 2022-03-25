@@ -40,14 +40,14 @@ export default function StepTwo({ onNext, onBack }) {
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1 className="multilingual en">
+          <h1>
             {t("common:STEP_TWO.TITLE")}
             <span>2/7</span>
           </h1>
 
-          <p className="multilingual en">{t("common:STEP_TWO.FIRST_LINE")}</p>
+          <p>{t("common:STEP_TWO.FIRST_LINE")}</p>
 
-          <ul className="item-list countries">
+          <ul className="item-list countries direction">
             {countries.map((country, i) => (
               <li
                 key={i}
@@ -61,11 +61,14 @@ export default function StepTwo({ onNext, onBack }) {
               </li>
             ))}
           </ul>
+
+          <p className="direction">
+            <button className={"button-back"} onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+            </button>
+          </p>
         </div>
       )}
-      <button className={"button-back"} onClick={onBack}>
-        {t("common:PREV_BUTTON")}
-      </button>
     </>
   );
 }

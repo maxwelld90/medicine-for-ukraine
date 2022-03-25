@@ -15,14 +15,14 @@ export default function StepThree({ onNext, onBack }) {
 
   return (
     <div>
-      <h1 className="multilingual en">
+      <h1>
         {t("common:STEP_THREE.TITLE")}
         <span>3/7</span>
       </h1>
 
-      <p className="multilingual en">{t("common:STEP_THREE.FIRST_LINE")}</p>
+      <p>{t("common:STEP_THREE.FIRST_LINE")}</p>
 
-      <ul className="item-list">
+      <ul className="item-list direction">
         <li
           onClick={() => selectDonation("meds")}
           className={"meds" === request.donationType ? "selected" : ""}
@@ -36,9 +36,12 @@ export default function StepThree({ onNext, onBack }) {
           {t("common:STEP_THREE.OTHER_EQUIPMENT_LABEL")}
         </li>
       </ul>
-      <button className={"button-back"} onClick={onBack}>
-        {t("common:PREV_BUTTON")}
-      </button>
+
+      <p className="direction">
+        <button className={"button-back"} onClick={onBack}>
+          {t("common:PREV_BUTTON")}
+        </button>
+      </p>
     </div>
   );
 }

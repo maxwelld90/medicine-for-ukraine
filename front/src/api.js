@@ -7,7 +7,7 @@ const DEFAULT_LANGUAGE = 'EN';
 
 export const fetchCountries = async () => {
   const jsonResponse = await (await fetch(`${API_HOST}/countries`)).json();
-
+  
   return jsonResponse.map(r => {
     r.flag_url = getStaticPath('/img/flags/' + r.flag_url);
     return r;
@@ -22,17 +22,22 @@ export const fetchItems = async (donationType, countryCode) => {
       id: r.row_number,
       name: r.item_names_by_language[countryCode] || r.item_names_by_language[DEFAULT_LANGUAGE],
       highPriority: r.is_high_priority,
+      lowestPrice: r.lowest_price,
     };
   }).filter(r => r.name);
 }
 
 export const fetchLinks = async (donationType, countryCode, itemId) => {
   const jsonResponse = await (await fetch(`${API_HOST}/links/${donationType}/${countryCode}/${itemId}`)).json();
+  jsonResponse.country.flag_url = getStaticPath('/img/flags/' + jsonResponse.country.flag_url);
 
-  return jsonResponse.links.map(r => {
-    const url = new URL(r.url);
-    return {link: r.url, domain: url.hostname};
-  });
+  return {
+    country: jsonResponse.country,
+    links: jsonResponse.links.map(r => {
+      const url = new URL(r.url);
+      return {link: r.url, domain: url.hostname};
+    })
+  };
 }
 
 export const fetchAddress = async (countryCode) => {

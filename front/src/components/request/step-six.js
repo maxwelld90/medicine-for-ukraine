@@ -16,16 +16,14 @@ export default function StepSix({onNext, onBack}) {
         {t("common:STEP_SIX.FIRST_LINE")}
       </p>
 
-      <div className={'btn-wrap'}>
-        <button onClick={() => onBack(3)}>
+      <p className="direction">
+        <button className="one-per-line" onClick={() => onBack(3)}>
           {t("common:STEP_SIX.BACK_BUTTON")}
         </button>
-      </div>
-      <div className={'btn-wrap'}>
-        <button onClick={onNext}>
+        <button className="one-per-line" onClick={onNext}>
           {t("common:STEP_SIX.NEXT_BUTTON")}
         </button>
-      </div>
+      </p>
     </div>
   )
 }
