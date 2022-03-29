@@ -109,9 +109,9 @@ export default function StepFive({ onNext, onBack }) {
                 <a href={item.link} target="_blank" rel="noreferrer noopener"><span>{item.domain}</span></a>
                 <ul className="right-options">
                   <li className="price">
-                    <span class="approx">Approx.</span>
-                    <span class="price">&euro;3.50</span>
-                    <span class="date">Checked 2022-03-15</span>
+                    <span className="approx">Approx.</span>
+                    <span className="price">&euro;3.50</span>
+                    <span className="date">Checked 2022-03-15</span>
                   </li>
                   <QuantityPicker
                     key={i + i}

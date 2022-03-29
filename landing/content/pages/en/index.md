@@ -8,7 +8,7 @@ showlinks: yes
 
 We need your help to provide life-saving supplies for Ukraine: medical items and defence equipment.
 The process is simple:
-1. You choose an item from our list and buy it online, specifying one of our addresses for the delivery 
+1. You choose an item from our list and buy it yourself online, specifying one of our addresses for the delivery 
 2. Your order arrives, and our volunteers deliver it to Ukraine
 3. Your contribution saves lives!
 

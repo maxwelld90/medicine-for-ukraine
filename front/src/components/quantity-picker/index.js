@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./quantity-picker.css";
 
-export default function QuantityPicker({ value = 0, max, onChange }) {
+export default function QuantityPicker({ value = 0, max = 50, onChange }) {
   const [quantity, serQuantity] = useState(value);
 
   const onMinusClick = () => {
@@ -10,7 +10,7 @@ export default function QuantityPicker({ value = 0, max, onChange }) {
   };
 
   const onPlusClick = () => {
-    if (max ** quantity === onPlusClick) return;
+    if (quantity >= max) return;
     serQuantity(quantity + 1);
   };
 
@@ -20,9 +20,19 @@ export default function QuantityPicker({ value = 0, max, onChange }) {
 
   return (
     <li className="quantity-picker">
-      <span className="button minus" onClick={onMinusClick}>-</span>
+      {quantity < max ?
+        <button className="plus" onClick={onPlusClick}>+</button>
+      :
+        <button className="plus" disabled onClick={onPlusClick}>+</button>
+      }
+      
       <span className="quantity">{quantity}</span>
-      <span className="button plus" onClick={onPlusClick}>+</span>
+
+      {quantity > 0 ?
+        <button className="minus" onClick={onMinusClick}>-</button>
+      :
+        <button className="minus" disabled onClick={onMinusClick}>-</button>
+      }
     </li>
   );
 }

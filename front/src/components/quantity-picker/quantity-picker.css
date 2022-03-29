@@ -1,36 +1,14 @@
-/* .picker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.picker .button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 5px 15px;
-  text-align: center;
-  border: 1px solid black;
-  cursor: pointer;
-  user-select: none;
-}
-
-.picker .number {
-  width: 30px;
-  text-align: center;
-} */
-
 ul.item-list.stores > li > ul.right-options > li.quantity-picker {
   position: relative;
   top: 1px;
+  direction: rtl;
 }
 
-ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button {
+ul.item-list.stores > li > ul.right-options > li.quantity-picker button {
   display: inline-block;
   width: 40px;
   height: 40px;
-  line-height: 38px;
+  padding: 0;
   background: #005BBB;
   text-align: center;
   color: #FFF;
@@ -40,22 +18,77 @@ ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button {
   user-select: none;
 }
 
-ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button:hover {
+ul.item-list.stores > li > ul.right-options > li.quantity-picker button[disabled]:hover {
+  background: #005BBB;
+  color: #FFF;
+  cursor: default;
+}
+
+ul.item-list.stores > li > ul.right-options > li.quantity-picker button:hover {
   background: #FFD500;
   color: #000;
 }
 
-ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button.minus {
+ul.item-list.stores > li > ul.right-options > li.quantity-picker button.minus {
   margin-right: 15px;
 }
 
-ul.item-list.stores > li > ul.right-options > li.quantity-picker span.button.plus {
+ul.item-list.stores > li > ul.right-options > li.quantity-picker button.plus {
   margin-left: 15px;
 }
 
 ul.item-list.stores > li > ul.right-options > li.quantity-picker span.quantity {
   display: inline-block;
-  min-width: 50px;
+  min-width: 35px;
   font-weight: normal;
   text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65px;
+    height: 100%;
+    text-align: center;
+    vertical-align: center;
+    display: table;
+    padding: 10px 10px 10px 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker::before {
+    content: none;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker:last-child {
+    margin: 0;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker button {
+    width: 45px;
+    height: 45px;
+    line-height: 1px !important;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker button.minus {
+    display: inline-block;
+    margin: 22px 0 0 0;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker button.plus {
+    display: inline-block;
+    margin: 0 0 15px 0;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.quantity-picker span.quantity {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 22pt;
+  }
+
 }
