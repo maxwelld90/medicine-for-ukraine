@@ -292,7 +292,6 @@ ul.item-list.stores > li a::before {
   height: 100%;
   margin: 0 15px 0 15px;
   vertical-align: middle;
-
   background: url('../public/static/img/shopping-cart.svg') no-repeat left center;
 }
 
@@ -351,55 +350,6 @@ ul.item-list.stores > li > ul.right-options {
     color: #000;
     border-radius: 5px;
   }
-
-
-/* ul.item-list.stores > li a span {
-  position: relative;
-  bottom: 10px;
-}
-
-ul.item-list.stores > li > ul.right-options {
-  display: block;
-  margin: 0;
-  padding: 0;
-  background: red;
-}
-
-  ul.item-list.stores > li > ul.right-options li {
-    display: inline-block;
-    padding: 15px;
-    background: orange;
-  } */
-
-
-
-
-
-
-
-/* ul.item-list.stores li {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: start;
-  height: 50px;
-  align-items: center;
-}
-
-ul.item-list.stores li:hover {
-cursor: default;
-}
-
-ul.item-list.stores li input {
-font-size: 20px;
-}
-
-ul.item-list.stores li a {
-color: #fff;
-}
-
-ul.item-list.stores li:hover a {
-color: #005bbb;
-} */
 
 ul.file-list li {
 padding: 10px 0;
@@ -501,6 +451,17 @@ footer span.header > span.version::before {
 
 @media screen and (max-width: 710px) {
 
+  p.direction {
+    float: none;
+    clear: none;
+    text-align: center;
+  }
+
+  button.one-per-line {
+    display: block;
+    margin: 0 auto 15px auto;
+  }
+
   h1 span {
       right: -20px;
       padding-right: 20px;
@@ -508,6 +469,76 @@ footer span.header > span.version::before {
       border-bottom-right-radius: 0;
   }
   
+}
+
+@media screen and (max-width: 900px) {
+
+  ul.item-list.stores > li {
+    display: block;
+    position: relative;
+    min-height: 180px;
+  }
+
+  ul.item-list.stores > li a {
+    display: inline-block;
+    height: auto;
+    min-height: 70px;
+    line-height: 70px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 20px;
+  }
+
+  ul.item-list.stores > li a::before {
+    height: 40px;
+  }
+
+  ul.item-list.stores > li > ul.right-options {
+    display: block;
+    background: red;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.price {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    background: green;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.price > span.approx {
+    position: absolute;
+    left: 0;
+  }
+
+  /* ul.item-list.stores > li > ul.right-options > li.price > span.approx {
+    font-size: 10pt;
+    font-weight: normal;
+    position: relative;
+    bottom: 15px;
+    right: 5px;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.price:hover span.date  {
+    visibility: visible;
+  }
+
+  ul.item-list.stores > li > ul.right-options > li.price > span.date {
+    visibility: hidden;
+    display: block;
+    font-size: 10pt;
+    line-height: 12pt;
+    font-weight: normal;
+    position: absolute;
+    top: 50px;
+    right: -60px;
+    z-index: 1;
+    padding: 5px;
+    background: #FFD500;
+    color: #000;
+    border-radius: 5px;
+  } */
+
 }
 
 @media (prefers-color-scheme: dark) {
