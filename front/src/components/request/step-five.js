@@ -7,6 +7,8 @@ import Loader from "../loader";
 import Error from "../error";
 import ItemDeliveryConfirmation from "../itemDeliveryConfirmation";
 
+import StepNavigation from './components/StepNavigation'
+
 export default function StepFive({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
@@ -139,14 +141,14 @@ export default function StepFive({ onNext, onBack }) {
             ))}
           </ul> */}
 
-          <p className="direction">
-            <button className={"button-back"} onClick={onBack}>
-              {t("common:PREV_BUTTON")}
-            </button>
-            <button disabled={!isCompletedStep} onClick={onNext}>
-              {t("common:NEXT_BUTTON")}
-            </button>
-          </p>
+          <StepNavigation
+            prevButtonTitle={t("common:PREV_BUTTON")}
+            onClickPrev={onBack}
+
+            isNextButtonEnabled={isCompletedStep}
+            nextButtonTitle={t("common:NEXT_BUTTON")}
+            onClickNext={onNext}
+          />
         </div>
       )}
     </>
