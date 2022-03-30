@@ -12,16 +12,6 @@ h1 span {
   background-color: rgba(0,91,187,0.15);
 }
 
-p.direction {
-  float: right;
-  clear: right;
-  text-align: right;
-}
-
-p.direction button {
-  margin-left: auto;
-}
-
 p.form-element {
   margin: 40px 0 40px 0;
 }
@@ -38,12 +28,6 @@ button {
   font-size: 28px;
   font-weight: 700;
   transition: 0.3s;
-}
-
-button.button-back {
-  padding: 10px;
-  font-size: 22px;
-  background: #7a7e83;
 }
 
 button:last-child {

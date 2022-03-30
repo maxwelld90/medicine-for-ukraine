@@ -61,16 +61,6 @@ h1 span {
   background-color: rgba(0,91,187,0.15);
 }
 
-p.direction {
-  float: right;
-  clear: right;
-  text-align: right;
-}
-
-p.direction button {
-  margin-left: auto;
-}
-
 p.form-element {
   margin: 40px 0 40px 0;
 }
@@ -157,11 +147,6 @@ background: #A7A9AD;
 font-size: 28px;
 font-weight: 700;
 transition: 0.3s;
-}
-
-ul.item-list.direction > li {
-  background: #005BBB;
-  color: #FFF;
 }
 
 ul.item-list > li.high-priority {
@@ -450,12 +435,6 @@ footer span.header > span.version::before {
 }
 
 @media screen and (max-width: 710px) {
-
-  p.direction {
-    float: none;
-    clear: none;
-    text-align: center;
-  }
 
   button.one-per-line {
     display: block;

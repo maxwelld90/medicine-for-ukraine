@@ -57,16 +57,6 @@ h1 span {
     background-color: rgba(0,91,187,0.15);
 }
 
-p.direction {
-    float: right;
-    clear: right;
-    text-align: right;
-}
-
-p.direction button {
-    margin-left: auto;
-}
-
 p.form-element {
     margin: 40px 0 40px 0;
 }
