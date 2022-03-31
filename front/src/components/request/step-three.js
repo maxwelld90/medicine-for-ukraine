@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import { fetchLinks } from "../../api";
+
+import { RequestContext } from "./request-context";
 import QuantityPicker from "../quantity-picker";
+import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
+import StepNavigation from "./components/StepNavigation";
+import StepDescription from "./components/StepDescription";
 import Loader from "../loader";
 import Error from "../error";
-import ItemDeliveryConfirmation from "../itemDeliveryConfirmation";
 
-import StepNavigation from './components/StepNavigation'
+import { fetchLinks } from "../../api";
 
 export default function StepThree({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
@@ -84,31 +86,30 @@ export default function StepThree({ onNext, onBack }) {
       }
     );
   }, [request.donationType, request.countryCode, request.selectedProduct]);
-  
+
   return (
     <>
       {error && <Error />}
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1>
-            {t("common:STEP_FIVE.TITLE")}
-            <span>5/7</span>
-          </h1>
+          <StepDescription
+            step="3/5"
+            title={t("common:STEP_THREE.TITLE")}
+            firstLine={t("common:STEP_THREE.FIRST_LINE")}
+          />
 
-          <ItemDeliveryConfirmation itemName={request.selectedProduct.name} country={country} />
-
-          <p>
-            {t("common:STEP_FIVE.FIRST_LINE", {
-              product: request.selectedProduct.name,
-              country: request.countryCode,
-            })}
-          </p>
+          <ItemDeliveryConfirmation
+            itemName={request.selectedProduct.name}
+            country={country}
+          />
 
           <ul className="item-list stores nohover">
             {onlineStores.map((item, i) => (
               <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener"><span>{item.domain}</span></a>
+                <a href={item.link} target="_blank" rel="noreferrer noopener">
+                  <span>{item.domain}</span>
+                </a>
                 <ul className="right-options">
                   <li className="price">
                     <span className="approx">Approx.</span>
@@ -144,7 +145,6 @@ export default function StepThree({ onNext, onBack }) {
           <StepNavigation
             prevButtonTitle={t("common:PREV_BUTTON")}
             onClickPrev={onBack}
-
             isNextButtonEnabled={isCompletedStep}
             nextButtonTitle={t("common:NEXT_BUTTON")}
             onClickNext={onNext}

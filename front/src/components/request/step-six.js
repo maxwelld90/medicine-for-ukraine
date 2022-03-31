@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { saveRequest } from "../../api";
 import { RequestContext } from "./request-context";
+import StepDescription from "./components/StepDescription";
+import StepNavigation from "./components/StepNavigation";
 import Loader from "../loader";
 import Error from "../error";
 
@@ -29,24 +31,19 @@ export default function StepSix({ onNext, onBack }) {
       {error && <Error />}
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
-        <div>
-          <h1 className="multilingual en">{t("common:STEP_EIGHT.TITLE")}</h1>
-
-          <p className="multilingual en">{t("common:STEP_EIGHT.FIRST_LINE")}</p>
-
-          <p className="multilingual en">
-            {t("common:STEP_EIGHT.SECOND_LINE")}
-          </p>
-        </div>
+        <StepDescription
+          title={t("common:STEP_SIX.TITLE")}
+          firstLine={t("common:STEP_SIX.FIRST_LINE")}
+          secondLine={t("common:STEP_SIX.SECOND_LINE")}
+        />
       )}
-      <div className={"btn-wrap"}>
-        <button className={"button-back"} onClick={onBack}>
-          {t("common:PREV_BUTTON")}
-        </button>
-        <button onClick={onNext}>
-          {t("common:STEP_EIGHT.RESTART_PROCESS")}
-        </button>
-      </div>
+
+      <StepNavigation
+        prevButtonTitle={t("common:PREV_BUTTON")}
+        onClickPrev={onBack}
+        nextButtonTitle={t("common:RESTART_PROCESS")}
+        onClickNext={onNext}
+      />
     </>
   );
 }

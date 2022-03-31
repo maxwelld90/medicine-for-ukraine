@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import { fetchItems } from "../../api";
+
+import { RequestContext } from "./request-context";
+import StepNavigation from "./components/StepNavigation";
+import StepDescription from "./components/StepDescription";
 import Loader from "../loader";
 import Error from "../error";
+
+import { fetchItems } from "../../api";
 
 export default function StepTwo({ onNext, onBack }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -51,12 +55,11 @@ export default function StepTwo({ onNext, onBack }) {
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1>
-            {t("common:STEP_FOUR.TITLE")}
-            <span>4/7</span>
-          </h1>
-
-          <p>{t("common:STEP_FOUR.FIRST_LINE")}</p>
+          <StepDescription
+            step="2/5"
+            title={t("common:STEP_TWO.TITLE")}
+            firstLine={t("common:STEP_TWO.FIRST_LINE")}
+          />
 
           <ul className="item-list items direction">
             {productList.map((product, i) => (
@@ -73,11 +76,10 @@ export default function StepTwo({ onNext, onBack }) {
             ))}
           </ul>
 
-          <p className="direction">
-            <button className={"button-back"} onClick={onBack}>
-              {t("common:PREV_BUTTON")}
-            </button>
-          </p>
+          <StepNavigation
+            prevButtonTitle={t("common:PREV_BUTTON")}
+            onClickPrev={onBack}
+          />
         </div>
       )}
     </>

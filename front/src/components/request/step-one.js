@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import StepNavigation from "./components/StepNavigation";
+import StepDescription from "./components/StepDescription";
 
 import { useTranslation } from "react-i18next";
 import { fetchCountries } from "../../api";
@@ -42,12 +43,11 @@ export default function StepOne({ onNext, onBack }) {
       {!isLoaded && <Loader />}
       {!error && isLoaded && (
         <div>
-          <h1>
-            {t("common:STEP_TWO.TITLE")}
-            <span>1/5</span>
-          </h1>
-
-          <p>{t("common:STEP_TWO.FIRST_LINE")}</p>
+          <StepDescription
+            step="1/5"
+            title={t("common:STEP_ONE.TITLE")}
+            firstLine={t("common:STEP_ONE.FIRST_LINE")}
+          />
 
           <ul className="item-list countries direction">
             {partners.map((partner, i) => (
@@ -63,9 +63,15 @@ export default function StepOne({ onNext, onBack }) {
                   alignItems: "baseline",
                 }}
               >
-                <div style={{width: "70%"}}>
+                <div style={{ width: "70%" }}>
                   <div>Partner Name</div>
-                  <div style={{ fontWeight: 100, fontSize: "16pt", padding: "10px 0" }}>
+                  <div
+                    style={{
+                      fontWeight: 100,
+                      fontSize: "16pt",
+                      padding: "10px 0",
+                    }}
+                  >
                     {partner.description ||
                       "Partner collects medical equipment and products"}
                   </div>
