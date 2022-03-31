@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./request-context";
 
+import StepNavigation from './components/StepNavigation'
+
 //import "./request.css";
 
 const isValidEmail = (email) => {
@@ -55,15 +57,11 @@ export default function StepOne({ onNext, onBack }) {
         />
       </p>
 
-      <p className="direction">
-        {/* <button onClick={onBack}>
-              {t("common:PREV_BUTTON")}
-        </button> */}
-        <button disabled={!isCompletedStep} onClick={onNext}>
-          {t("common:NEXT_BUTTON")}
-        </button>
-      </p>
+      <StepNavigation
+        isNextButtonEnabled={isCompletedStep}
+        nextButtonTitle={t("common:NEXT_BUTTON")}
+        onClickNext={onNext}
+      />
     </div>
-
   );
 }
