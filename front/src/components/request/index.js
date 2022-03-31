@@ -8,8 +8,6 @@ import StepThree from "./step-three";
 import StepFour from "./step-four";
 import StepFive from "./step-five";
 import StepSix from "./step-six";
-import StepSeven from "./step-seven";
-import StepEight from "./step-eight";
 
 import { RequestContext } from "./request-context";
 
@@ -22,7 +20,6 @@ export default function Request({ onStepChange }) {
     contact: "",
     stores: {},
   });
-  const [t] = useTranslation(["translation", "common"]);
 
   const nextStep = () => {
     if (step === LAST_STEP) {
@@ -43,6 +40,7 @@ export default function Request({ onStepChange }) {
   };
 
   useEffect(() => {
+    // This is a feature that alerts warning if user tries to close a tab
     window.onbeforeunload = confirmExit;
     function confirmExit() {
       return "show warning";
@@ -58,21 +56,17 @@ export default function Request({ onStepChange }) {
       case 0:
         return <Greeting onNext={nextStep} />;
       case 1:
-        return <StepOne onNext={nextStep} onBack={prevStep}/>;
+        return <StepOne onNext={nextStep} onBack={prevStep} />;
       case 2:
-        return <StepTwo onNext={nextStep} onBack={prevStep}/>;
+        return <StepTwo onNext={nextStep} onBack={prevStep} />;
       case 3:
-        return <StepThree onNext={nextStep} onBack={prevStep}/>;
+        return <StepThree onNext={nextStep} onBack={prevStep} />;
       case 4:
-        return <StepFour onNext={nextStep} onBack={prevStep}/>;
+        return <StepFour onNext={nextStep} onBack={prevStep} />;
       case 5:
-        return <StepFive onNext={nextStep} onBack={prevStep}/>;
+        return <StepFive onNext={nextStep} onBack={prevStep} />;
       case 6:
         return <StepSix onNext={nextStep} onBack={prevStep} />;
-      case 7:
-        return <StepSeven onNext={nextStep} onBack={prevStep}/>;
-      case 8:
-        return <StepEight onNext={nextStep} onBack={prevStep}/>;
       default:
       // do nothing
     }

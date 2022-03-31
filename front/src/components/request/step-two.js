@@ -1,38 +1,49 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import { fetchCountries } from "../../api";
+import { fetchItems } from "../../api";
 import Loader from "../loader";
 import Error from "../error";
 
 export default function StepTwo({ onNext, onBack }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [productList, setProductList] = useState([]);
 
-  const handleSelect = (country) => {
-    setRequest({ ...request, countryCode: country.code });
+  const selectProduct = (product) => {
+    setRequest({ ...request, selectedProduct: product });
 
     if (typeof onNext === "function") {
       onNext();
     }
   };
 
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [countries, setCountries] = useState([]);
-
   useEffect(() => {
-    fetchCountries().then(
+    // TODO remove default value when API will be ready
+    fetchItems(request.donationType = 'meds', request.countryCode = 'pl').then(
       (result) => {
         setIsLoaded(true);
-        setCountries(result);
+        setProductList(result);
       },
       (error) => {
         setIsLoaded(true);
         setError(error);
       }
     );
-  }, []);
+  }, [request.donationType, request.countryCode]);
+
+  const getProductClasses = (product) => {
+    const classes = [];
+    if (product.highPriority) {
+      classes.push("high-priority");
+    }
+    if (request.selectedProduct && product.id === request.selectedProduct.id) {
+      classes.push("selected");
+    }
+    return classes.join(" ");
+  };
 
   return (
     <>
@@ -41,23 +52,23 @@ export default function StepTwo({ onNext, onBack }) {
       {!error && isLoaded && (
         <div>
           <h1>
-            {t("common:STEP_TWO.TITLE")}
-            <span>2/7</span>
+            {t("common:STEP_FOUR.TITLE")}
+            <span>4/7</span>
           </h1>
 
-          <p>{t("common:STEP_TWO.FIRST_LINE")}</p>
+          <p>{t("common:STEP_FOUR.FIRST_LINE")}</p>
 
-          <ul className="item-list countries direction">
-            {countries.map((country, i) => (
+          <ul className="item-list items direction">
+            {productList.map((product, i) => (
               <li
+                className={getProductClasses(product)}
                 key={i}
-                onClick={() => handleSelect(country)}
-                className={
-                  country.code === request.countryCode ? "selected" : ""
-                }
+                onClick={() => selectProduct(product)}
               >
-                <img src={country.flag_url} alt={`Flag of ${country.name}`} />
-                <span>{country.name}</span>
+                <span className="name">{product.name}</span>
+                <span className="right-background"></span>
+                {product.highPriority && <span className="high-priority"></span>}
+                {product.lowestPrice && <><span className="from">From</span><span className="price">&euro;100.50</span></>}
               </li>
             ))}
           </ul>

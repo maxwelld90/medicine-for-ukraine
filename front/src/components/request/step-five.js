@@ -1,81 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RequestContext } from "./request-context";
 import { useTranslation } from "react-i18next";
-import { fetchLinks } from "../../api";
-import QuantityPicker from "../quantity-picker";
+
+import ImageLoader from "../imageLoader";
+import { RequestContext } from "./request-context";
+import { fetchAddress } from "../../api";
 import Loader from "../loader";
 import Error from "../error";
-import ItemDeliveryConfirmation from "../itemDeliveryConfirmation";
 
-import StepNavigation from './components/StepNavigation'
+// Check if each store has at least one file
+const isValidRequest = (request) => {
+  return Object.values(request.stores).every((s) => {
+    return s.screenshots && s.screenshots.length > 0;
+  });
+};
 
 export default function StepFive({ onNext, onBack }) {
+  const [request] = useContext(RequestContext);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
-  const [onlineStores, setOnlineStores] = useState([]);
-  const [country, setCountry] = useState(null);
+  const [t] = useTranslation(["translation", "common"]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [address, setAddress] = useState({});
 
-  const [request, setRequest] = useContext(RequestContext);
-  const [t] = useTranslation(["translation", "common"]);
-
-  const onQuantityChangeHandler = ({ domain, link }, value) => {
-    if (!request.stores[domain] && !value) return;
-
-    if (request.stores[domain] && !value) {
-      const { [domain]: remove, ...restStores } = request.stores;
-
-      setRequest({ ...request, stores: restStores });
-      setIsCompletedStep(!!Object.values(restStores).length);
-      return;
-    }
-
-    const store = request.stores[domain] || {
-      store_domain: domain,
-      items: {},
+  const getOnUploadHandler = (index) => {
+    return (files) => {
+      request.stores[index].screenshots = files;
+      setIsCompletedStep(isValidRequest(request));
     };
-
-    const storeItem = store.items[link] || {
-      row_number: request.selectedProduct.id,
-      name: request.selectedProduct.name,
-      type: request.donationType,
-      url: link,
-    };
-
-    storeItem.quantity = parseInt(value) || 0;
-
-    const stores = {
-      ...request.stores,
-      [domain]: {
-        ...store,
-        items: {
-          ...store.items,
-          [link]: storeItem,
-        },
-      },
-    };
-
-    setRequest({ ...request, stores });
-    setIsCompletedStep(!!Object.values(stores).length);
-  };
-
-  const getQty = ({ domain, link }) => {
-    const { stores } = request;
-    if (stores[domain] && stores[domain].items[link]) {
-      return stores[domain].items[link].quantity;
-    }
-    return 0;
   };
 
   useEffect(() => {
-    fetchLinks(
-      request.donationType,
-      request.countryCode,
-      request.selectedProduct.id
-    ).then(
+    fetchAddress(request.countryCode).then(
       (result) => {
-        setCountry(result.country);
-        setOnlineStores(result.links);
+        setAddress(result);
+        request.addressId = result.id;
         setIsLoaded(true);
       },
       (error) => {
@@ -83,8 +41,8 @@ export default function StepFive({ onNext, onBack }) {
         setError(error);
       }
     );
-  }, [request.donationType, request.countryCode, request.selectedProduct]);
-  
+  }, [request.countryCode]);
+
   return (
     <>
       {error && <Error />}
@@ -92,63 +50,38 @@ export default function StepFive({ onNext, onBack }) {
       {!error && isLoaded && (
         <div>
           <h1>
-            {t("common:STEP_FIVE.TITLE")}
-            <span>5/7</span>
+            {t("common:STEP_SEVEN.TITLE")}
+            <span>7/7</span>
           </h1>
 
-          <ItemDeliveryConfirmation itemName={request.selectedProduct.name} country={country} />
+          <p>{t("common:STEP_SEVEN.FIRST_LINE")}</p>
 
-          <p>
-            {t("common:STEP_FIVE.FIRST_LINE", {
-              product: request.selectedProduct.name,
-              country: request.countryCode,
-            })}
-          </p>
+          <div className="address-text">{address.address_lines}</div>
 
-          <ul className="item-list stores nohover">
-            {onlineStores.map((item, i) => (
+          <h2>Upload Screenshot(s)</h2>
+
+          <p>{t("common:STEP_SEVEN.SECOND_LINE")}</p>
+
+          <ul className={"file-list"}>
+            {Object.entries(request.stores).map(([i, store]) => (
               <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener"><span>{item.domain}</span></a>
-                <ul className="right-options">
-                  <li className="price">
-                    <span className="approx">Approx.</span>
-                    <span className="price">&euro;3.50</span>
-                    <span className="date">Checked 2022-03-15</span>
-                  </li>
-                  <QuantityPicker
-                    key={i + i}
-                    value={getQty(item)}
-                    onChange={(value) => onQuantityChangeHandler(item, value)}
-                  />
-                </ul>
+                <span>{store.store_domain}</span>
+                <ImageLoader
+                  onUpload={getOnUploadHandler(i)}
+                  existingFiles={store.screenshots}
+                />
               </li>
             ))}
           </ul>
 
-          {/* <ul className="item-list stores">
-            {onlineStores.map((item, i) => (
-              <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener">
-                  {item.domain}
-                </a>
-
-                <QuantityPicker
-                  key={i + i}
-                  value={getQty(item)}
-                  onChange={(value) => onQuantityChangeHandler(item, value)}
-                />
-              </li>
-            ))}
-          </ul> */}
-
-          <StepNavigation
-            prevButtonTitle={t("common:PREV_BUTTON")}
-            onClickPrev={onBack}
-
-            isNextButtonEnabled={isCompletedStep}
-            nextButtonTitle={t("common:NEXT_BUTTON")}
-            onClickNext={onNext}
-          />
+          <p className="direction">
+            {/* <button onClick={onBack}>
+              {t("common:PREV_BUTTON")}
+            </button> */}
+            <button disabled={!isCompletedStep} onClick={onNext}>
+              {t("common:FINAL_BUTTON")}
+            </button>
+          </p>
         </div>
       )}
     </>
