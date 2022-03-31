@@ -1,67 +1,101 @@
-import React, {useContext, useEffect, useState} from "react";
-import { useTranslation } from "react-i18next";
-
+import React, { useContext, useEffect, useState } from "react";
 import { RequestContext } from "./request-context";
+import StepNavigation from "./components/StepNavigation";
 
-import StepNavigation from './components/StepNavigation'
-
-//import "./request.css";
-
-const isValidEmail = (email) => {
-    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
-}
+import { useTranslation } from "react-i18next";
+import { fetchCountries } from "../../api";
+import Loader from "../loader";
+import Error from "../error";
 
 export default function StepOne({ onNext, onBack }) {
-  const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const onEmailChange = (event) => {
-    setRequest({ ...request, contact: event.target.value });
-  };
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [partners, setPartners] = useState([]);
 
-  const isValidRequest = (request) => {
-    return request.contact && isValidEmail(request.contact);
-  }
+  const handleSelect = (partner) => {
+    setRequest({ ...request, countryCode: partner.code });
 
-  const handleKeypress = (event) => {
-    console.log(event.keyCode)
-    if (event.charCode === 13 && isCompletedStep) {
+    if (typeof onNext === "function") {
       onNext();
     }
-  }
+  };
 
   useEffect(() => {
-    setIsCompletedStep(isValidRequest(request));
-  }, [request])
+    fetchCountries().then(
+      (result) => {
+        setIsLoaded(true);
+        setPartners(result);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
+  }, []);
 
   return (
-    <div>
-      <h1 className="multilingual en">
-        {t("common:STEP_ONE.TITLE")}
-        <span>1/7</span>
-      </h1>
+    <>
+      {error && <Error />}
+      {!isLoaded && <Loader />}
+      {!error && isLoaded && (
+        <div>
+          <h1>
+            {t("common:STEP_TWO.TITLE")}
+            <span>1/5</span>
+          </h1>
 
-      <p className="multilingual en">{t("common:STEP_ONE.FIRST_LINE")}</p>
-      
-      <p>{t("common:STEP_ONE.SECOND_LINE")}</p>
+          <p>{t("common:STEP_TWO.FIRST_LINE")}</p>
 
-      <p className="form-element">
-        <input
-          type="text"
-          id="email"
-          placeholder={t("common:STEP_ONE.EMAIL_LABEL")}
-          value={request.contact}
-          onChange={onEmailChange}
-          onKeyPress={handleKeypress}
-        />
-      </p>
+          <ul className="item-list countries direction">
+            {partners.map((partner, i) => (
+              <li
+                key={i}
+                onClick={() => handleSelect(partner)}
+                className={
+                  partner.code === request.countryCode ? "selected" : ""
+                }
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                }}
+              >
+                <div style={{width: "70%"}}>
+                  <div>Partner Name</div>
+                  <div style={{ fontWeight: 100, fontSize: "16pt", padding: "10px 0" }}>
+                    {partner.description ||
+                      "Partner collects medical equipment and products"}
+                  </div>
+                </div>
 
-      <StepNavigation
-        isNextButtonEnabled={isCompletedStep}
-        nextButtonTitle={t("common:NEXT_BUTTON")}
-        onClickNext={onNext}
-      />
-    </div>
+                <div>
+                  <div
+                    style={{
+                      fontWeight: 100,
+                      fontSize: "12pt",
+                    }}
+                  >
+                    Delivery to: {partner.name}
+                  </div>
+                  <img
+                    style={{ width: "50px" }}
+                    src={partner.flag_url}
+                    alt={`Flag of ${partner.name}`}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <StepNavigation
+            prevButtonTitle={t("common:PREV_BUTTON")}
+            onClickPrev={onBack}
+          />
+        </div>
+      )}
+    </>
   );
 }
