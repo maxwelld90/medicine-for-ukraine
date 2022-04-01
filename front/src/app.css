@@ -254,7 +254,6 @@ ul.item-list.stores > li {
 
 ul.item-list.stores > li a {
   display: inline-block;
-  height: 100%;
   box-sizing: border-box;
   padding-right: 30px;
   border-top-left-radius: 5px;
@@ -262,6 +261,7 @@ ul.item-list.stores > li a {
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   color: #FFF;
+  height: inherit;
 }
 
 ul.item-list.stores > li a:hover {

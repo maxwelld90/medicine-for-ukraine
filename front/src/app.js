@@ -13,7 +13,8 @@ import { getLanguagesObject } from "./helpers";
 
 function App() {
   const [step, setStep] = useState(null);
-  const [languages, setLanguage] = useState(
+  const [currentLanguage, setCurrentLanguage] = useState(null);
+  const [languages, setLanguages] = useState(
     getLanguagesObject(availableLanguages)
   );
 
@@ -27,7 +28,8 @@ function App() {
       return lng;
     });
 
-    setLanguage(newLanguageState);
+    setCurrentLanguage(language)
+    setLanguages(newLanguageState);
   };
 
   const onStepChange = (step) => {
@@ -48,7 +50,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Request onStepChange={onStepChange} />}
+                element={<Request onStepChange={onStepChange} language={currentLanguage}/>}
               />
             </Routes>
           </div>

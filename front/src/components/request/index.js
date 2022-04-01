@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 
 import Greeting from "./components/Greeting";
 import StepOne from "./step-one";
@@ -14,7 +13,7 @@ import { RequestContext } from "./request-context";
 const FIRST_STEP = 0;
 const LAST_STEP = 8;
 
-export default function Request({ onStepChange }) {
+export default function Request({ onStepChange, language }) {
   const [step, setStep] = useState(FIRST_STEP);
   const [request, setRequest] = useState({
     contact: "",
@@ -49,6 +48,7 @@ export default function Request({ onStepChange }) {
     if (typeof onStepChange === "function") {
       onStepChange(step);
     }
+
   }, [step]);
 
   const multiStepForm = () => {
@@ -58,7 +58,7 @@ export default function Request({ onStepChange }) {
       case 1:
         return <StepOne onNext={nextStep} onBack={prevStep} />;
       case 2:
-        return <StepTwo onNext={nextStep} onBack={prevStep} />;
+        return <StepTwo onNext={nextStep} onBack={prevStep} language={language} />;
       case 3:
         return <StepThree onNext={nextStep} onBack={prevStep} />;
       case 4:

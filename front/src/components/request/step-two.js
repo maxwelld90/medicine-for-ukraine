@@ -6,10 +6,11 @@ import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 import Loader from "../loader";
 import Error from "../error";
-
 import { fetchItems } from "../../api";
 
-export default function StepTwo({ onNext, onBack }) {
+const DEFAULT_LANGUAGE = 'en';
+
+export default function StepTwo({ onNext, onBack, language }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
   const [error, setError] = useState(null);
@@ -36,7 +37,7 @@ export default function StepTwo({ onNext, onBack }) {
         setError(error);
       }
     );
-  }, [request.donationType, request.countryCode]);
+  }, [request]);
 
   const getProductClasses = (product) => {
     const classes = [];
@@ -68,7 +69,7 @@ export default function StepTwo({ onNext, onBack }) {
                 key={i}
                 onClick={() => selectProduct(product)}
               >
-                <span className="name">{product.name}</span>
+                <span className="name">{product.names[language] || product.names[DEFAULT_LANGUAGE]}</span>
                 <span className="right-background"></span>
                 {product.highPriority && <span className="high-priority"></span>}
                 {product.lowestPrice && <><span className="from">From</span><span className="price">&euro;100.50</span></>}
