@@ -11,7 +11,7 @@ import Error from "../error";
 
 import { fetchLinks } from "../../api";
 
-export default function StepThree({ onNext, onBack }) {
+export default function StepThree({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
   const [country, setCountry] = useState(null);
@@ -20,6 +20,8 @@ export default function StepThree({ onNext, onBack }) {
 
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
+
+  const DEFAULT_LANGUAGE = "en";
 
   const onQuantityChangeHandler = ({ domain, link }, value) => {
     if (!request.stores[domain] && !value) return;
@@ -100,7 +102,10 @@ export default function StepThree({ onNext, onBack }) {
           />
 
           <ItemDeliveryConfirmation
-            itemName={request.selectedProduct.name}
+            itemName={
+              request.selectedProduct.names[language] ||
+              request.selectedProduct.names[DEFAULT_LANGUAGE]
+            }
             country={country}
           />
 
@@ -125,22 +130,6 @@ export default function StepThree({ onNext, onBack }) {
               </li>
             ))}
           </ul>
-
-          {/* <ul className="item-list stores">
-            {onlineStores.map((item, i) => (
-              <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener">
-                  {item.domain}
-                </a>
-
-                <QuantityPicker
-                  key={i + i}
-                  value={getQty(item)}
-                  onChange={(value) => onQuantityChangeHandler(item, value)}
-                />
-              </li>
-            ))}
-          </ul> */}
 
           <StepNavigation
             prevButtonTitle={t("common:PREV_BUTTON")}

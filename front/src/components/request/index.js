@@ -60,7 +60,7 @@ export default function Request({ onStepChange, language }) {
       case 2:
         return <StepTwo onNext={nextStep} onBack={prevStep} language={language} />;
       case 3:
-        return <StepThree onNext={nextStep} onBack={prevStep} />;
+        return <StepThree onNext={nextStep} onBack={prevStep} language={language}/>;
       case 4:
         return <StepFour onNext={nextStep} onBack={prevStep} />;
       case 5:

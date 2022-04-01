@@ -13,7 +13,7 @@ import { getLanguagesObject } from "./helpers";
 
 function App() {
   const [step, setStep] = useState(null);
-  const [currentLanguage, setCurrentLanguage] = useState(null);
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
   const [languages, setLanguages] = useState(
     getLanguagesObject(availableLanguages)
   );
