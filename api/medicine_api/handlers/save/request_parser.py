@@ -3,23 +3,13 @@ import dotmap
 import ipware
 from jsonschema import validate
 from jsonschema import FormatChecker
-from django.db.utils import OperationalError
 from jsonschema.exceptions import ValidationError
-from api_app.models import Address, Country
 
 class ImproperlyFormattedBodyError(Exception):
     pass
 
 class ValidationFailureError(Exception):
     pass
-
-# Attempt to retrieve a list of Addresses and Countries; if this fails, the tables do not exist.
-try:
-    COUNTRIES = [country.code for country in Country.objects.all()]
-    ADDRESSES = [address.id for address in Address.objects.all()]
-except:
-    COUNTRIES = []
-    ADDRESSES = []
 
 
 REQUEST_SCHEMA = {
@@ -29,20 +19,10 @@ REQUEST_SCHEMA = {
             'description': 'The users\'s browser agent string',
             'type': 'string',
         },
-        'email': {
-            'description': 'The user\'s e-mail address',
+        'recipient_id': {
+            'description': 'ID of the recipient to send items to',
             'type': 'string',
-            'format': 'email',
-        },
-        'country_to': {
-            'description': 'Country code for delivery',
-            'type': 'string',
-            'enum': COUNTRIES  # Get a series of countries from the database to compare against
-        },
-        'address': {
-            'description': 'ID of address to deliver to',
-            'type': 'integer',
-            'enum': ADDRESSES  # Get the IDs of addresses that are currently active!
+            'format': 'uuid',
         },
         'selected': {
             'type': 'array',
@@ -53,10 +33,7 @@ REQUEST_SCHEMA = {
     },
     'required': [
         'user_agent',
-        'email',
-        'country_to',
-        'address',
-        'selected',
+        'recipient_id',
     ],
 
     '$defs': {
@@ -72,21 +49,21 @@ REQUEST_SCHEMA = {
                 'screenshots': {
                     'type': 'array',
                     'items': {
-                        'description': 'The Base64 representation of an image to be uploaded.',
+                        'description': 'The Base64 representation of the image',
                         'type': 'string',
                     },
                 },
                 'selected_items': {
                     'type': 'array',
                     'items': {
-                        '$ref': '/schemas/item'
+                        '$ref': '/schemas/item',
                     }
                 }
             },
             'required': [
                 'store_domain',
                 'screenshots',
-                'selected_items'
+                'selected_items',
             ]
         },
         'item': {
@@ -106,11 +83,6 @@ REQUEST_SCHEMA = {
                     'description': 'The number of the given item ordered',
                     'type': 'integer',
                 },
-                'type': {
-                    'description': 'The sheet from which the item comes from (e.g., meds/defence)',
-                    'type': 'string',
-                    'enum': ['meds', 'defence'],
-                },
                 'row_number': {
                     'description': 'The row number from the sheet for the item selected',
                     'type': 'integer',
@@ -120,7 +92,6 @@ REQUEST_SCHEMA = {
                 'url',
                 'name',
                 'quantity',
-                'type',
                 'row_number',
             ]
         }

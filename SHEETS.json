@@ -1,0 +1,29 @@
+{
+    "1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8": {
+        "olena": {
+            "sheet_name": "3)Kyiv/OlenaFidria",
+            "redis_key": "MEDICINE-ITEMS-OLENA",
+            "drop_rows": [
+                "Delivery Address",
+                "Image",
+                "Category",
+                "Priority"
+            ],
+            "keys": {
+                "required": "Need #",
+                "ordered": "Ordered"
+            }
+        },
+        "meds": {
+            "sheet_name": "1)Meds/Hospitaller",
+            "redis_key": "MEDICINE-ITEMS-HOSPITALLER",
+            "start": "A5"
+        }
+    },
+    "1vmqaQsLm5RAj1f_LT6rqpOfbkCSpvZiJ8PftF8KrJ_E": {
+        "links_prices": {
+            "sheet_name": "links_prices",
+            "redis_key": "MEDICINE-LINKS-PRICES"
+        }
+    }
+}
