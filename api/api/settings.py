@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'api_app',
+    'django_json_widget',
+    'medicine_api',
 ]
 
 MIDDLEWARE = [
@@ -132,11 +134,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Medicine for Ukraine language and sheets configurations
+MEDICINE_LANGUAGE_PATH = os.path.join(Path(BASE_DIR).resolve().parent, 'LANGUAGES.json')
+
+with open(MEDICINE_LANGUAGE_PATH, 'r') as f:
+    MEDICINE_LANGUAGE_DATA = json.load(f)
+
+MEDICINE_SHEETS_PATH = os.path.join(Path(BASE_DIR).resolve().parent, 'SHEETS.json')
+
+with open(MEDICINE_SHEETS_PATH, 'r') as f:
+    MEDICINE_SHEETS_DATA = json.load(f)
+
+def get_default_language():
+    """
+    Returns the default language code based on the data from LANGUAGES.json.
+    """
+    for language_code, language_data in MEDICINE_LANGUAGE_DATA.items():
+        if 'DEFAULT' in language_data:
+            if language_data['DEFAULT']:
+                return language_code
+    
+    return 'en'  # Default to English
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = get_default_language()
 
 TIME_ZONE = 'UTC'
 
@@ -190,3 +214,7 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production' and not os.getenv('MEDICINE
     EMAIL_HOST_PASSWORD = ''
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'Medicine for Ukraine <noreply@medicineforukraine.org>'
+
+REDIS_EXPIRATION_TIME = os.getenv('MEDICINE_REDIS_EXPIRATION') or 3600
+REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
+REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379

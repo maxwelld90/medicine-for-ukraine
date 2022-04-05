@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ApiAppConfig(AppConfig):
+class MedicineApiAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     verbose_name = "Medicine for Ukraine"
-    name = 'api_app'
+    name = 'medicine_api'
