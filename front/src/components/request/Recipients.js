@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 
@@ -8,7 +8,7 @@ import { fetchCountries } from "../../api";
 import Loader from "../loader";
 import Error from "../error";
 
-export default function StepOne({ onNext, onBack }) {
+export default function Recipients({ onNext, onBack }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 

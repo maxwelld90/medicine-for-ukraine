@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
 import StepNavigation from "./components/StepNavigation";
 
@@ -18,7 +18,7 @@ const isValidRequest = (request) => {
   });
 };
 
-export default function StepFive({ onNext, onBack }) {
+export default function Confirmation({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);

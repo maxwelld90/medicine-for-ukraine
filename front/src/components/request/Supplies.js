@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 import Loader from "../loader";

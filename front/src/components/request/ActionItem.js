@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import StepDescription from "./components/StepDescription";
 
-export default function StepFour({ onNext, onBack }) {
+export default function ActionItem({ onNext, onBack }) {
   const [t] = useTranslation(["translation", "common"]);
 
   return (

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { saveRequest } from "../../api";
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
 import StepNavigation from "./components/StepNavigation";
 import Loader from "../loader";
 import Error from "../error";
 
-export default function StepSix({ onNext, onBack }) {
+export default function Gratitude({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
@@ -41,7 +41,7 @@ export default function StepSix({ onNext, onBack }) {
       <StepNavigation
         prevButtonTitle={t("common:PREV_BUTTON")}
         onClickPrev={onBack}
-        nextButtonTitle={t("common:RESTART_PROCESS")}
+        nextButtonTitle={t("common:STEP_SIX.RESTART_PROCESS")}
         onClickNext={onNext}
       />
     </>

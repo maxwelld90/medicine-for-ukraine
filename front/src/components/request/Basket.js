@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 import QuantityPicker from "../quantity-picker";
 import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
 import StepNavigation from "./components/StepNavigation";
@@ -11,7 +11,7 @@ import Error from "../error";
 
 import { fetchLinks } from "../../api";
 
-export default function StepThree({ onNext, onBack, language }) {
+export default function Basket({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [onlineStores, setOnlineStores] = useState([]);
   const [country, setCountry] = useState(null);
