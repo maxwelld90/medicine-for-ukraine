@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./requestContext";
-import QuantityPicker from "../quantity-picker";
+import QuantityPicker from "../QuantityPicker";
 import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
