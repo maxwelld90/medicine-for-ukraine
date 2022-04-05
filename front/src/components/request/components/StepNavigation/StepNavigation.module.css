@@ -1,0 +1,16 @@
+.container{
+  float: right;
+  clear: right;
+  text-align: right;
+}
+
+.prevButton {
+  margin-left: auto;
+  padding: 10px;
+  font-size: 22px;
+  background: #7a7e83;
+}
+
+.nextButton {
+  margin-left: auto,
+}

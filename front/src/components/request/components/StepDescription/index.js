@@ -1,6 +1,6 @@
 import React from "react";
 
-import { header, stepAnchor } from "./styles";
+import classes from "./StepDescription.module.css";
 
 export default function StepDescription({
   title = null,
@@ -10,10 +10,10 @@ export default function StepDescription({
 }) {
   return (
     <div>
-      <h1 style={header} className="multilingual en">
+      <h1 className={classes.header} >
         {title}
       </h1>
-      {step && <span style={stepAnchor}>{step}</span>}
+      {step && <span className={classes.stepAnchor}>{step}</span>}
 
       {firstLine && <p>{firstLine}</p>}
 
