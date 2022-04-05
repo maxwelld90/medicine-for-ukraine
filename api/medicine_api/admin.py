@@ -1,6 +1,5 @@
 import os
 import tldextract
-from calendar import c
 from medicine_api import models as medicine_models
 from django.db import models
 from django.conf import settings
