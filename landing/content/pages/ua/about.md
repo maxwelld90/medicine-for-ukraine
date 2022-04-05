@@ -3,6 +3,6 @@ Slug: about
 Lang: ua
 showlinks: yes
 
-# About Medicine for Ukraine (in Ukrainian)
+# Про проект Медицина для України
 
-This is the about page.
+Робота в процесі...

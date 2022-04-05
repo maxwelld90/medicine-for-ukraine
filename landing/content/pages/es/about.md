@@ -3,6 +3,6 @@ Slug: about
 Lang: es
 showlinks: yes
 
-# About Medicine for Ukraine (in Spanish)
+# Sobre el Proyecto Medicina para Ucrania
 
-This is the about page.
+Trabajo en progreso...
