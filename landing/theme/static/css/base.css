@@ -69,13 +69,67 @@ h2 {
     padding: 0;
 }
 
+ul, ol {
+    margin: 20px 0 20px 0;
+}
+
 ul {
     list-style-type: square;
 }
 
+ol {
+    counter-reset: ol;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+    ol > li {
+        position: relative;   
+        padding: 5px 0 5px 35px;
+    }
+
+    ol > li:before {
+        content: counter(ol);
+        counter-increment: ol;
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        font-size: 85%;
+        font-weight: 900;
+        background: #FFD500;
+        color: #000;
+        border-radius: 50%;
+        text-align: center;
+    }
+
 p {
     margin: 20px 0 20px 0;
 }
+
+p.direction {
+    float: right;
+    clear: right;
+    text-align: right;
+}
+
+    p.direction a {
+        display: inline-block;
+        padding: 15px;
+        font-size: 28px;
+        font-weight: 700;
+        border-radius: 5px;
+        line-height: 30px;
+        color: #FFF;
+        background: #005BBB;
+        text-decoration: none;
+    }
+
+    p.direction a:hover {
+        color: #000;
+        background: #FFD500;
+    }
 
 div.container {
     width: 100%;
@@ -300,12 +354,10 @@ ul.about-contributors {
     grid-column-gap: 30px;
     grid-row-gap: 50px;
     list-style-type: none;
-    /* background: red; */
 }
 
     ul.about-contributors li {
         text-align: center;
-        /* background-color: blue; */
     }
 
         ul.about-contributors li img {
@@ -519,6 +571,16 @@ ul.about-contributors {
 
     main {
         margin-top: 270px;
+    }
+
+    h1, h2, p {
+        text-align: center;
+    }
+
+    p.direction {
+        float: none;
+        clear: none;
+        text-align: center;
     }
 
     ul.about-contributors li {

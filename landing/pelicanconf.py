@@ -34,15 +34,16 @@ PAGE_SAVE_AS = '{slug}/index.html'
 THEME = './theme/'  # Path to theme directory (in the project root)
 THEME_STATIC_DIR = 'static'  # Path for the output static directory
 
-SITEURL = 'http://127.0.0.1:3000/'  # https://medicineforukraine.org/
+SITEURL = 'http://127.0.0.1:8000/'  # https://medicineforukraine.org/
 STATIC_URL = '/static/'  # https://static.medicineforukraine.org/
+STATIC_PATHS = ['contributors']
 
 ROOT_URL = SITEURL  # Make a copy of SITEURL so we have the absolute root of the project (for language switching)
 SITEURL_ABSOLUTE = SITEURL
 
 # Where do plugins live?
 PLUGIN_PATHS = ['./plugins/']
-PLUGINS = ['i18n_subsites', 'medicine_helpers']
+PLUGINS = ['i18n_subsites', 'jinja2content', 'medicine_helpers']
 
 # Localisation information (DEFAULT_LANG is the landing language)
 TIMEZONE = 'Europe/London'
@@ -50,3 +51,9 @@ DEFAULT_LANG = 'en'
 I18N_SUBSITES = languages.get_pelican_languages_object(SITEURL)
 
 SITELINKS = I18N_SUBSITES['en']['SITELINKS']
+
+JINJA_GLOBALS = {'STATIC_URL': STATIC_URL}
+
+EXTRA_PATH_METADATA = {
+    'contributors/': {'path': 'static/img/contributors/'},
+}
