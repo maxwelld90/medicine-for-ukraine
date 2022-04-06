@@ -64,7 +64,7 @@ class SheetAdminDisplay(admin.ModelAdmin):
 class RecipientAdminDisplay(admin.ModelAdmin):
     list_display = ['recipient_name', 'warehouse_location', 'email', 'is_active', 'password_protected']
     fields = ['names', 'tagline', 'id', 'sheet', 'warehouse', 'password', 'email', 'is_active']
-    readonly_fields = ['id', 'sheet', 'warehouse']
+    readonly_fields = ['id']
 
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget},
