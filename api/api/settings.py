@@ -223,3 +223,5 @@ REDIS_ENABLED = True if os.getenv('MEDICINE_REDIS_ENABLED') == 'true' else False
 REDIS_EXPIRATION_TIME = os.getenv('MEDICINE_REDIS_EXPIRATION') or 3600
 REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
 REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379
+
+WEBMASTER_EMAIL = 'webmaster@medicineforukraine.org'
