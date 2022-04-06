@@ -447,6 +447,10 @@ footer span.header > span.version::before {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
   }
+
+  h1 {
+    text-align: left;
+  }
   
 }
 
