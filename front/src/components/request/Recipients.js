@@ -4,38 +4,36 @@ import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 
 import { useTranslation } from "react-i18next";
-import { fetchCountries } from "../../api";
+import { fetchRecipients } from "../../api";
 import Loader from "../loader";
 import Error from "../error";
 
-export default function Recipients({ onNext, onBack }) {
+export default function Recipients({ onNext, onBack, language }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [partners, setPartners] = useState([]);
+  const [recipients, setRecipients] = useState([]);
 
-  const handleSelect = (partner) => {
-    setRequest({ ...request, countryCode: partner.code });
+  const handleSelect = (recipient) => {
+    setRequest({ ...request, recipientId: recipient.recipient_id });
 
-    if (typeof onNext === "function") {
-      onNext();
-    }
+    typeof onNext === "function" && onNext();
   };
 
   useEffect(() => {
-    fetchCountries().then(
+    fetchRecipients().then(
       (result) => {
         setIsLoaded(true);
-        setPartners(result);
+        setRecipients(result);
       },
       (error) => {
         setIsLoaded(true);
         setError(error);
       }
     );
-  }, []);
+  });
 
   return (
     <>
@@ -50,13 +48,13 @@ export default function Recipients({ onNext, onBack }) {
           />
 
           <ul className="item-list countries direction">
-            {partners.map((partner, i) => (
+            {recipients.map((recipient, i) => (
               <li
                 key={i}
-                onClick={() => handleSelect(partner)}
-                className={
-                  partner.code === request.countryCode ? "selected" : ""
-                }
+                onClick={() => handleSelect(recipient)}
+                // className={
+                //   recipient.code === request.countryCode ? "selected" : ""
+                // }
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -64,7 +62,9 @@ export default function Recipients({ onNext, onBack }) {
                 }}
               >
                 <div style={{ width: "70%" }}>
-                  <div>Partner Name</div>
+                  <div>
+                    {recipient.names[language] || recipient.names["default"]}
+                  </div>
                   <div
                     style={{
                       fontWeight: 100,
@@ -72,8 +72,8 @@ export default function Recipients({ onNext, onBack }) {
                       padding: "10px 0",
                     }}
                   >
-                    {partner.description ||
-                      "Partner collects medical equipment and products"}
+                    {recipient.tagline[language] ||
+                      recipient.tagline["default"]}
                   </div>
                 </div>
 
@@ -84,12 +84,17 @@ export default function Recipients({ onNext, onBack }) {
                       fontSize: "12pt",
                     }}
                   >
-                    Delivery to: {partner.name}
+                    Delivery to:{" "}
+                    {recipient.warehouse_country.names[language] ||
+                      recipient.warehouse_country.names["default"]}
                   </div>
                   <img
                     style={{ width: "50px" }}
-                    src={partner.flag_url}
-                    alt={`Flag of ${partner.name}`}
+                    src={recipient.warehouse_country.flag_url}
+                    alt={`Flag of ${
+                      recipient.warehouse_country.names[language] ||
+                      recipient.warehouse_country.names["default"]
+                    }`}
                   />
                 </div>
               </li>

@@ -5,11 +5,14 @@ const API_HOST =
     ? "http://127.0.0.1:8000"
     : "https://api.medicineforukraine.org";
 
-export const fetchCountries = async () => {
-  const jsonResponse = await (await fetch(`${API_HOST}/countries`)).json();
+export const fetchRecipients = async () => {
+  const { recipients } = await (await fetch(`${API_HOST}/recipients`)).json();
 
-  return jsonResponse.map((r) => {
-    r.flag_url = getStaticPath("/img/flags/" + r.flag_url);
+  return recipients.map((r) => {
+    r.warehouse_country = {
+      ...r.warehouse_country,
+      flag_url: getStaticPath("/img/flags/" + r.warehouse_country.flag_url),
+    };
     return r;
   });
 };
@@ -33,7 +36,7 @@ export const fetchLinks = async (donationType, countryCode, itemId) => {
   const jsonResponse = await (
     await fetch(`${API_HOST}/links/${donationType}/${countryCode}/${itemId}`)
   ).json();
-  
+
   jsonResponse.country.flag_url = getStaticPath(
     "/img/flags/" + jsonResponse.country.flag_url
   );

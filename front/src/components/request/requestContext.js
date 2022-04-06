@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 let request = {
-  contact: "",
+  recipientId: "",
   country: "",
   donationType: "",
   stores: {},

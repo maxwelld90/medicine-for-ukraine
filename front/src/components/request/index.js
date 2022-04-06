@@ -57,7 +57,7 @@ export default function Request({ onStepChange, language }) {
       case 0:
         return <Greeting onNext={nextStep} />;
       case 1:
-        return <Recipients onNext={nextStep} onBack={prevStep} />;
+        return <Recipients onNext={nextStep} onBack={prevStep} language={language}/>;
       case 2:
         return <Supplies onNext={nextStep} onBack={prevStep} language={language} />;
       case 3:
