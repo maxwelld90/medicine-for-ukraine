@@ -127,7 +127,7 @@ p.direction {
     }
 
     p.direction a:hover {
-        color: #000;
+        color: #005BBB;
         background: #FFD500;
     }
 
@@ -280,7 +280,7 @@ footer {
 
 footer div.container div.left {
     float: left;
-    width: 450px;
+    width: 550px;
 }
 
 footer div.container div.right {
@@ -454,7 +454,7 @@ ul.about-contributors {
             }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 900px) {
     footer div.container div.left {
         width: auto;
         float: none;
@@ -462,6 +462,7 @@ ul.about-contributors {
     
     footer div.container div.right {
         float: none;
+        margin-bottom: -10px;
     }
 
     footer span {
@@ -475,12 +476,12 @@ ul.about-contributors {
     }
 
     footer ul li {
-        display: inline;
-        margin-right: 10px;
+        display: inline-block;
+        margin: 0 10px 10px 0;
     }
 
     footer ul li:last-child {
-        margin-right: 0;
+        margin: 0 0 0 0;
     }
 
     footer ul li a {
@@ -495,7 +496,7 @@ ul.about-contributors {
 
     footer ul li a:hover {
         filter: none;
-        color: #000;
+        color: #005BBB;
         background: #FFD500;
     }
 
@@ -509,6 +510,17 @@ ul.about-contributors {
     
     footer ul li a.instagram:after {
         background: url('../img/instagram.svg') no-repeat;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    footer ul li {
+        display: block;
+        margin: 0 0 10px 0;
+    }
+
+    footer ul li:last-child {
+        margin: 0 0 0 0;
     }
 }
 
