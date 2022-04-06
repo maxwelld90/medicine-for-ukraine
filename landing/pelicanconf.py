@@ -34,8 +34,9 @@ PAGE_SAVE_AS = '{slug}/index.html'
 THEME = './theme/'  # Path to theme directory (in the project root)
 THEME_STATIC_DIR = 'static'  # Path for the output static directory
 
-SITEURL = '/'  # https://medicineforukraine.org/
+SITEURL = '/'
 STATIC_URL = '/static/'  # https://static.medicineforukraine.org/
+STATIC_URL = os.getenv('MEDICINE_STATIC_ROOT') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else '/static/'
 STATIC_PATHS = ['contributors']
 
 ROOT_URL = SITEURL  # Make a copy of SITEURL so we have the absolute root of the project (for language switching)
