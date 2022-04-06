@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import json
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+
+if os.getenv('MEDICINE_SET') != 'true':
+    raise ImproperlyConfigured('The Medicine for Ukraine environment has not been set up correctly.')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -215,6 +219,7 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production' and not os.getenv('MEDICINE
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'Medicine for Ukraine <noreply@medicineforukraine.org>'
 
+REDIS_ENABLED = True if os.getenv('MEDICINE_REDIS_ENABLED') == 'true' else False
 REDIS_EXPIRATION_TIME = os.getenv('MEDICINE_REDIS_EXPIRATION') or 3600
 REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
 REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379
