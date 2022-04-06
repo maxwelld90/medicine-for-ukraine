@@ -32,13 +32,12 @@ landing/out/request: front/build
 	mv landing/out/request/asset-manifest.json landing/out; \
 	mv landing/out/request/manifest.json landing/out;
 
-# all: virtualenvs/landing landing/out front/node_modules front/build landing/out/request
-all: virtualenvs/landing landing/out front/build landing/out/request
+all: virtualenvs/landing landing/out front/node_modules front/build landing/out/request
 
 devserver: all
 	. virtualenvs/landing/bin/activate; \
 	cd landing/out; \
-	$(PYTHON) -m http.server 3000;
+	$(PYTHON) -m http.server 8000;
 
 clean:
 	rm -rf virtualenvs
@@ -48,4 +47,4 @@ clean:
 	rm -rf front/public/static/fonts
 	rm -rf front/public/static/img/*.svg
 	rm front/src/LANGUAGES.json
-#	rm -rf front/node_modules
+	rm -rf front/node_modules
