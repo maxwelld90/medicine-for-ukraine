@@ -8,21 +8,21 @@ from pygsheets.exceptions import WorksheetNotFound
 
 
 class SheetReader(object):
-    def __init__(self, document_id, required_sheets, using_cache=True):
+    def __init__(self, document_id, required_sheets):
         redis_conn = None
         self._dataframes = {}
         self._document_id = document_id
         self._required_dataframes = self.__read_sheets_data(required_sheets)
         self._language_data = settings.MEDICINE_LANGUAGE_DATA
 
-        if using_cache:
+        if settings.REDIS_ENABLED:
             redis_conn = self.__connect_to_cache()
 
             if self.__check_cache(redis_conn):
                 return  # If we get here, the cache was populated and loaded.
         
         # If we get here, data needs to be loaded from the Sheets API.
-        self.__get_sheets(using_cache, redis_conn=redis_conn)
+        self.__get_sheets(redis_conn=redis_conn)
     
     def __connect_to_cache(self):
         """
@@ -57,7 +57,7 @@ class SheetReader(object):
         
         return False
     
-    def __get_sheets(self, use_cache, redis_conn=None):
+    def __get_sheets(self, redis_conn=None):
         """
         Connects to the Google Sheets API to extract the necessary data.
         Populates the cache if required; sets the object's instance variables.
@@ -84,7 +84,7 @@ class SheetReader(object):
 
             self._dataframes[df_sheet] = df
 
-            if use_cache:
+            if settings.REDIS_ENABLED:
                 redis_conn.setex(df_values['redis_key'],
                                  settings.REDIS_EXPIRATION_TIME,
                                  zlib.compress(pickle.dumps(df)))

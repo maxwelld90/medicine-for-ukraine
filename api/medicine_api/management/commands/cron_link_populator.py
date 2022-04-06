@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = '(Re)populates the Medicine for Ukraine links with updated information'
 
     def handle(self, *args, **options):
-        price_reader = PriceReader(using_cache=True)
+        price_reader = PriceReader()
         df_prices = price_reader.get_prices()
         
         for row in df_prices.itertuples():

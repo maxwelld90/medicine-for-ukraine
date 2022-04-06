@@ -1,4 +1,5 @@
 from copy import deepcopy
+from django.conf import settings
 from medicine_api.readers.sheet_reader import SheetReader
 
 class PriceReader(SheetReader):
@@ -6,12 +7,12 @@ class PriceReader(SheetReader):
     Extending the SheetReader, provides functionality for reading the URL price listings sheet.
     """
 
-    def __init__(self, using_cache=True):
-        super().__init__(using_cache=using_cache,
-                         document_id='1vmqaQsLm5RAj1f_LT6rqpOfbkCSpvZiJ8PftF8KrJ_E',
-                         required_sheets=[
-                            'links_prices',
-                         ])
+    def __init__(self):
+        document_id = '1vmqaQsLm5RAj1f_LT6rqpOfbkCSpvZiJ8PftF8KrJ_E'
+        required_sheets = settings.MEDICINE_SHEETS_DATA[document_id].keys()
+        
+        super().__init__(document_id='1vmqaQsLm5RAj1f_LT6rqpOfbkCSpvZiJ8PftF8KrJ_E',
+                         required_sheets=list(required_sheets))
     
     def get_prices(self):
         return_df = deepcopy(self._dataframes['links_prices'])
