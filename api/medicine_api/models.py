@@ -221,7 +221,7 @@ class LinkMetadata(models.Model):
         return True
     
     def save(self, *args, **kwargs):
-        self.last_checked = datetime.now()
+        self.last_checked = datetime.now().replace(tzinfo=pytz.UTC)
         super().save(*args, **kwargs)
     
     def __str__(self):
