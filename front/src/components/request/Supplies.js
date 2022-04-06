@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./requestContext";
@@ -10,12 +11,13 @@ import { fetchItems } from "../../api";
 
 const DEFAULT_LANGUAGE = 'en';
 
-export default function StepTwo({ onNext, onBack, language }) {
+export default function Supplies({ onNext, onBack, language }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [productList, setProductList] = useState([]);
+
+  console.log('re', request)
+
+  const { loading, error, value } = useAsync(() => fetchItems(request.recipientId));
 
   const selectProduct = (product) => {
     setRequest({ ...request, selectedProduct: product });
@@ -24,20 +26,6 @@ export default function StepTwo({ onNext, onBack, language }) {
       onNext();
     }
   };
-
-  useEffect(() => {
-    // TODO remove default value when API will be ready
-    fetchItems(request.donationType = 'meds', request.countryCode = 'pl').then(
-      (result) => {
-        setIsLoaded(true);
-        setProductList(result);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
-  }, [request]);
 
   const getProductClasses = (product) => {
     const classes = [];
@@ -53,8 +41,8 @@ export default function StepTwo({ onNext, onBack, language }) {
   return (
     <>
       {error && <Error />}
-      {!isLoaded && <Loader />}
-      {!error && isLoaded && (
+      {loading && <Loader />}
+      {!error && !loading && (
         <div>
           <StepDescription
             step="2/5"
@@ -63,7 +51,7 @@ export default function StepTwo({ onNext, onBack, language }) {
           />
 
           <ul className="item-list items direction">
-            {productList.map((product, i) => (
+            {value.map((product, i) => (
               <li
                 className={getProductClasses(product)}
                 key={i}

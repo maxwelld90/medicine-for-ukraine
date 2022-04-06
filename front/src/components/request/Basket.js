@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
 import { RequestContext } from "./requestContext";
@@ -13,12 +14,16 @@ import { fetchLinks } from "../../api";
 
 export default function Basket({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
-  const [onlineStores, setOnlineStores] = useState([]);
+  // const [onlineStores, setOnlineStores] = useState([]);
   const [country, setCountry] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
   const [request, setRequest] = useContext(RequestContext);
+
+
+  const { loading, error, value } = useAsync(() => fetchLinks(request.recipientId, request.item));
+
   const [t] = useTranslation(["translation", "common"]);
 
   const DEFAULT_LANGUAGE = "en";
@@ -71,29 +76,28 @@ export default function Basket({ onNext, onBack, language }) {
     return 0;
   };
 
-  useEffect(() => {
-    fetchLinks(
-      request.donationType,
-      request.countryCode,
-      request.selectedProduct.id
-    ).then(
-      (result) => {
-        setCountry(result.country);
-        setOnlineStores(result.links);
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
-  }, [request.donationType, request.countryCode, request.selectedProduct]);
+  // useEffect(() => {
+  //   fetchLinks(
+  //     request.recipientId,
+  //     request.selectedProduct.id
+  //   ).then(
+  //     (result) => {
+  //       setCountry(result.country);
+  //       setOnlineStores(result.links);
+  //       setIsLoaded(true);
+  //     },
+  //     (error) => {
+  //       setIsLoaded(true);
+  //       setError(error);
+  //     }
+  //   );
+  // }, [request.donationType, request.countryCode, request.selectedProduct]);
 
   return (
     <>
       {error && <Error />}
-      {!isLoaded && <Loader />}
-      {!error && isLoaded && (
+      {loading && <Loader />}
+      {!error && !loading && (
         <div>
           <StepDescription
             step="3/5"
@@ -110,7 +114,7 @@ export default function Basket({ onNext, onBack, language }) {
           />
 
           <ul className="item-list stores nohover">
-            {onlineStores.map((item, i) => (
+            {value?.links.map((item, i) => (
               <li key={i}>
                 <a href={item.link} target="_blank" rel="noreferrer noopener">
                   <span>{item.domain}</span>

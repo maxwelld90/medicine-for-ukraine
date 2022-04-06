@@ -17,9 +17,9 @@ export const fetchRecipients = async () => {
   });
 };
 
-export const fetchItems = async (donationType, countryCode) => {
+export const fetchItems = async (recipientId) => {
   const jsonResponse = await (
-    await fetch(`${API_HOST}/items/${donationType}/${countryCode}`)
+    await fetch(`${API_HOST}/items/${recipientId}`)
   ).json();
 
   return jsonResponse.items.map((r) => {
@@ -32,9 +32,24 @@ export const fetchItems = async (donationType, countryCode) => {
   });
 };
 
-export const fetchLinks = async (donationType, countryCode, itemId) => {
+// export const fetchItems = async (donationType, countryCode) => {
+//   const jsonResponse = await (
+//     await fetch(`${API_HOST}/items/${donationType}/${countryCode}`)
+//   ).json();
+
+//   return jsonResponse.items.map((r) => {
+//     return {
+//       id: r.row_number,
+//       names: r.item_names_by_language,
+//       highPriority: r.is_high_priority,
+//       lowestPrice: r.lowest_price,
+//     };
+//   });
+// };
+
+export const fetchLinks = async (recipientId, itemId) => {
   const jsonResponse = await (
-    await fetch(`${API_HOST}/links/${donationType}/${countryCode}/${itemId}`)
+    await fetch(`${API_HOST}/links/${recipientId}/${itemId}`)
   ).json();
 
   jsonResponse.country.flag_url = getStaticPath(
@@ -43,10 +58,10 @@ export const fetchLinks = async (donationType, countryCode, itemId) => {
 
   return {
     country: jsonResponse.country,
-    links: jsonResponse.links.map((r) => {
-      const url = new URL(r.url);
-      return { link: r.url, domain: url.hostname };
-    }),
+    links: jsonResponse.links.map(({ url }) => ({
+      link: url,
+      domain: new URL(url).hostname,
+    })),
   };
 };
 

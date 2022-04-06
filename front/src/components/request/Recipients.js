@@ -23,7 +23,6 @@ export default function Recipients({ onNext, onBack, language }) {
     typeof onNext === "function" && onNext();
   };
 
-
   return (
     <>
       {error && <Error />}
