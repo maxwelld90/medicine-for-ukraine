@@ -34,10 +34,9 @@ export default function Confirmation({ onNext, onBack }) {
   };
 
   useEffect(() => {
-    fetchAddress(request.countryCode).then(
-      (result) => {
-        setAddress(result);
-        request.addressId = result.id;
+    fetchAddress(request.recipientId).then(
+      ({warehouse_address}) => {
+        setAddress(warehouse_address.address);
         setIsLoaded(true);
       },
       (error) => {
@@ -59,7 +58,7 @@ export default function Confirmation({ onNext, onBack }) {
             firstLine={t("common:STEP_FIVE.FIRST_LINE")}
           />
 
-          <div className="address-text">{address.address_lines}</div>
+          <div className="address-text">{address}</div>
 
           <h2>Upload Screenshot(s)</h2>
 

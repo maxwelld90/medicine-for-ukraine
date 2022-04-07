@@ -25,7 +25,7 @@ export const fetchItems = async (recipientId) => {
   return jsonResponse.items.map((r) => {
     return {
       id: r.row_number,
-      names: r.item_names_by_language,
+      names: r.item_name_by_language,
       highPriority: r.is_high_priority,
       lowestPrice: r.lowest_price,
     };
@@ -52,12 +52,14 @@ export const fetchLinks = async (recipientId, itemId) => {
     await fetch(`${API_HOST}/links/${recipientId}/${itemId}`)
   ).json();
 
-  jsonResponse.country.flag_url = getStaticPath(
-    "/img/flags/" + jsonResponse.country.flag_url
+  const {warehouse_address} = await fetchAddress(recipientId);
+
+  warehouse_address.country.flag_url = getStaticPath(
+    "/img/flags/" + warehouse_address.country.flag_url
   );
 
   return {
-    country: jsonResponse.country,
+    country: warehouse_address.country,
     links: jsonResponse.links.map(({ url }) => ({
       link: url,
       domain: new URL(url).hostname,
@@ -65,16 +67,12 @@ export const fetchLinks = async (recipientId, itemId) => {
   };
 };
 
-export const fetchAddress = async (countryCode) => {
+export const fetchAddress = async (recipientId) => {
   const jsonResponse = await (
-    await fetch(`${API_HOST}/countries/address/${countryCode}`)
+    await fetch(`${API_HOST}/recipients/address/${recipientId}`)
   ).json();
 
-  if (jsonResponse.length > 0) {
-    return jsonResponse[0];
-  }
-
-  throw Error("Can't find address");
+  return jsonResponse;
 };
 
 export const saveRequest = async (request) => {

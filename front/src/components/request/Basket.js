@@ -15,18 +15,16 @@ import { fetchLinks } from "../../api";
 export default function Basket({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   // const [onlineStores, setOnlineStores] = useState([]);
-  const [country, setCountry] = useState(null);
   // const [error, setError] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
 
   const [request, setRequest] = useContext(RequestContext);
 
-
-  const { loading, error, value } = useAsync(() => fetchLinks(request.recipientId, request.item));
+  const { loading, error, value } = useAsync(() =>
+    fetchLinks(request.recipientId, request.selectedProduct.id)
+  );
 
   const [t] = useTranslation(["translation", "common"]);
-
-  const DEFAULT_LANGUAGE = "en";
 
   const onQuantityChangeHandler = ({ domain, link }, value) => {
     if (!request.stores[domain] && !value) return;
@@ -108,9 +106,9 @@ export default function Basket({ onNext, onBack, language }) {
           <ItemDeliveryConfirmation
             itemName={
               request.selectedProduct.names[language] ||
-              request.selectedProduct.names[DEFAULT_LANGUAGE]
+              request.selectedProduct.names["default"]
             }
-            country={country}
+            country={value.country}
           />
 
           <ul className="item-list stores nohover">

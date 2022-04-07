@@ -9,22 +9,18 @@ import Loader from "../loader";
 import Error from "../error";
 import { fetchItems } from "../../api";
 
-const DEFAULT_LANGUAGE = 'en';
-
 export default function Supplies({ onNext, onBack, language }) {
   const [request, setRequest] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  console.log('re', request)
-
-  const { loading, error, value } = useAsync(() => fetchItems(request.recipientId));
+  const { loading, error, value } = useAsync(() =>
+    fetchItems(request.recipientId)
+  );
 
   const selectProduct = (product) => {
     setRequest({ ...request, selectedProduct: product });
 
-    if (typeof onNext === "function") {
-      onNext();
-    }
+    typeof onNext === "function" && onNext();
   };
 
   const getProductClasses = (product) => {
@@ -57,10 +53,19 @@ export default function Supplies({ onNext, onBack, language }) {
                 key={i}
                 onClick={() => selectProduct(product)}
               >
-                <span className="name">{product.names[language] || product.names[DEFAULT_LANGUAGE]}</span>
+                <span className="name">
+                  {product.names[language] || product.names['default']}
+                </span>
                 <span className="right-background"></span>
-                {product.highPriority && <span className="high-priority"></span>}
-                {product.lowestPrice && <><span className="from">From</span><span className="price">&euro;100.50</span></>}
+                {product.highPriority && (
+                  <span className="high-priority"></span>
+                )}
+                {product.lowestPrice && (
+                  <>
+                    <span className="from">From</span>
+                    <span className="price">&euro;{product.lowestPrice}</span>
+                  </>
+                )}
               </li>
             ))}
           </ul>
