@@ -180,13 +180,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = os.getenv('MEDICINE_STATIC_ROOT')
+MEDIA_URL = os.getenv('MEDICINE_MEDIA_ROOT')
 
 MEDIA_URL = 'uploads/'
 MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent.parent, 'uploads')
 
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
-    STATIC_URL = 'https://static.medicineforukraine.org/'
     STATIC_ROOT = os.path.join(SRV_DIR, 'static')
     STATICFILES_DIRS = (
         os.path.join(VIRTUALENV_DIR, 'site-packages/django/contrib/admin/static'),
