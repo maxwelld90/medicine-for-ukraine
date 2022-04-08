@@ -191,6 +191,7 @@ if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     STATICFILES_DIRS = (
         os.path.join(VIRTUALENV_DIR, 'site-packages/django/contrib/admin/static'),
         os.path.join(VIRTUALENV_DIR, 'site-packages/rest_framework/static'),
+        os.path.join(SRV_DIR, 'git-repo/landing/out/static'),
     )
 
     MEDIA_URL = 'https://media.medicineforukraine.org/'
