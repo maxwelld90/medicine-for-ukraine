@@ -3,9 +3,7 @@ import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
 import { fetchRecipients } from "../../api";
-
-import Loader from "../loader";
-import Error from "../error";
+import Content from "../Content";
 
 import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
@@ -24,10 +22,8 @@ export default function Recipients({ onNext, onBack, language }) {
   };
 
   return (
-    <>
-      {error && <Error />}
-      {loading && <Loader />}
-      {!error && !loading && (
+    <Content error={error} loading={loading}>
+      {() => (
         <div>
           <StepDescription
             step="1/5"
@@ -95,6 +91,6 @@ export default function Recipients({ onNext, onBack, language }) {
           />
         </div>
       )}
-    </>
+    </Content>
   );
 }

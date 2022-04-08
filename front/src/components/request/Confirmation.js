@@ -2,15 +2,13 @@ import React, { useContext, useState } from "react";
 import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
+import { fetchAddress } from "../../api";
+import Content from "../Content";
+
 import ImageLoader from "../imageLoader";
 import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
 import StepNavigation from "./components/StepNavigation";
-
-import Loader from "../loader";
-import Error from "../error";
-
-import { fetchAddress } from "../../api";
 
 // Check if each store has at least one file
 const isValidRequest = (request) =>
@@ -35,10 +33,8 @@ export default function Confirmation({ onNext, onBack }) {
   };
 
   return (
-    <>
-      {error && <Error />}
-      {loading && <Loader />}
-      {!error && !loading && (
+    <Content error={error} loading={loading}>
+      {() => (
         <div>
           <StepDescription
             step="5/5"
@@ -71,6 +67,6 @@ export default function Confirmation({ onNext, onBack }) {
           />
         </div>
       )}
-    </>
+    </Content>
   );
 }

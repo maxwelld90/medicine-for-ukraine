@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
+import { fetchItems } from "../../api";
+import Content from "../Content";
+
 import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
-import Loader from "../loader";
-import Error from "../error";
-import { fetchItems } from "../../api";
 
 export default function Supplies({ onNext, onBack, language }) {
   const [request, setRequest] = useContext(RequestContext);
@@ -35,10 +35,8 @@ export default function Supplies({ onNext, onBack, language }) {
   };
 
   return (
-    <>
-      {error && <Error />}
-      {loading && <Loader />}
-      {!error && !loading && (
+    <Content error={error} loading={loading}>
+      {() => (
         <div>
           <StepDescription
             step="2/5"
@@ -54,7 +52,7 @@ export default function Supplies({ onNext, onBack, language }) {
                 onClick={() => selectProduct(product)}
               >
                 <span className="name">
-                  {product.names[language] || product.names['default']}
+                  {product.names[language] || product.names["default"]}
                 </span>
                 <span className="right-background"></span>
                 {product.highPriority && (
@@ -76,6 +74,6 @@ export default function Supplies({ onNext, onBack, language }) {
           />
         </div>
       )}
-    </>
+    </Content>
   );
 }

@@ -2,15 +2,14 @@ import React, { useContext, useState } from "react";
 import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
+import { fetchLinks } from "../../api";
+import Content from "../Content";
+
 import { RequestContext } from "./requestContext";
 import QuantityPicker from "../QuantityPicker";
 import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
-import Loader from "../loader";
-import Error from "../error";
-
-import { fetchLinks } from "../../api";
 
 function getProductName({ names }, language) {
   return names[language] || names.default;
@@ -77,10 +76,8 @@ export default function Basket({ onNext, onBack, language }) {
   };
 
   return (
-    <>
-      {error && <Error />}
-      {loading && <Loader />}
-      {!error && !loading && (
+    <Content error={error} loading={loading}>
+      {() => (
         <div>
           <StepDescription
             step="3/5"
@@ -124,6 +121,6 @@ export default function Basket({ onNext, onBack, language }) {
           />
         </div>
       )}
-    </>
+    </Content>
   );
 }
