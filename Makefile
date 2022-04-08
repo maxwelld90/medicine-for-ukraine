@@ -43,8 +43,7 @@ landing/out/request: front/build
 	touch .BUILD_SUCCESS;
 .PHONY: .BUILD_SUCCESS
 
-all: virtualenvs/landing virtualenvs/api landing/out front/build landing/out/request .BUILD_SUCCESS
-#all: virtualenvs/landing virtualenvs/api landing/out front/node_modules front/build landing/out/request .BUILD_SUCCESS
+all: virtualenvs/landing virtualenvs/api landing/out front/node_modules front/build landing/out/request .BUILD_SUCCESS
 
 server-api:
 	. virtualenvs/api/bin/activate; \
@@ -69,6 +68,6 @@ clean:
 	rm -rf front/public/static/css
 	rm -rf front/public/static/fonts
 	rm -rf front/public/static/img/*.svg
-	rm front/src/LANGUAGES.json
-	rm .BUILD_SUCCESS
-#rm -rf front/node_modules
+	rm -f front/src/LANGUAGES.json
+	rm -f .BUILD_SUCCESS
+	rm -rf front/node_modules
