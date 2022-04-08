@@ -52,7 +52,7 @@ export const fetchLinks = async (recipientId, itemId) => {
     await fetch(`${API_HOST}/links/${recipientId}/${itemId}`)
   ).json();
 
-  const {warehouse_address} = await fetchAddress(recipientId);
+  const { warehouse_address } = await fetchAddress(recipientId);
 
   warehouse_address.country.flag_url = getStaticPath(
     "/img/flags/" + warehouse_address.country.flag_url
@@ -75,41 +75,33 @@ export const fetchAddress = async (recipientId) => {
   return jsonResponse;
 };
 
-export const saveRequest = async (request) => {
-  const stores = Object.entries(request.stores).map(([_, store]) => {
-    const items = Object.entries(store.items).map(([_, item]) => {
-      console.log(item);
+function getSelectedObjects(value) {
+  return Object.values(value.stores).map(
+    ({ items, screenshots, store_domain }) => {
       return {
-        url: item.url,
-        name: item.name,
-        quantity: item.quantity,
-        row_number: item.row_number,
-        type: item.type,
+        store_domain,
+        screenshots: screenshots.map((v) => v.base64),
+        selected_items: Object.values(items).map(
+          ({ url, name, quantity, row_number }) => ({
+            url,
+            name,
+            quantity,
+            row_number,
+          })
+        ),
       };
-    });
+    }
+  );
+}
 
-    const screenshots = Object.entries(store.screenshots).map(
-      ([_, screenshot]) => {
-        return screenshot.base64;
-      }
-    );
-
-    return {
-      store_domain: store.store_domain,
-      screenshots: screenshots,
-      selected_items: items,
-    };
-  });
-
+export const saveRequest = (request) => {
   const payload = {
     user_agent: window.navigator.userAgent,
-    email: request.contact,
-    country_to: request.countryCode,
-    address: request.addressId,
-    selected: stores,
+    recipient_id: request.recipientId,
+    selected: getSelectedObjects(request),
   };
 
-  return await fetch(`${API_HOST}/save/`, {
+  return fetch(`${API_HOST}/save/`, {
     method: "POST",
     body: JSON.stringify(payload),
   });
