@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
 import ImageLoader from "../imageLoader";
@@ -12,19 +13,19 @@ import Error from "../error";
 import { fetchAddress } from "../../api";
 
 // Check if each store has at least one file
-const isValidRequest = (request) => {
-  return Object.values(request.stores).every((s) => {
-    return s.screenshots && s.screenshots.length > 0;
-  });
-};
+const isValidRequest = (request) =>
+  Object.values(request.stores).every(
+    (s) => s.screenshots && s.screenshots.length > 0
+  );
 
 export default function Confirmation({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [address, setAddress] = useState({});
+
+  const { loading, error, value } = useAsync(() =>
+    fetchAddress(request.recipientId)
+  );
 
   const getOnUploadHandler = (index) => {
     return (files) => {
@@ -33,24 +34,11 @@ export default function Confirmation({ onNext, onBack }) {
     };
   };
 
-  useEffect(() => {
-    fetchAddress(request.recipientId).then(
-      ({warehouse_address}) => {
-        setAddress(warehouse_address.address);
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
-  }, [request.countryCode]);
-
   return (
     <>
       {error && <Error />}
-      {!isLoaded && <Loader />}
-      {!error && isLoaded && (
+      {loading && <Loader />}
+      {!error && !loading && (
         <div>
           <StepDescription
             step="5/5"
@@ -58,7 +46,7 @@ export default function Confirmation({ onNext, onBack }) {
             firstLine={t("common:STEP_FIVE.FIRST_LINE")}
           />
 
-          <div className="address-text">{address}</div>
+          <div className="address-text">{value.warehouse_address.address}</div>
 
           <h2>Upload Screenshot(s)</h2>
 

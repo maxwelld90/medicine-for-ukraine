@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
 
@@ -12,13 +12,15 @@ import Error from "../error";
 
 import { fetchLinks } from "../../api";
 
+function getProductName({ names }, language) {
+  return names[language] || names.default;
+}
+
 export default function Basket({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
-  // const [onlineStores, setOnlineStores] = useState([]);
-  // const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
 
   const [request, setRequest] = useContext(RequestContext);
+  const productName = getProductName(request.selectedProduct);
 
   const { loading, error, value } = useAsync(() =>
     fetchLinks(request.recipientId, request.selectedProduct.id)
@@ -44,7 +46,7 @@ export default function Basket({ onNext, onBack, language }) {
 
     const storeItem = store.items[link] || {
       row_number: request.selectedProduct.id,
-      name: request.selectedProduct.name,
+      name: productName,
       type: request.donationType,
       url: link,
     };
@@ -74,23 +76,6 @@ export default function Basket({ onNext, onBack, language }) {
     return 0;
   };
 
-  // useEffect(() => {
-  //   fetchLinks(
-  //     request.recipientId,
-  //     request.selectedProduct.id
-  //   ).then(
-  //     (result) => {
-  //       setCountry(result.country);
-  //       setOnlineStores(result.links);
-  //       setIsLoaded(true);
-  //     },
-  //     (error) => {
-  //       setIsLoaded(true);
-  //       setError(error);
-  //     }
-  //   );
-  // }, [request.donationType, request.countryCode, request.selectedProduct]);
-
   return (
     <>
       {error && <Error />}
@@ -104,10 +89,7 @@ export default function Basket({ onNext, onBack, language }) {
           />
 
           <ItemDeliveryConfirmation
-            itemName={
-              request.selectedProduct.names[language] ||
-              request.selectedProduct.names["default"]
-            }
+            itemName={productName}
             country={value.country}
           />
 

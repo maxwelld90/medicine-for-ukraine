@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
+
 import { saveRequest } from "../../api";
 import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
@@ -11,26 +13,13 @@ export default function Gratitude({ onNext, onBack }) {
   const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    saveRequest(request).then(
-      () => {
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
-  }, [request]);
+  const { loading, error } = useAsync(() => saveRequest(request))
 
   return (
     <>
       {error && <Error />}
-      {!isLoaded && <Loader />}
-      {!error && isLoaded && (
+      {loading && <Loader />}
+      {!error && !loading && (
         <StepDescription
           title={t("common:STEP_SIX.TITLE")}
           firstLine={t("common:STEP_SIX.FIRST_LINE")}
