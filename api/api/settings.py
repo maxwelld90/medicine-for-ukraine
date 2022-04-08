@@ -21,6 +21,10 @@ if os.getenv('MEDICINE_SET') != 'true':
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    SRV_DIR = Path(__file__).resolve().parent.parent.parent.parent
+    VIRTUALENV_DIR = '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -183,13 +187,14 @@ MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent.parent, 'upload
 
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     STATIC_URL = 'https://static.medicineforukraine.org/'
-    STATIC_ROOT = '/srv/medicine-for-ukraine/static/'
+    STATIC_ROOT = os.path.join(SRV_DIR, 'static')
     STATICFILES_DIRS = (
-        '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/site-packages/django/contrib/admin/static',
+        os.path.join(VIRTUALENV_DIR, 'site-packages/django/contrib/admin/static'),
+        os.path.join(VIRTUALENV_DIR, 'site-packages/rest_framework/static'),
     )
 
     MEDIA_URL = 'https://media.medicineforukraine.org/'
-    MEDIA_ROOT = '/srv/medicine-for-ukraine/uploads/'
+    MEDIA_ROOT = os.path.join(SRV_DIR, 'uploads')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
