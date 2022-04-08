@@ -13,42 +13,30 @@
     "BUTTON": "Start"
   },
   "STEP_ONE": {
-    "TITLE": "What is your e-mail address?",
-    "FIRST_LINE": "We record your e-mail address to keep track of what has been ordered. Please enter your e-mail address in the box below.",
-    "SECOND_LINE": "If you would prefer to remain anonymous, please create a new address instead and use that.",
-    "EMAIL_LABEL": "Enter your e-mail address here"
-  },
-  "STEP_TWO": {
-    "TITLE": "Where do you want to send items to?",
+    "TITLE": "Who do you want to send items to?",
     "FIRST_LINE": "We currently have volunteers ready to receive items in the following countries. Select a country that you can pay for items in to continue.",
     "SECOND_LINE": "Select the country you wish to send items to, and click/tap continue."
   },
-  "STEP_THREE": {
-    "TITLE": "What do you want to donate?",
-    "FIRST_LINE": "We have two categories of products you can donate. What would you like to donate?",
-    "MED_EQUIPMENT_LABEL": "I want to donate medical equipment",
-    "OTHER_EQUIPMENT_LABEL": "I want to donate other equipment"
-  },
-  "STEP_FOUR": {
+  "STEP_TWO": {
     "TITLE": "What do you want to donate?",
     "FIRST_LINE": "These items are required for frontline troops. Select one of the items below. Those in red are high priority items. Note the price is approximate."
   },
-  "STEP_FIVE": {
+  "STEP_THREE": {
     "TITLE": "Add to your basket(s)",
     "FIRST_LINE": "We have found the following links for the product listed above. Click a link to open the online shop in a new tab, and indicate how many of the item you select from each shop."
   },
-  "STEP_SIX": {
+  "STEP_FOUR": {
     "TITLE": "Would you like to donate more?",
     "FIRST_LINE": "Would you like to register more items? If yes, you can select more",
     "BACK_BUTTON": "Yes, I want to donate more.",
     "NEXT_BUTTON": "No. Complete the process."
   },
-  "STEP_SEVEN": {
+  "STEP_FIVE": {
     "TITLE": "Complete your order",
     "FIRST_LINE": "You can now complete your order(s) on the chosen websites. Please send them to the address listed.",
     "SECOND_LINE": "Once you have completed your purchases, please confirm that by uploading order screenshots. Be sure to avoid any personal information."
   },
-  "STEP_EIGHT": {
+  "STEP_SIX": {
     "TITLE": "Thank you",
     "FIRST_LINE": "We have recorded your order in our inventory. We really appreciate your support. Thank you for supporting Ukraine.",
     "SECOND_LINE": "If you want to order another item, click order another item. Otherwise, you can now close this tab.",

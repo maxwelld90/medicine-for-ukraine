@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 
 import Greeting from "./components/Greeting";
-import StepOne from "./step-one";
-import StepTwo from "./step-two";
-import StepThree from "./step-three";
-import StepFour from "./step-four";
-import StepFive from "./step-five";
-import StepSix from "./step-six";
-import StepSeven from "./step-seven";
-import StepEight from "./step-eight";
+import Recipients from "./Recipients";
+import Supplies from "./Supplies";
+import Basket from "./Basket";
+import ActionItem from "./ActionItem";
+import Confirmation from "./Confirmation";
+import Gratitude from "./Gratitude";
 
-import { RequestContext } from "./request-context";
+import { RequestContext } from "./requestContext";
 
 const FIRST_STEP = 0;
-const LAST_STEP = 8;
+const LAST_STEP = 6;
 
-export default function Request({ onStepChange }) {
+export default function Request({ onStepChange, language }) {
   const [step, setStep] = useState(FIRST_STEP);
   const [request, setRequest] = useState({
     contact: "",
     stores: {},
   });
-  const [t] = useTranslation(["translation", "common"]);
 
   const nextStep = () => {
     if (step === LAST_STEP) {
       setRequest({ contact: request.contact, stores: {} });
+      setStep(1);
     }
 
     setStep(step === LAST_STEP ? 1 : step + 1);
@@ -43,6 +40,7 @@ export default function Request({ onStepChange }) {
   };
 
   useEffect(() => {
+    // This is a feature that alerts warning if user tries to close a tab
     window.onbeforeunload = confirmExit;
     function confirmExit() {
       return "show warning";
@@ -51,6 +49,7 @@ export default function Request({ onStepChange }) {
     if (typeof onStepChange === "function") {
       onStepChange(step);
     }
+
   }, [step]);
 
   const multiStepForm = () => {
@@ -58,21 +57,17 @@ export default function Request({ onStepChange }) {
       case 0:
         return <Greeting onNext={nextStep} />;
       case 1:
-        return <StepOne onNext={nextStep} onBack={prevStep}/>;
+        return <Recipients onNext={nextStep} onBack={prevStep} language={language}/>;
       case 2:
-        return <StepTwo onNext={nextStep} onBack={prevStep}/>;
+        return <Supplies onNext={nextStep} onBack={prevStep} language={language} />;
       case 3:
-        return <StepThree onNext={nextStep} onBack={prevStep}/>;
+        return <Basket onNext={nextStep} onBack={prevStep} language={language}/>;
       case 4:
-        return <StepFour onNext={nextStep} onBack={prevStep}/>;
+        return <ActionItem onNext={nextStep} onBack={prevStep} />;
       case 5:
-        return <StepFive onNext={nextStep} onBack={prevStep}/>;
+        return <Confirmation onNext={nextStep} onBack={prevStep} />;
       case 6:
-        return <StepSix onNext={nextStep} onBack={prevStep} />;
-      case 7:
-        return <StepSeven onNext={nextStep} onBack={prevStep}/>;
-      case 8:
-        return <StepEight onNext={nextStep} onBack={prevStep}/>;
+        return <Gratitude onNext={nextStep} onBack={prevStep} />;
       default:
       // do nothing
     }

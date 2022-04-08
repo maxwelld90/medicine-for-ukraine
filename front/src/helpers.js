@@ -1,73 +1,68 @@
-function isProduction(){
-    if (process.env.REACT_APP_MEDICINE_ENVIRONMENT === 'production') {
-        return true;
-    }
+const isProduction =
+  process.env.REACT_APP_MEDICINE_ENVIRONMENT === "production";
 
-    return false;
-}
+const resourcesPrefix = isProduction
+  ? process.env.REACT_APP_STATIC_ROOT
+  : "/static";
 
 function getStaticPath(path) {
-    if (isProduction()) {
-        return process.env.REACT_APP_STATIC_ROOT + '/' + path;
-    }
-
-    return '/static/' + path;
+  return `${resourcesPrefix}/${path}`;
 }
 
 function getLanguagesObject(languages) {
-    let returnArray = [];
-    let currentDefault = window.localStorage.getItem('MEDICINE-LANGUAGE');
-    let setLanguage = false;
+  let returnArray = [];
+  let currentDefault = window.localStorage.getItem("MEDICINE-LANGUAGE");
+  let setLanguage = false;
 
-    for (let language in languages) {
-        let isActive = false;
+  for (let language in languages) {
+    let isActive = false;
 
-        if (currentDefault === language) {
-            isActive = true;
-            setLanguage = true;
-        }
-
-        returnArray.push({
-            name: language,
-            isActive: isActive,
-        });
+    if (currentDefault === language) {
+      isActive = true;
+      setLanguage = true;
     }
 
-    if (!setLanguage) {
-        for (let language of returnArray) {
-            if (language.name === 'en') {
-                language.isActive = true;
-            }
-        }
-    }
+    returnArray.push({
+      name: language,
+      isActive: isActive,
+    });
+  }
 
-    return returnArray;
+  if (!setLanguage) {
+    for (let language of returnArray) {
+      if (language.name === "en") {
+        language.isActive = true;
+      }
+    }
+  }
+
+  return returnArray;
 }
 
 function getCurrentLanguage() {
-    let currentDefault = window.localStorage.getItem('MEDICINE-LANGUAGE');
+  let currentDefault = window.localStorage.getItem("MEDICINE-LANGUAGE");
 
-    if (currentDefault) {
-        return currentDefault;
-    }
+  if (currentDefault) {
+    return currentDefault;
+  }
 
-    return 'en';
+  return "en";
 }
 
 function getHeaderLogoLink() {
-    let currentDefault = window.localStorage.getItem('MEDICINE-LANGUAGE');
+  let currentDefault = window.localStorage.getItem("MEDICINE-LANGUAGE");
 
-    if (currentDefault) {
-        return '/' + currentDefault + '/';
-    }
+  if (currentDefault) {
+    return "/" + currentDefault + "/";
+  }
 
-    return '/en/';
+  return "/en/";
 }
 
 export {
-    isProduction,
-    getStaticPath,
-    getLanguagesObject,
-    getCurrentLanguage,
-    getHeaderLogoLink,
-}
+  isProduction,
+  getStaticPath,
+  getLanguagesObject,
+  getCurrentLanguage,
+  getHeaderLogoLink,
+};

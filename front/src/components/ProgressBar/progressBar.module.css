@@ -1,0 +1,33 @@
+.progressLine{
+    position: absolute;
+    top: -5px;
+    left: 0;
+    height: 5px;
+    background: #FFD500;
+    background: linear-gradient(90deg, rgba(255,213,0,1) 85%, rgba(0,91,187,1) 100%);
+}
+
+.step-1 {
+    width: 16%;
+}
+
+.step-2 {
+    width: 32%;
+}
+
+.step-3 {
+    width: 48%;
+}
+
+.step-4 {
+    width: 64%;
+}
+
+.step-5 {
+    width: 90%;
+}
+
+.step-6 {
+    width: 100%;
+    background: #ffd500 !important;
+}

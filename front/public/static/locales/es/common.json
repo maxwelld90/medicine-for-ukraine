@@ -13,42 +13,30 @@
     "BUTTON": "Comienzo"
   },
   "STEP_ONE": {
-    "TITLE": "Cu\u00e1l es tu direcci\u00f3n de correo electr\u00f3nico?",
-    "FIRST_LINE": "Utilizamos su direcci\u00f3n de correo electr\u00f3nico para realizar un seguimiento de lo que se ha pedido. Por favor, introduzca su direcci\u00f3n de correo electr\u00f3nico en el cuadro de abajo.",
-    "SECOND_LINE": "Si prefiere permanecer en el anonimato, cree una nueva direcci\u00f3n y util\u00edcela.",
-    "EMAIL_LABEL": "Introduzca su direcci\u00f3n de correo electr\u00f3nico aqu\u00ed"
-  },
-  "STEP_TWO": {
     "TITLE": "A d\u00f3nde quieres enviar los art\u00edculos?",
     "FIRST_LINE": "Actualmente tenemos voluntarios listos para recibir art\u00edculos en los siguientes pa\u00edses. Seleccione un pa\u00eds en el que pueda pagar art\u00edculos para continuar.",
     "SECOND_LINE": "Seleccione el pa\u00eds al que desea enviar art\u00edculos y haga clic/toque continuar."
   },
-  "STEP_THREE": {
-    "TITLE": "Qu\u00e9 quieres donar?",
-    "FIRST_LINE": "Tenemos dos categor\u00edas de productos que puedes donar. Qu\u00e9 te gustar\u00eda donar?",
-    "MED_EQUIPMENT_LABEL": "Quiero donar equipo m\u00e9dico",
-    "OTHER_EQUIPMENT_LABEL": "Quiero donar otros equipos"
-  },
-  "STEP_FOUR": {
+  "STEP_TWO": {
     "TITLE": "Qu\u00e9 quieres donar?",
     "FIRST_LINE": "Estos art\u00edculos son necesarios para las tropas de primera l\u00ednea. Seleccione uno de los elementos a continuaci\u00f3n. Los que est\u00e1n en rojo son elementos de alta prioridad. Tenga en cuenta que el precio es aproximado."
   },
-  "STEP_FIVE": {
+  "STEP_THREE": {
     "TITLE": "A\u00f1adir a su(s) cesta(s)",
     "FIRST_LINE": "Tenemos los siguientes enlaces para {{producto}} que entrega a {{pa\u00eds}}. Por favor, especifique cu\u00e1ntos de los art\u00edculos que ha puesto en la cesta de la compra."
   },
-  "STEP_SIX": {
+  "STEP_FOUR": {
     "TITLE": "Te gustaría donar más?",
     "FIRST_LINE": "Te gustaría registrar más artículos? En caso afirmativo, puede seleccionar más",
     "BACK_BUTTON": "Sí, quiero donar más.",
     "NEXT_BUTTON": "No. Complete el proceso."
   },
-  "STEP_SEVEN": {
+  "STEP_FIVE": {
     "TITLE": "Completa tu pedido",
     "FIRST_LINE": "Ahora puede completar su(s) pedido(s) en los sitios web elegidos. Por favor env\u00edelos a la direcci\u00f3n indicada.",
     "SECOND_LINE": "Una vez que haya completado sus compras, conf\u00edrmelo cargando capturas de pantalla del pedido. Aseg\u00farese de evitar cualquier informaci\u00f3n personal."
   },
-  "STEP_EIGHT": {
+  "STEP_SIX": {
     "TITLE": "Gracias",
     "FIRST_LINE": "Hemos registrado su pedido en nuestro inventario. Apreciamos mucho tu ayuda. Gracias por apoyar a Ucrania.",
     "SECOND_LINE": "Si desea pedir otro art\u00edculo, haga clic en pedir otro art\u00edculo. De lo contrario, ahora puede cerrar esta pesta\u00f1a.",

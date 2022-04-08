@@ -1,22 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
-import { RequestContext } from "./request-context";
+import React, { useContext, useState } from "react";
+import { useAsync } from "react-use";
 import { useTranslation } from "react-i18next";
+
 import { fetchLinks } from "../../api";
-import QuantityPicker from "../quantity-picker";
-import Loader from "../loader";
-import Error from "../error";
-import ItemDeliveryConfirmation from "../itemDeliveryConfirmation";
+import Content from "../Content";
 
-import StepNavigation from './components/StepNavigation'
+import { RequestContext } from "./requestContext";
+import QuantityPicker from "../QuantityPicker";
+import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
+import StepNavigation from "./components/StepNavigation";
+import StepDescription from "./components/StepDescription";
 
-export default function StepFive({ onNext, onBack }) {
+function getProductName({ names }, language) {
+  return names[language] || names.default;
+}
+
+export default function Basket({ onNext, onBack, language }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
-  const [onlineStores, setOnlineStores] = useState([]);
-  const [country, setCountry] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const [request, setRequest] = useContext(RequestContext);
+  const productName = getProductName(request.selectedProduct);
+
+  const { loading, error, value } = useAsync(() =>
+    fetchLinks(request.recipientId, request.selectedProduct.id)
+  );
+
   const [t] = useTranslation(["translation", "common"]);
 
   const onQuantityChangeHandler = ({ domain, link }, value) => {
@@ -37,7 +45,7 @@ export default function StepFive({ onNext, onBack }) {
 
     const storeItem = store.items[link] || {
       row_number: request.selectedProduct.id,
-      name: request.selectedProduct.name,
+      name: productName,
       type: request.donationType,
       url: link,
     };
@@ -67,48 +75,27 @@ export default function StepFive({ onNext, onBack }) {
     return 0;
   };
 
-  useEffect(() => {
-    fetchLinks(
-      request.donationType,
-      request.countryCode,
-      request.selectedProduct.id
-    ).then(
-      (result) => {
-        setCountry(result.country);
-        setOnlineStores(result.links);
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
-  }, [request.donationType, request.countryCode, request.selectedProduct]);
-  
   return (
-    <>
-      {error && <Error />}
-      {!isLoaded && <Loader />}
-      {!error && isLoaded && (
+    <Content error={error} loading={loading}>
+      {() => (
         <div>
-          <h1>
-            {t("common:STEP_FIVE.TITLE")}
-            <span>5/7</span>
-          </h1>
+          <StepDescription
+            step="3/5"
+            title={t("common:STEP_THREE.TITLE")}
+            firstLine={t("common:STEP_THREE.FIRST_LINE")}
+          />
 
-          <ItemDeliveryConfirmation itemName={request.selectedProduct.name} country={country} />
-
-          <p>
-            {t("common:STEP_FIVE.FIRST_LINE", {
-              product: request.selectedProduct.name,
-              country: request.countryCode,
-            })}
-          </p>
+          <ItemDeliveryConfirmation
+            itemName={productName}
+            country={value.country}
+          />
 
           <ul className="item-list stores nohover">
-            {onlineStores.map((item, i) => (
+            {value?.links.map((item, i) => (
               <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener"><span>{item.domain}</span></a>
+                <a href={item.link} target="_blank" rel="noreferrer noopener">
+                  <span>{item.domain}</span>
+                </a>
                 <ul className="right-options">
                   <li className="price">
                     <span className="approx">Approx.</span>
@@ -125,32 +112,15 @@ export default function StepFive({ onNext, onBack }) {
             ))}
           </ul>
 
-          {/* <ul className="item-list stores">
-            {onlineStores.map((item, i) => (
-              <li key={i}>
-                <a href={item.link} target="_blank" rel="noreferrer noopener">
-                  {item.domain}
-                </a>
-
-                <QuantityPicker
-                  key={i + i}
-                  value={getQty(item)}
-                  onChange={(value) => onQuantityChangeHandler(item, value)}
-                />
-              </li>
-            ))}
-          </ul> */}
-
           <StepNavigation
             prevButtonTitle={t("common:PREV_BUTTON")}
             onClickPrev={onBack}
-
             isNextButtonEnabled={isCompletedStep}
             nextButtonTitle={t("common:NEXT_BUTTON")}
             onClickNext={onNext}
           />
         </div>
       )}
-    </>
+    </Content>
   );
 }

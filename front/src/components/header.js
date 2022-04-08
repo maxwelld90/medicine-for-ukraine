@@ -1,5 +1,5 @@
 import React from "react";
-import ProgressBar from "./progressBar";
+import ProgressBar from "./ProgressBar";
 import {getStaticPath, getCurrentLanguage} from "../helpers";
 
 export default function Header({step, languages, changeLanguageOnClick}) {

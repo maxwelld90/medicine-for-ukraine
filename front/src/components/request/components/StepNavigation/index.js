@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { container, prevButton, nextButton } from './styles'
+// import { container, prevButton, nextButton } from './styles'
+import classes from './StepNavigation.module.css';
 
 export default function StepNavigation({
   prevButtonTitle = null,
@@ -12,10 +13,10 @@ export default function StepNavigation({
   onClickNext,
 }) {
   return (
-    <p style={container}>
+    <p className={classes.container}>
       {prevButtonTitle && (
         <button
-          style={prevButton}
+          className={classes.prevButton}
           disabled={!isPrevButtonEnabled}
           onClick={onClickPrev}
         >
@@ -24,7 +25,7 @@ export default function StepNavigation({
       )}
       {nextButtonTitle && (
         <button
-          style={nextButton}
+          className={classes.nextButton}
           disabled={!isNextButtonEnabled}
           onClick={onClickNext}
         >
