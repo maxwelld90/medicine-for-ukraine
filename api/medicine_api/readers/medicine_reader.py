@@ -3,6 +3,7 @@ import tldextract
 from math import isnan
 from copy import deepcopy
 from decimal import Decimal
+from django.conf import settings
 from medicine_api.models import LinkMetadata
 from medicine_api.readers import utils
 from medicine_api.readers import exceptions
@@ -21,13 +22,12 @@ class MedicineReader(SheetReader):
     """
     Extending the SheetReader, provides functionality for reading the main items listings.
     """
-    def __init__(self, using_cache=True):
-        super().__init__(using_cache=using_cache,
-                         document_id='1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8',
-                         required_sheets=[
-                            'olena',
-                            'meds',
-                         ])
+    def __init__(self):
+        document_id = '1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8'
+        required_sheets = settings.MEDICINE_SHEETS_DATA[document_id].keys()
+        
+        super().__init__(document_id=document_id,
+                         required_sheets=list(required_sheets))
     
     def __recipient_check(func):
         """

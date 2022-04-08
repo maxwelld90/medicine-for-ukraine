@@ -169,7 +169,7 @@ class LinkMetadata(models.Model):
     """
     Provides metadata (including approximate pricing in EUR) for items at given URLs.
     """
-    url = models.URLField(primary_key=True)
+    url = models.URLField(primary_key=True, max_length=2048)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     last_checked = models.DateTimeField()
     ships_to = models.ManyToManyField(Country, related_name='ships_to', blank=True)
@@ -221,7 +221,7 @@ class LinkMetadata(models.Model):
         return True
     
     def save(self, *args, **kwargs):
-        self.last_checked = datetime.now()
+        self.last_checked = datetime.now().replace(tzinfo=pytz.UTC)
         super().save(*args, **kwargs)
     
     def __str__(self):

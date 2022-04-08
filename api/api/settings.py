@@ -21,6 +21,10 @@ if os.getenv('MEDICINE_SET') != 'true':
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
+    SRV_DIR = Path(__file__).resolve().parent.parent.parent.parent
+    VIRTUALENV_DIR = '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -176,20 +180,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = os.getenv('MEDICINE_STATIC_ROOT')
+MEDIA_URL = os.getenv('MEDICINE_MEDIA_ROOT')
 
 MEDIA_URL = 'uploads/'
 MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent.parent, 'uploads')
 
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
-    STATIC_URL = 'https://static.medicineforukraine.org/'
-    STATIC_ROOT = '/srv/medicine-for-ukraine/static/'
+    STATIC_ROOT = os.path.join(SRV_DIR, 'static')
     STATICFILES_DIRS = (
-        '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/site-packages/django/contrib/admin/static',
+        os.path.join(VIRTUALENV_DIR, 'site-packages/django/contrib/admin/static'),
+        os.path.join(VIRTUALENV_DIR, 'site-packages/rest_framework/static'),
+        os.path.join(SRV_DIR, 'git-repo/landing/out/static'),
     )
 
     MEDIA_URL = 'https://media.medicineforukraine.org/'
-    MEDIA_ROOT = '/srv/medicine-for-ukraine/uploads/'
+    MEDIA_ROOT = os.path.join(SRV_DIR, 'uploads')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -223,3 +229,5 @@ REDIS_ENABLED = True if os.getenv('MEDICINE_REDIS_ENABLED') == 'true' else False
 REDIS_EXPIRATION_TIME = os.getenv('MEDICINE_REDIS_EXPIRATION') or 3600
 REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
 REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379
+
+WEBMASTER_EMAIL = 'webmaster@medicineforukraine.org'

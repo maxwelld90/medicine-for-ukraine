@@ -10,6 +10,12 @@ virtualenvs/landing: landing/requirements.txt
 	. virtualenvs/landing/bin/activate; \
 	pip install -Ur landing/requirements.txt;
 
+virtualenvs/api: api/requirements.txt
+	mkdir -p virtualenvs/api; \
+	virtualenv -p $(PYTHON) virtualenvs/api; \
+	. virtualenvs/api/bin/activate; \
+	pip install -Ur api/requirements.txt;
+
 landing/out: virtualenvs/landing
 	. virtualenvs/landing/bin/activate; \
 	cd landing; \
@@ -32,13 +38,28 @@ landing/out/request: front/build
 	mv landing/out/request/asset-manifest.json landing/out; \
 	mv landing/out/request/manifest.json landing/out;
 
-# all: virtualenvs/landing landing/out front/node_modules front/build landing/out/request
-all: virtualenvs/landing landing/out front/build landing/out/request
+.BUILD_SUCCESS:
+	./build_final.sh;
+	touch .BUILD_SUCCESS;
+.PHONY: .BUILD_SUCCESS
+
+all: virtualenvs/landing virtualenvs/api landing/out front/node_modules front/build landing/out/request .BUILD_SUCCESS
+
+server-api:
+	. virtualenvs/api/bin/activate; \
+	cd api; \
+	$(PYTHON) manage.py runserver 0.0.0.0:8001;
+.PHONY: server-api
+
+server-landing:
+	cd landing/out; \
+	echo "Access http://127.0.0.1:8000/ for the frontend server."; \
+	$(PYTHON) -m http.server 8000;
+.PHONY: server-landing
 
 devserver: all
-	. virtualenvs/landing/bin/activate; \
-	cd landing/out; \
-	$(PYTHON) -m http.server 3000;
+	make -j 2 server-api server-landing;
+.PHONY: devserver
 
 clean:
 	rm -rf virtualenvs
@@ -47,5 +68,6 @@ clean:
 	rm -rf front/public/static/css
 	rm -rf front/public/static/fonts
 	rm -rf front/public/static/img/*.svg
-	rm front/src/LANGUAGES.json
-#	rm -rf front/node_modules
+	rm -f front/src/LANGUAGES.json
+	rm -f .BUILD_SUCCESS
+	rm -rf front/node_modules

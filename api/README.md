@@ -35,6 +35,14 @@ If you have not yet setup the database locally, you must run these commands with
 2. `$ python manage.py migrate medicine_api`
 3. `$ python manage.py createsuperuser` (Follow the instructions to create a user account.)
 
+Some sample data is also provided for you to use. To populate the database with sample data, run the following command.
+
+`$ python manage.py populate_db`
+
+The Medicine for Ukraine API also requires that a script periodically checks the links sheet to check if there have been any new links added, or changes to existing link metadata (e.g., price, whether the item is in stock, etc.). This is done via the `cron_item_populator.py` script. On the production server, this would be called every *x* minutes; you should also call this at least once to populate the `LinkMetadata` model.
+
+`$ python manage.py cron_link_populator`
+
 ### Running the Server
 
 Running the server will then involve you executing the following command.
