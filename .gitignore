@@ -26,3 +26,5 @@ front/public/static/img/*.svg
 front/public/static/img/contributors
 
 .env
+
+.BUILD_SUCCESS
