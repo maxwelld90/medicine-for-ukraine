@@ -9,5 +9,5 @@ then
 
     cd ../;
     mkdir -p ../landing;
-    rsync front/landing/out/ ../landing;
+    rsync landing/out/ ../landing;
 fi
