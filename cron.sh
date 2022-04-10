@@ -12,7 +12,7 @@ fi
 
 echo "Launching Medicine for Ukraine CRON job...";
 
-[ ! -d "./virtualenvs/api/" ] && { echo "Virtual environment could not be found. Did you run make all?"; exit 1; }
+[ ! -d "/srv/medicine-for-ukraine/git-repo/virtualenvs/api/" ] && { echo "Virtual environment could not be found. Did you run make all?"; exit 1; }
 
 source ./env.prep.sh $1;
 . virtualenvs/api/bin/activate;
