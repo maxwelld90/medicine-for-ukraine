@@ -32,3 +32,5 @@ front/public/static/img/contributors
 .BUILD_SUCCESS
 
 virtualenvs/
+
+*.log

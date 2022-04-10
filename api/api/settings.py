@@ -231,3 +231,31 @@ REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
 REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379
 
 WEBMASTER_EMAIL = 'webmaster@medicineforukraine.org'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'sheet_reader': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(SRV_DIR, 'logs/api/sheet_reader.log') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else 'sheet_reader.log',
+            'formatter': 'verbose',
+        }
+    },
+    'loggers': {
+        'medicine_api.readers.sheet_reader': {
+            'handlers': ['sheet_reader'],
+            'level': 'DEBUG',
+        }
+    }
+}
