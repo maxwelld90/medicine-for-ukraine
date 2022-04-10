@@ -1,0 +1,38 @@
+{% extends 'emails/base.html' %}
+
+{% block bodyblock %}
+Someone has just submitted confirmation of an order for one or more item(s) under your name.
+Here are the details.
+
+Request ID: {{ user_request.id }}
+Submission Time (UTC): {{ user_request.date_time }}
+
+A total of {{ items|length }} unique item(s) were ordered on your behalf.
+
+{% for item in items %}
+  *  Name: {{ item.name }}
+     URL: {{ item.url }}
+     Quantity ordered: {{ item.quantity }}
+     Price at order time (approx in EUR): {{ item.price_at_purchase }}
+     From your Google Sheet, row number {{ item.row_number }}
+
+{% endfor %}
+
+The user has agreed to ship them to the following address.
+
+{{ user_request.recipient.warehouse.address }}
+
+Screenshot(s) of the purchase from the online store(s) has/have also been provided.
+You can find them at the links below. Copy and paste them into your browser.
+
+{% for screenshot in screenshots %}
+  *  {{ media_url }}{{ screenshot.image }}
+{% endfor %}
+
+Please note that you should exercise caution viewing these image(s). They have been directly uploaded from the user who made this request.
+
+If you are satisfied that this order is genuine, and you have been made aware that the item(s) have arrived, you can mark the order as being approved on the Medicine for Ukraine maintenance website.
+This can be found at the link:
+
+{{ change_url }}
+{% endblock %}

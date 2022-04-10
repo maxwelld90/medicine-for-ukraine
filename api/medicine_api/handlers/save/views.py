@@ -1,9 +1,14 @@
 import base64
+from urllib.request import Request
 import tldextract
+from django.urls import reverse
+from django.conf import settings
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.mail import EmailMessage
 from django.core.files.base import ContentFile
+from django.template.loader import get_template
 from medicine_api.handlers.save import request_parser
 from medicine_api.models import LinkMetadata, Recipient, RequestedItem, Screenshot, StoreSession, UserRequest
 
@@ -47,10 +52,42 @@ class SaveRequest(APIView):
         except Exception as e:
             return Response({'message': str(e), 'exception': type(e).__name__}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
+        self.__send_email(request, parser, user_request_object)
+        
         return Response({
             'recipient_id': parser.data.recipient_id,
             'user_request_id': user_request_object.id,
         }, status=status.HTTP_201_CREATED)
+    
+    def __send_email(self, request, parser, user_request_object):
+        """
+        Sends an e-mail to the recipient to alert them of the new request (if an e-mail address exists).
+        If an e-mail address does not exist, None is returned.
+        """
+        recipient = Recipient.objects.get(id=parser.data.recipient_id)
+        items = RequestedItem.objects.filter(store_session__user_request=user_request_object)
+        screenshots = Screenshot.objects.filter(store_session__user_request=user_request_object)
+
+        if recipient.email is not None:
+            message_body = get_template('emails/request_submitted.html').render({
+                'user_request': user_request_object,
+                'items': items,
+                'media_url': settings.MEDIA_URL,
+                'screenshots': screenshots,
+                'change_url': request.build_absolute_uri(reverse('admin:medicine_api_userrequest_change', kwargs={'object_id': user_request_object.id})),
+            })
+
+            email_object = EmailMessage(
+                subject=f'{settings.SUBJECT_EMAIL_PREFIX} Order placed for item(s)',
+                body=message_body,
+                from_email=settings.AUTOMATED_EMAIL,
+                to=[recipient.email],
+            )
+
+            email_object.content_subtype = 'plain'
+            return email_object.send()
+        
+        return None
     
     def __create_user_request(self, parser, client_ip):
         """

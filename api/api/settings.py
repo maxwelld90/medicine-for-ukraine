@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_json_widget',
-    'medicine_api',
+    'medicine_api.apps.MedicineApiAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -231,6 +231,8 @@ REDIS_HOSTNAME = os.getenv('MEDICINE_REDIS_HOST') or 'localhost'
 REDIS_PORT = os.getenv('MEDICINE_REDIS_PORT') or 6379
 
 WEBMASTER_EMAIL = 'webmaster@medicineforukraine.org'
+AUTOMATED_EMAIL = 'Medicine for Ukraine <noreply@medicineforukraine.org>'
+SUBJECT_EMAIL_PREFIX = '[MEDSFORUKRAINE]'
 
 LOGGING = {
     'version': 1,
