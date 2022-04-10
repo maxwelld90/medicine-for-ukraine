@@ -23,6 +23,8 @@ front/src/LANGUAGES.json
 front/public/static/css
 front/public/static/fonts
 front/public/static/img/*.svg
+front/public/static/img/icons
+front/public/static/img/social
 front/public/static/img/contributors
 
 .env
