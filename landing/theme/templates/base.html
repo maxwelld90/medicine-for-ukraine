@@ -8,18 +8,8 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {% if DEFAULT_LANG == 'en' %}
-        <meta name="title" content="Medicine for Ukraine">
-        <meta name="description" content="Medicine for Ukraine is run by a group of volunteers that want to help. We get medicine and supplies to those who need it the most.">
-        <meta name="keywords" content="ukraine, medicine, supplies, donate, help ukraine, donate to ukraine, supply ukraine, assist ukraine">
-        <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        <meta name="revisit-after" content="5 days">
-        <meta name="author" content="Medicine for Ukraine Team">
-        {% else %}
-        <meta name="robots" content="noindex">
-        {% endif %}
+        {% include 'sections/metatags/twitter.html' %}
+        {% include 'sections/metatags/se.html' %}
         <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
     </head>
 
