@@ -189,8 +189,8 @@ MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent.parent, 'upload
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     STATIC_ROOT = os.path.join(SRV_DIR, 'static')
     STATICFILES_DIRS = (
-        os.path.join(VIRTUALENV_DIR, 'site-packages/django/contrib/admin/static'),
-        os.path.join(VIRTUALENV_DIR, 'site-packages/rest_framework/static'),
+        os.path.join(VIRTUALENV_DIR, '/lib/python3.8/site-packages/django/contrib/admin/static'),
+        os.path.join(VIRTUALENV_DIR, '/lib/python3.8/site-packages/rest_framework/static'),
         os.path.join(SRV_DIR, 'git-repo/landing/out/static'),
     )
 
