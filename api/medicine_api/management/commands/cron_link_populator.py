@@ -19,10 +19,10 @@ class Command(BaseCommand):
         df_prices = price_reader.get_prices()
         
         for row in df_prices.itertuples():
-            logger.info(row.link)
+            #logger.info(row.link)
             metadata_object = models.LinkMetadata()
             metadata_object.set_from_named_tuple(row)
 
-        logger.info('LINK UPDATING COMPLETE')
+        #logger.info('LINK UPDATING COMPLETE')
         self.stdout.write(self.style.SUCCESS('Links successfully updated.'))
         
