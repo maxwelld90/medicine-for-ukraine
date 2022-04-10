@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 if os.getenv('MEDICINE_ENVIRONMENT') == 'production':
     SRV_DIR = Path(__file__).resolve().parent.parent.parent.parent
-    VIRTUALENV_DIR = '/srv/medicine-for-ukraine/virtualenv/lib/python3.8/'
+    VIRTUALENV_DIR = '/srv/medicine-for-ukraine/git-repo/virtualenvs/api'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
