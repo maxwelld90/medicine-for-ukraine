@@ -26,7 +26,7 @@ front/node_modules: front/package.json
 	cd front; \
 	npm install;
 
-front/build: # front/node_modules
+front/build: front/node_modules
 	cd front; \
 	npm run-script build;
 
@@ -62,7 +62,6 @@ devserver: all
 .PHONY: devserver
 
 clean:
-	rm -rf virtualenvs
 	rm -rf landing/out
 	rm -rf front/build
 	rm -rf front/public/static/css
@@ -70,4 +69,7 @@ clean:
 	rm -rf front/public/static/img/*.svg
 	rm -f front/src/LANGUAGES.json
 	rm -f .BUILD_SUCCESS
+
+cleanenv:
+	rm -rf virtualenvs
 	rm -rf front/node_modules
