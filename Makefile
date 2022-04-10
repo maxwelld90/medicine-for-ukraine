@@ -35,8 +35,7 @@ landing/out/request: front/build
 	cp -r front/build/* landing/out/request; \
 	rsync -a landing/out/request/static landing/out;
 	rm -rf landing/out/request/static/; \
-	mv landing/out/request/asset-manifest.json landing/out; \
-	mv landing/out/request/manifest.json landing/out;
+	mv landing/out/request/asset-manifest.json landing/out;
 
 .BUILD_SUCCESS:
 	./build_final.sh;
