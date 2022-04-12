@@ -57,9 +57,11 @@ export const fetchLinks = async (recipientId, itemId) => {
 
   return {
     country: warehouse_address.country,
-    links: jsonResponse.links.map(({ url }) => ({
+    links: jsonResponse.links.map(({ url, price, last_checked }) => ({
       link: url,
       domain: new URL(url).hostname,
+      price,
+      last_checked
     })),
   };
 };

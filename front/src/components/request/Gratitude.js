@@ -24,10 +24,7 @@ export default function Gratitude({ onNext, onBack }) {
             firstLine={t("common:STEP_SIX.FIRST_LINE")}
             secondLine={t("common:STEP_SIX.SECOND_LINE")}
           />
-          )
           <StepNavigation
-            prevButtonTitle={t("common:PREV_BUTTON")}
-            onClickPrev={onBack}
             nextButtonTitle={t("common:STEP_SIX.RESTART_PROCESS")}
             onClickNext={onNext}
           />

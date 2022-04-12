@@ -99,8 +99,15 @@ export default function Basket({ onNext, onBack, language }) {
                 <ul className="right-options">
                   <li className="price">
                     <span className="approx">Approx.</span>
-                    <span className="price">&euro;3.50</span>
-                    <span className="date">Checked 2022-03-15</span>
+                    {item.price && (
+                      <span className="price">&euro;{item.price}</span>
+                    )}
+                    {item.last_checked && (
+                      <span className="date">
+                        Last Checked:{" "}
+                        {new Date(item.last_checked).toDateString()}
+                      </span>
+                    )}
                   </li>
                   <QuantityPicker
                     key={i + i}
