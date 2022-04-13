@@ -51,20 +51,12 @@ class Command(BaseCommand):
             name = 'olena',
         )
 
-        sheet.save()
-        return sheet
-    
-    def __create_sheet(self):
-        """
-        Creates a Sheet object.
-        """
-        self.stdout.write(self.style.NOTICE("Creating Sheet object..."))
-
-        sheet = models.Sheet(
-            name = 'olena',
+        sheet_links = models.Sheet(
+            name = 'links',
         )
 
         sheet.save()
+        sheet_links.save()
         return sheet
     
     def __create_recipient(self, warehouse, sheet):
