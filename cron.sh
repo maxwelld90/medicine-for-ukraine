@@ -19,4 +19,4 @@ cd /srv/medicine-for-ukraine/git-repo;
 source ./env.prep.sh $1;
 . virtualenvs/api/bin/activate;
 cd api;
-python manage.py cron_link_populator;
+python manage.py cron;
