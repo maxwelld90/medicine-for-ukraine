@@ -20,7 +20,6 @@ You should also have developer tools installed, too. This includes `make` and Py
 
 2. **Test your environment variables have been set up correctly.**
 `$ echo $MEDICINE_SET`
-
 This should return `true`.
 
 3. **Make the project.** This will create the virtual environments and install all required packages (both for Python and Node), and build all files.
