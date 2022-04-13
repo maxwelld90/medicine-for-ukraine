@@ -15,11 +15,6 @@
                     "required": "Need #",
                     "ordered": "Ordered"
                 }
-            },
-            "meds": {
-                "sheet_name": "1)Meds/Hospitaller",
-                "redis_key": "MEDICINE-ITEMS-HOSPITALLER",
-                "start": "A5"
             }
         }
     },
