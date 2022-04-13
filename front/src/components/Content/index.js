@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import Loader from "../loader";
-import Error from "../error";
+import Loader from '../loader'
+import Error from '../error'
 
 export default function Content({ error, loading, children }) {
   return (
@@ -10,5 +10,5 @@ export default function Content({ error, loading, children }) {
       {loading && <Loader />}
       {!error && !loading && children()}
     </>
-  );
+  )
 }
