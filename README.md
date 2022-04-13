@@ -16,18 +16,25 @@ To run everything locally, you can go through the following steps. Note that for
 You should also have developer tools installed, too. This includes `make` and Python virtual environments (i.e., the `virtualenv` command should be working).
 
 1. **First, set up your environment variables.** There is a script and sample environment variables file you can use to do this.
+
 `$ source ./env.prep.sh .env.development`
 
 2. **Test your environment variables have been set up correctly.**
+
 `$ echo $MEDICINE_SET`
+
 This should return `true`.
 
 3. **Make the project.** This will create the virtual environments and install all required packages (both for Python and Node), and build all files.
+
 `$ make all`
 
 4. **Setup the local database.** This will then create a small SQLite database. This step will also populate it with some sample data to get you started. Note that you should pass in your environment variables file to this script.
+
 `$ ./create_db.sh .env.development`
+
 You will be asked to enter a username, e-mail address, and password. This is for the superuser account that you can login to the server with once it is running.
 
 5. **You can then run the two servers.** Content is accessible at port `8000`. The API server will be live on port `8001`.
+
 `$ make devserver`
