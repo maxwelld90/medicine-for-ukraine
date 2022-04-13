@@ -10,6 +10,7 @@ from medicine_api.readers import exceptions
 from medicine_api.readers.sheet_reader import SheetReader
 from medicine_api.handlers.countries.serializers import CountrySerializer
 
+
 RANKING_PROPORTIONAL_CONSTANT = 1.0
 RANKING_MANY_RATIO = 0
 
@@ -17,17 +18,10 @@ RANKING_WEIGHT_PRIORITY = 1
 RANKING_WEIGHT_NEED = 0.5
 RANKING_WEIGHT_PRICE = 0.9
 
-
 class MedicineReader(SheetReader):
-    """
-    Extending the SheetReader, provides functionality for reading the main items listings.
-    """
     def __init__(self):
-        document_id = '1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8'
-        required_sheets = settings.MEDICINE_SHEETS_DATA[document_id].keys()
-        
-        super().__init__(document_id=document_id,
-                         required_sheets=list(required_sheets))
+        self._data_key = 'medicineReader'
+        super().__init__()
     
     def __recipient_check(func):
         """
@@ -57,6 +51,8 @@ class MedicineReader(SheetReader):
         need_value = row['required']
 
         if type(row['required']) == str:
+            need_ratio = Decimal(0.5)
+
             if row['required'].lower() == 'many':
                 need_ratio = 0  # If we need many items, set the ratio to low so it is promoted up.
         else:
@@ -84,32 +80,33 @@ class MedicineReader(SheetReader):
         Performs link filtering, item ranking (based on __score_row()) and data cleaning.
         """
         df_name = recipient.sheet.name
+        worksheet_data = self._data['worksheets'][df_name]
         warehouse_country = recipient.warehouse.country
 
         df = self._dataframes[df_name]
         df_copy = deepcopy(df)  # We manipulate this copy of the DataFrame instead...
-
+        
         # Tidy up - do we need to rename columns to match the expected names?
-        if 'keys' in self._required_dataframes[df_name]:
-            for column_type, look_for in self._required_dataframes[df_name]['keys'].items():
+        if 'keys' in worksheet_data.keys():
+            for column_type, look_for in worksheet_data['keys'].items():
                 df_copy.rename(columns={look_for.lower(): column_type.lower()}, inplace=True)
         
         df_copy['required'] = df_copy.apply(
                     lambda row: None if row.required is None else row.required,
                     axis=1
                 )
-        
+
         df_copy['ordered'] = df_copy.apply(
                     lambda row: None if row.ordered == '' else row.ordered,
                     axis=1
                 )
-
+        
         # Perform item filtering - drop items for which no acceptable links exist.
         df_copy.drop(df_copy[df_copy.apply(
             lambda row: not utils.filter_links(utils.get_links_for_item(row), warehouse_country),
             axis=1
         )].index, inplace=True)
-
+        
         # Compute the average price over all the acceptable links.
         df_copy['average_price'] = df_copy.apply(
             lambda row: utils.get_mean_price_for_item(row, warehouse_country),
@@ -121,27 +118,29 @@ class MedicineReader(SheetReader):
             axis=1
         )
 
-        # For remaining links, apply ranking scores.
-        # Adds a 'score' column.
-        df_copy['score'] = df_copy.apply(
-            lambda row: MedicineReader.__score_row(row),
-            axis=1)
-        df_copy.sort_values('score', ascending=False, inplace=True)
-
+        if not df_copy.empty:
+            # For remaining links, apply ranking scores.
+            # Adds a 'score' column.
+            df_copy['score'] = df_copy.apply(
+                lambda row: MedicineReader.__score_row(row),
+                axis=1)
+            df_copy.sort_values('score', ascending=False, inplace=True)
+        
         # Final tidying up
         df_copy.drop('average_price', axis=1, inplace=True)
 
-        df_copy['is_high_priority'] = df_copy.apply(
-            lambda row: row.priority.lower() == 'high',
-            axis=1
-        )
-
+        if not df_copy.empty:
+            df_copy['is_high_priority'] = df_copy.apply(
+                lambda row: row.priority.lower() == 'high',
+                axis=1
+            )
+        
         # Create the return JSON object.
         return_object = json.loads(df_copy.to_json(orient='records'))
 
         # Append the item names in their proper data structure.
         item_names = utils.process_name_strings(self._language_data, df_copy)
-
+        
         # Append the item names to each item.
         for row in return_object:
             row['item_name_by_language'] = item_names[row['row_number']]
@@ -155,9 +154,9 @@ class MedicineReader(SheetReader):
                     row[column_name] = True
                 
                 # For any extra rows that we wish to drop, do so here.
-                if 'drop_rows' in self._required_dataframes[df_name] and column_name in [x.lower() for x in self._required_dataframes[df_name]['drop_rows']]:
+                if 'drop_rows' in self._data['worksheets'][df_name] and column_name in [x.lower() for x in self._data['worksheets'][df_name]['drop_rows']]:
                     del row[column_name]
-
+        
         return return_object
     
     def get_links_for_item(self, recipient, row_number):
@@ -199,3 +198,26 @@ class MedicineReader(SheetReader):
             return_list.append(link_object)
 
         return return_list
+    
+    def get_all_links_for_recipient(self, recipient):
+        """
+        For a given recipient, returns a list of strings, with each string representing a unique URL found in the recipient's spreadsheet.
+        """
+        df_name = recipient.sheet.name
+        df = self._dataframes[df_name]
+        links = []
+
+        for column_name in df.columns:
+            if column_name.lower().startswith('links'):
+                links_raw = list(df[column_name])
+
+                for item in links_raw:
+                    links.extend(utils.split_and_filter_links(item))
+        
+        return links
+    
+    def save_to_worksheet(self, worksheet_key, data):
+        """
+        Saving is not supported for the MedicineReader.
+        """
+        raise NotImplementedError("Saving to the MedicineReader is not supported.")

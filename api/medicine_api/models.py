@@ -173,51 +173,44 @@ class LinkMetadata(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     last_checked = models.DateTimeField()
     ships_to = models.ManyToManyField(Country, related_name='ships_to', blank=True)
+    available = models.BooleanField()
     in_stock = models.BooleanField()
 
     class Meta:
         verbose_name = 'Link Metadata'
         verbose_name_plural = 'Crawled Link Metadata'
-
-    def set_from_named_tuple(self, named_tuple):
+    
+    def set_from_link_data(self, item_data):
         """
-        Given an instance of LinkMetadata, updates values internally from an instance from named_tuple.
+        Given a Dictionary of k/v pairs representing data from the Google worksheet for links, updates instance attributes internally.
+        Saves the instance to the database.
+
+        If any of the criteria for ignoring the link are met, False is returned. The item is not saved.
         """
-        self.url = named_tuple.link
-
-        try:
-            self.price = float(named_tuple.approx_price_eur)
-        except ValueError:
+        if item_data['price'] is None or item_data['last_checked'] is None:
             return False
-        
-        if named_tuple.date_checked == '':
-            # We don't add items that have not been checked manually to the DB.
-            return False
-        
-        self.last_checked = datetime.strptime(named_tuple.date_checked, '%Y-%m-%d').replace(tzinfo=pytz.UTC)
-        
-        self.in_stock = True
 
-        # If the link is recorded as being out of stock, we do not show it to the user.
-        if named_tuple.in_stock.lower() == 'n':
-            self.in_stock = False
+        self.url = item_data['url']
+        self.price = item_data['price']
+        self.last_checked = item_data['last_checked']
+        self.in_stock = item_data['in_stock']
+        self.available = item_data['available']
 
-        # At the moment, we only care about shipping to Poland.
-        # For the future, we may need to change this to add other countries.
-        if named_tuple.ships_to_poland.lower() == 'yes':
+        self.save()
+        
+        for country_code, shipping_status in item_data['ships_to'].items():
+            try:
+                country = Country.objects.get(code=country_code)
+            except Country.DoesNotExist:
+                continue
+            
+            if shipping_status:
+                self.ships_to.add(country)
+            else:
+                self.ships_to.remove(country)
+            
             self.save()
 
-            poland = Country.objects.get(code='pl')
-            self.ships_to.add(poland)
-            self.save()
-            return True
-        else:
-            poland = Country.objects.get(code='pl')
-
-            if poland in self.ships_to.all():
-                self.ships_to.remove(poland)
-                self.save()
-        
         return True
     
     def save(self, *args, **kwargs):

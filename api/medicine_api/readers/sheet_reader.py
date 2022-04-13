@@ -3,26 +3,44 @@ import redis
 import pickle
 import pygsheets
 from django.conf import settings
+from medicine_api.models import Sheet
 from medicine_api.readers import exceptions
 from pygsheets.exceptions import WorksheetNotFound
 
 
+REDIS_WORKSHEET_SUFFIX = '-WORKSHEET'
+REDIS_DATAFRAME_SUFFIX = '-DF'
+
 class SheetReader(object):
-    def __init__(self, document_id, required_sheets):
-        redis_conn = None
+    def __init__(self):
+        self.__redis_conn = None
+        self._worksheets = {}
         self._dataframes = {}
-        self._document_id = document_id
-        self._required_dataframes = self.__read_sheets_data(required_sheets)
         self._language_data = settings.MEDICINE_LANGUAGE_DATA
 
-        if settings.REDIS_ENABLED:
-            redis_conn = self.__connect_to_cache()
-
-            if self.__check_cache(redis_conn):
-                return  # If we get here, the cache was populated and loaded.
+        if not hasattr(self, '_data_key'):
+            raise NotImplementedError('Missing the _data_key attribute.')
         
-        # If we get here, data needs to be loaded from the Sheets API.
-        self.__get_sheets(redis_conn=redis_conn)
+        self._data = self.__populate_data()
+
+        if settings.REDIS_ENABLED:
+            self.__redis_conn = self.__connect_to_cache()
+
+            if self.__check_cache():
+                return  # If we get here, the cache was populated, and the _worksheets object was populated.
+        
+        self._get_data()
+    
+    def __populate_data(self):
+        """
+        Populates the _data attribute based on the selected sheet for this instance of the SheetReader.
+        """
+        data = settings.MEDICINE_SHEETS_DATA
+
+        if self._data_key not in data.keys():
+            raise exceptions.UnknownSheetError(self._data_key)
+
+        return settings.MEDICINE_SHEETS_DATA[self._data_key]
     
     def __connect_to_cache(self):
         """
@@ -31,80 +49,170 @@ class SheetReader(object):
         """
         try:
             redis_conn = redis.StrictRedis(host=settings.REDIS_HOSTNAME,
-                                  port=settings.REDIS_PORT,
-                                  db=0)
+                                           port=settings.REDIS_PORT,
+                                           db=0)
             redis_conn.exists('test')  # Forces the connection to establish; failures are captured from here.
         except redis.exceptions.ConnectionError:
             raise exceptions.CacheConnectionError("Could not connect to the Redis host.")
         
         return redis_conn
     
-    def __check_cache(self, redis_conn):
+    def __check_cache(self):
         """
         Checks to see if the Redis cache has the necessary keys to use.
         Returns True if all keys are present; False otherwise.
         Sets the self._dataframes instance variable.
         """
-        present_dataframes = 0
+        present_worksheets = 0
+        worksheets = self._data['worksheets']
 
-        for df_sheet, df_values in self._required_dataframes.items():
-            if redis_conn.exists(df_values['redis_key']):
-                self._dataframes[df_sheet] = pickle.loads(zlib.decompress(redis_conn.get(df_values['redis_key'])))
-                present_dataframes += 1
+        for worksheet_key, worksheet_data in worksheets.items():
+            redis_worksheet_key = f"{worksheet_data['redis_key']}{REDIS_WORKSHEET_SUFFIX}"
+            redis_dataframe_key = f"{worksheet_data['redis_key']}{REDIS_DATAFRAME_SUFFIX}"
+
+            if self.__redis_conn.exists(redis_worksheet_key) and self.__redis_conn.exists(redis_dataframe_key):
+                self._worksheets[worksheet_key] = pickle.loads(zlib.decompress(self.__redis_conn.get(redis_worksheet_key)))
+                self._dataframes[worksheet_key] = pickle.loads(zlib.decompress(self.__redis_conn.get(redis_dataframe_key)))
+                present_worksheets += 1
         
-        if len(self._required_dataframes.keys()) == present_dataframes:
+        if len(self._data['worksheets'].keys()) == present_worksheets:
             return True
-        
+
         return False
     
-    def __get_sheets(self, redis_conn=None):
+    def __connect_to_google(self, document_key):
         """
-        Connects to the Google Sheets API to extract the necessary data.
-        Populates the cache if required; sets the object's instance variables.
+        Returns a Spreadsheet object, representing the connection to the document denoted by document_key (string).
         """
         try:
             client = pygsheets.authorize(service_file=settings.GOOGLE_API_SECRET_PATH)
-            table = client.open_by_key(self._document_id)
+            connection = client.open_by_key(document_key)
         except Exception as e:
             raise exceptions.GoogleConnectionError(f"An exception occurred connecting to the Google Sheets API. {str(e)}")
         
-        for df_sheet, df_values in self._required_dataframes.items():
-            try:
-                worksheet = table.worksheet('title', df_values['sheet_name'])
-            except WorksheetNotFound:
-                raise exceptions.UnknownSheetError()
-
-            if 'start' in df_values:
-                df = worksheet.get_as_df(start=df_values['start'])
-            else:
-                df = worksheet.get_as_df()
-            
-            df = df.rename(columns=str.lower)
-            df['row_number'] = df.index  # Copy row numbers, preserving them
-
-            self._dataframes[df_sheet] = df
-
-            if settings.REDIS_ENABLED:
-                redis_conn.setex(df_values['redis_key'],
-                                 settings.REDIS_EXPIRATION_TIME,
-                                 zlib.compress(pickle.dumps(df)))
+        return connection
     
-    def __read_sheets_data(self, required_sheets):
+    def _get_data(self):
         """
-        Returns information on the requested sheets.
-        This data is pulled from SHEETS.json in the root of the repository.
-        """
-        return_object = {}
-        data = settings.MEDICINE_SHEETS_DATA
+        Sets the _worksheets and _dataframes attributes.
+        For each of the required worksheets/dataframes, creates a Worksheet object.
 
-        if self._document_id not in data.keys():
-            raise exceptions.UnknownDocumentError(self._document_id)
+        If a Worksheet cannot be found, an UnknownSheetError exception is raised.
+        """
+        worksheets = self._data['worksheets']
+
+        for worksheet_key, worksheet_data in worksheets.items():
+            try:
+                Sheet.objects.get(name=worksheet_key)  # Do we recognise the sheet in the database?
+            except Sheet.DoesNotExist:
+                raise exceptions.UnknownSheetError(worksheet_key)
+            
+            # Prepare the data
+            self.__prepare_worksheet(worksheet_key)
+            self.__prepare_dataframe(worksheet_key)
+    
+    def __prepare_worksheet(self, worksheet_key):
+        """
+        Given a Worksheet key, creates the Worksheet object and caches it, if caching is enabled.
+        The _worksheets instance attribute is also updated to include this object.
+        """
+        if worksheet_key not in self._data['worksheets'].keys():
+            raise exceptions.UnknownSheetError(worksheet_key)
         
-        for sheet_name in required_sheets:
-            if sheet_name in data[self._document_id].keys():
-                return_object[sheet_name] = data[self._document_id][sheet_name]
+        connection = self.__connect_to_google(self._data['document_key'])
+        worksheet_data = self._data['worksheets'][worksheet_key]
+
+        try:
+            self._worksheets[worksheet_key] = connection.worksheet('title', worksheet_data['sheet_name'])  # Is the sheet known in the Spreadsheet?
+        except WorksheetNotFound:
+            raise exceptions.UnknownSheetError(worksheet_data['sheet_name'])
+        
+        # Cache the Worksheet and DataFrame objects if Redis is being used.
+        if settings.REDIS_ENABLED:
+            redis_worksheet_key = f"{worksheet_data['redis_key']}{REDIS_WORKSHEET_SUFFIX}"
+
+            self.__redis_conn.setex(redis_worksheet_key,
+                                    settings.REDIS_EXPIRATION_TIME,
+                                    zlib.compress(pickle.dumps(self._worksheets[worksheet_key])))
+        
+
+    def __prepare_dataframe(self, worksheet_key):
+        """
+        Given a Worksheet key, creates a DataFrame object from the stored Worksheet, and caches it if caching is enabled.
+        The _dataframes instance attribute is also updated to include this object.
+        """
+        if worksheet_key not in self._data['worksheets'].keys():
+            raise exceptions.UnknownSheetError(worksheet_key)
+
+        worksheet_data = self._data['worksheets'][worksheet_key]
+
+        # If start is specified, we start the DataFrame from row x.
+        # This allows us to ignore, for example, instructions at the top of a worksheet.
+        if 'start' in worksheet_data.keys():
+            df = self._worksheets[worksheet_key].get_as_df(start=worksheet_data['start'])
+        else:
+            df = self._worksheets[worksheet_key].get_as_df()
+        
+        df = df.rename(columns=str.lower)
+        df['row_number'] = df.index  # Make a copy of the row numbers to preserve them.
+
+        # We can skip the first x rows with the skip attribute. Ignore if not provided.
+        if 'skip' in worksheet_data.keys():
+            try:
+                skip_rows = int(worksheet_data['skip'])
+                df = df.loc[skip_rows:]
+            except ValueError:
+                pass
+        
+        self._dataframes[worksheet_key] = df
+
+        # Cache the DataFrame is Redis is being used.
+        if settings.REDIS_ENABLED:
+            redis_dataframe_key = f"{worksheet_data['redis_key']}{REDIS_DATAFRAME_SUFFIX}"
+
+            self.__redis_conn.setex(redis_dataframe_key,
+                                    settings.REDIS_EXPIRATION_TIME,
+                                    zlib.compress(pickle.dumps(self._dataframes[worksheet_key])))
+    
+    def save_to_worksheet(self, worksheet_key, data):
+        """
+        Inserts data into the Worksheet, and synchronises the changes to the Worksheet on Google's servers.
+        Refreshes the caches (if used).
+        """
+        if worksheet_key not in self._data['worksheets'].keys():
+            raise exceptions.UnknownSheetError(worksheet_key)
+        
+        worksheet_data = self._data['worksheets'][worksheet_key]
+        worksheet = self._worksheets[worksheet_key]
+        worksheet.sync()
+
+        data_list = self.__data_dict_to_list(worksheet_key, data)
+
+        # If we don't have an insert attribute, we position the new row at the top.
+        if 'insert' in worksheet_data.keys():
+            worksheet.insert_rows(worksheet_data['insert'], values=data_list, inherit=True)
+        else:
+            worksheet.insert_rows(1, values=data_list, inherit=True)
+
+        self.__prepare_worksheet(worksheet_key)
+        self.__prepare_dataframe(worksheet_key)
+    
+    def __data_dict_to_list(self, worksheet_key, data):
+        """
+        Creates a list of items that should be appended to a new row in the specified worksheet.
+        Data should be a dictionary, where keys are column names, and values are the values to be placed in the specified column.
+        """
+        return_list = []
+        data_normalised = {k.lower(): v for k, v in data.items()}
+        dataframe = self._dataframes[worksheet_key]
+
+        for column_name in dataframe.columns:
+            data_key_lower = column_name.lower()
+
+            if data_key_lower in data_normalised.keys():
+                return_list.append(data_normalised[data_key_lower])
                 continue
             
-            raise exceptions.UnknownSheetError(sheet_name)
-        
-        return return_object
+            return_list.append('')
+
+        return return_list

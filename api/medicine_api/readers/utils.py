@@ -74,6 +74,9 @@ def get_mean_price_for_item(row, warehouse_country):
     """
     links_list = filter_links(get_links_for_item(row), warehouse_country)
     prices = [item[1] for item in links_list]
+
+    if len(prices) == 0:
+        return 0.0
     
     return statistics.mean(prices)
 
@@ -83,6 +86,9 @@ def get_lowest_price_for_item(row, warehouse_country):
     """
     links_list = filter_links(get_links_for_item(row), warehouse_country)
     prices = [item[1] for item in links_list]
+
+    if len(prices) == 0:
+        return 0.0
     
     return min(prices)
 

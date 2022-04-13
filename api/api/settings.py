@@ -248,16 +248,34 @@ LOGGING = {
         },
     },
     'handlers': {
-        'sheet_reader': {
+        'link_database_populator': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(SRV_DIR, 'logs/api/sheet_reader.log') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else 'sheet_reader.log',
+            'filename': os.path.join(SRV_DIR, 'logs/api/link_database_populator.log') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else 'link_database_populator.log',
             'formatter': 'verbose',
-        }
+        },
+        'link_sheet_populator': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(SRV_DIR, 'logs/api/link_sheet_populator.log') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else 'link_sheet_populator.log',
+            'formatter': 'verbose',
+        },
+        'cache_flushing': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(SRV_DIR, 'logs/api/cache_flushing.log') if os.getenv('MEDICINE_ENVIRONMENT') == 'production' else 'cache_flushing.log',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
-        'medicine_api.readers.sheet_reader': {
-            'handlers': ['sheet_reader'],
+        'medicine_api.readers.link_database_populator': {
+            'handlers': ['link_database_populator'],
             'level': 'DEBUG',
-        }
+        },
+        'medicine_api.readers.link_sheet_populator': {
+            'handlers': ['link_sheet_populator'],
+            'level': 'DEBUG',
+        },
+        'medicine_api.readers.cache_flushing': {
+            'handlers': ['cache_flushing'],
+            'level': 'DEBUG',
+        },
     }
 }
