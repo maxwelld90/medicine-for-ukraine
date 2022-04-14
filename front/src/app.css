@@ -477,20 +477,6 @@ footer span.header > span.version::before {
 
   ul.item-list.stores > li > ul.right-options {
     display: block;
-    background: red;
-  }
-
-  ul.item-list.stores > li > ul.right-options > li.price {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: auto;
-    background: green;
-  }
-
-  ul.item-list.stores > li > ul.right-options > li.price > span.approx {
-    position: absolute;
-    left: 0;
   }
 
   /* ul.item-list.stores > li > ul.right-options > li.price > span.approx {

@@ -15,7 +15,7 @@ function getProductName({ names }, language) {
   return names[language] || names.default;
 }
 
-export default function Basket({ onNext, onBack, language }) {
+export default function Basket({ onNext, onBack }) {
   const [isCompletedStep, setIsCompletedStep] = useState(false);
 
   const [request, setRequest] = useContext(RequestContext);
@@ -50,7 +50,7 @@ export default function Basket({ onNext, onBack, language }) {
       url: link,
     };
 
-    storeItem.quantity = parseInt(value) || 0;
+    storeItem.quantity = parseInt(value, 10) || 0;
 
     const stores = {
       ...request.stores,
@@ -91,8 +91,8 @@ export default function Basket({ onNext, onBack, language }) {
           />
 
           <ul className="item-list stores nohover">
-            {value?.links.map((item, i) => (
-              <li key={i}>
+            {value?.links.map((item) => (
+              <li key={item.link}>
                 <a href={item.link} target="_blank" rel="noreferrer noopener">
                   <span>{item.domain}</span>
                 </a>
@@ -110,9 +110,9 @@ export default function Basket({ onNext, onBack, language }) {
                     )}
                   </li>
                   <QuantityPicker
-                    key={i + i}
+                    key={item.row_number}
                     value={getQty(item)}
-                    onChange={(value) => onQuantityChangeHandler(item, value)}
+                    onChange={(quantity) => onQuantityChangeHandler(item, quantity)}
                   />
                 </ul>
               </li>

@@ -1,17 +1,16 @@
+/* eslint-disable camelcase */
 import { getStaticPath } from "./helpers";
 
 const API_HOST = process.env.REACT_APP_NODE_ENV !== 'production' ? 'http://127.0.0.1:8000' : 'https://api.medicineforukraine.org';
 
+
 export const fetchRecipients = async () => {
   const { recipients } = await (await fetch(`${API_HOST}/recipients`)).json();
 
-  return recipients.map((r) => {
-    r.warehouse_country = {
+  return recipients.map((r) => ({...r, warehouse_country: {
       ...r.warehouse_country,
-      flag_url: getStaticPath("/img/flags/" + r.warehouse_country.flag_url),
-    };
-    return r;
-  });
+      flag_url: getStaticPath(`/img/flags/${r.warehouse_country.flag_url}`),
+    }}));
 };
 
 export const fetchItems = async (recipientId) => {
@@ -19,30 +18,21 @@ export const fetchItems = async (recipientId) => {
     await fetch(`${API_HOST}/items/${recipientId}`)
   ).json();
 
-  return jsonResponse.items.map((r) => {
-    return {
+  return jsonResponse.items.map((r) => ({
       id: r.row_number,
       names: r.item_name_by_language,
       highPriority: r.is_high_priority,
       lowestPrice: r.lowest_price,
-    };
-  });
+    }));
 };
 
-// export const fetchItems = async (donationType, countryCode) => {
-//   const jsonResponse = await (
-//     await fetch(`${API_HOST}/items/${donationType}/${countryCode}`)
-//   ).json();
+export const fetchAddress = async (recipientId) => {
+  const jsonResponse = await (
+    await fetch(`${API_HOST}/recipients/address/${recipientId}`)
+  ).json();
 
-//   return jsonResponse.items.map((r) => {
-//     return {
-//       id: r.row_number,
-//       names: r.item_names_by_language,
-//       highPriority: r.is_high_priority,
-//       lowestPrice: r.lowest_price,
-//     };
-//   });
-// };
+  return jsonResponse;
+};
 
 export const fetchLinks = async (recipientId, itemId) => {
   const jsonResponse = await (
@@ -52,7 +42,7 @@ export const fetchLinks = async (recipientId, itemId) => {
   const { warehouse_address } = await fetchAddress(recipientId);
 
   warehouse_address.country.flag_url = getStaticPath(
-    "/img/flags/" + warehouse_address.country.flag_url
+    `/img/flags/${  warehouse_address.country.flag_url}`
   );
 
   return {
@@ -66,18 +56,9 @@ export const fetchLinks = async (recipientId, itemId) => {
   };
 };
 
-export const fetchAddress = async (recipientId) => {
-  const jsonResponse = await (
-    await fetch(`${API_HOST}/recipients/address/${recipientId}`)
-  ).json();
-
-  return jsonResponse;
-};
-
 function getSelectedObjects(value) {
   return Object.values(value.stores).map(
-    ({ items, screenshots, store_domain }) => {
-      return {
+    ({ items, screenshots, store_domain }) => ({
         store_domain,
         screenshots: screenshots.map((v) => v.base64),
         selected_items: Object.values(items).map(
@@ -88,8 +69,7 @@ function getSelectedObjects(value) {
             row_number,
           })
         ),
-      };
-    }
+      })
   );
 }
 
