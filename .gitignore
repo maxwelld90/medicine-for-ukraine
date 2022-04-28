@@ -19,6 +19,7 @@ landing/out/
 
 uploads/
 
+front/package-lock.json
 front/src/LANGUAGES.json
 front/public/static/css
 front/public/static/fonts

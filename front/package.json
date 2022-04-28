@@ -21,7 +21,7 @@
   "homepage": ".",
   "scripts": {
     "start": "./pre.sh && react-scripts start",
-    "build": "./pre.sh && react-scripts build"
+    "build": "./pre.sh && DISABLE_ESLINT_PLUGIN=true react-scripts build"
   },
   "eslintConfig": {
     "extends": [
