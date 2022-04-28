@@ -280,7 +280,7 @@ footer {
 
 footer div.container div.left {
     float: left;
-    width: 550px;
+    width: 590px;
 }
 
 footer div.container div.right {
@@ -454,7 +454,7 @@ ul.about-contributors {
             }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
     footer div.container div.left {
         width: auto;
         float: none;

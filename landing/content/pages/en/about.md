@@ -42,7 +42,7 @@ Our goal is to deliver life-saving equipment to Ukraine via direct crowdfunding.
     <img src="{{ STATIC_URL }}img/contributors/dmytro-p.jpg" alt="Dmytro Pylypenko" />
     <span>
       <span class="name">Dmytro Pylypenko 🇺🇦</span>
-      <span class="blurb">Product / Software Development. Lives in Barcelona, and does volunteering for Ukraine</span>
+      <span class="blurb">Product/Software Development. Lives in Barcelona, and does volunteering for Ukraine</span>
     </span>
   </li>
   <li>
