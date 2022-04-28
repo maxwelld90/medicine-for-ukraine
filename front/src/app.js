@@ -49,7 +49,7 @@ function App() {
           <div className="basic-router">
             <Routes>
               <Route
-                path="/"
+                path="/request/"
                 element={<Request onStepChange={onStepChange} language={currentLanguage}/>}
               />
             </Routes>
