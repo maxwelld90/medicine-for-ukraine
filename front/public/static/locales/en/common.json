@@ -28,7 +28,8 @@
   },
   "STEP_THREE": {
     "TITLE": "Add to your Basket(s)",
-    "FIRST_LINE": "The selected item has the following links available. Select a link to open the online shop in a new tab. Please indicate how many of the item you select from each online shop."
+    "FIRST_LINE": "The selected item has the following links available. Select a link to open the online shop in a new tab. Please indicate how many of the item you select from each online shop.",
+    "LAST_CHECKED": "Last checked"
   },
   "STEP_FOUR": {
     "TITLE": "Would you like to Donate More?",

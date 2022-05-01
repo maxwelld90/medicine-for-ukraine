@@ -10,6 +10,8 @@ import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
 import StepNavigation from "./components/StepNavigation";
 
+import { getCurrentLanguage } from "../../helpers";
+
 // Check if each store has at least one file
 const isValidRequest = (request) =>
   Object.values(request.stores).every(
@@ -43,7 +45,7 @@ export default function Confirmation({ onNext, onBack, language }) {
           />
 
           <div className="address-box">
-            <span className="name">c/o {value.recipient_name[language] || value.recipient_name["default"]}</span>
+            <span className="name">c/o {value.recipient_name[getCurrentLanguage()] || value.recipient_name["default"]}</span>
             {value.warehouse_address.address}
           </div>
 

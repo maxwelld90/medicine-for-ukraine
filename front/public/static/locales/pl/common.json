@@ -28,7 +28,8 @@
   },
   "STEP_THREE": {
     "TITLE": "Dodaj do koszyka(ów)",
-    "FIRST_LINE": "Wybrany element ma dostępne następujące łącza. Wybierz link, aby otworzyć sklep internetowy w nowej zakładce. Wskaż, ile artykułów wybierzesz z każdego sklepu internetowego."
+    "FIRST_LINE": "Wybrany element ma dostępne następujące łącza. Wybierz link, aby otworzyć sklep internetowy w nowej zakładce. Wskaż, ile artykułów wybierzesz z każdego sklepu internetowego.",
+    "LAST_CHECKED": "Ostatnio sprawdzane"
   },
   "STEP_FOUR": {
     "TITLE": "Czy chcesz przekazać inny przedmiot?",

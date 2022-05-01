@@ -106,7 +106,7 @@ export default function Basket({ onNext, onBack, language }) {
                     )}
                     {item.last_checked && (
                       <span className="date">
-                        Last Checked:{" "}
+                        {t("common:STEP_THREE.LAST_CHECKED")}:{" "}
                         {new Date(item.last_checked).toDateString()}
                       </span>
                     )}

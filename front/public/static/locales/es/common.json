@@ -28,7 +28,8 @@
   },
   "STEP_THREE": {
     "TITLE": "Añadir a su(s) cesta(s)",
-    "FIRST_LINE": "El elemento seleccionado tiene los siguientes enlaces disponibles. Seleccione un enlace para abrir la tienda en línea en una nueva pestaña. Indique cuántos artículos selecciona de cada tienda en línea."
+    "FIRST_LINE": "El elemento seleccionado tiene los siguientes enlaces disponibles. Seleccione un enlace para abrir la tienda en línea en una nueva pestaña. Indique cuántos artículos selecciona de cada tienda en línea.",
+    "LAST_CHECKED": "Última comprobación"
   },
   "STEP_FOUR": {
     "TITLE": "¿Quieres donar otro artículo?",

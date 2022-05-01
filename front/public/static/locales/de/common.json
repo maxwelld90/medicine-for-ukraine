@@ -28,7 +28,8 @@
   },
   "STEP_THREE": {
     "TITLE": "Zu Ihrem Warenkorb hinzufügen",
-    "FIRST_LINE": "Für das ausgewählte Element sind die folgenden Links verfügbar. Wählen Sie einen Link aus, um den Online-Shop in einem neuen Tab zu öffnen. Bitte geben Sie an, wie viele der Artikel Sie aus jedem Online-Shop auswählen."
+    "FIRST_LINE": "Für das ausgewählte Element sind die folgenden Links verfügbar. Wählen Sie einen Link aus, um den Online-Shop in einem neuen Tab zu öffnen. Bitte geben Sie an, wie viele der Artikel Sie aus jedem Online-Shop auswählen.",
+    "LAST_CHECKED": "Zuletzt geprüft"
   },
   "STEP_FOUR": {
     "TITLE": "Möchten Sie mehr spenden?",
