@@ -4,42 +4,49 @@
   "NEXT_BUTTON": "Pr\u00f3ximo",
   "ADD_IMAGE": "A\u00f1adir m\u00e1s im\u00e1genes",
   "UPLOAD_IMAGE": "Sube la imagen",
+  "LOADING": "Espere por favor...",
+  "APPROXIMATE": "Aprox.",
+  "SELECTED_ITEM": "Item seleccionado",
   "DEFAULT_ERROR_TEXT": "Vaya! Algo salió mal.",
   "FINAL_BUTTON": "Proceso completo",
   "REQUEST_GREETING": {
-    "TITLE": "Bienvenidas",
-    "FIRST_LINE": "Gracias por apoyar a Ucrania!",
-    "SECOND_LINE": "Este es el cuestionario para dar la ayuda en el estructurado",
+    "TITLE": "Donar a Ucrania",
+    "FIRST_LINE": "Gracias por su interés en ayudar a Ucrania. Tenemos varios voluntarios que están esperando para recibir sus donaciones y enviarlas a quienes más las necesitan.",
+    "SECOND_LINE": "Para comenzar el proceso, seleccione Iniciar a continuación.",
     "BUTTON": "Comienzo"
   },
   "STEP_ONE": {
-    "TITLE": "A d\u00f3nde quieres enviar los art\u00edculos?",
-    "FIRST_LINE": "Actualmente tenemos voluntarios listos para recibir art\u00edculos en los siguientes pa\u00edses. Seleccione un pa\u00eds en el que pueda pagar art\u00edculos para continuar.",
-    "SECOND_LINE": "Seleccione el pa\u00eds al que desea enviar art\u00edculos y haga clic/toque continuar."
+    "TITLE": "Seleccione un voluntario",
+    "FIRST_LINE": "Tenemos varios voluntarios que solicitan artículos para ser donados, y se agregan nuevos voluntarios con el tiempo. Cada voluntario tiene una dirección a la que se deben entregar los artículos.",
+    "SECOND_LINE": "Seleccione el voluntario al que desea donar a continuación.",
+    "WAREHOUSE_LOCATED": "Almacén ubicado en"
   },
   "STEP_TWO": {
-    "TITLE": "Qu\u00e9 quieres donar?",
-    "FIRST_LINE": "Estos art\u00edculos son necesarios para las tropas de primera l\u00ednea. Seleccione uno de los elementos a continuaci\u00f3n. Los que est\u00e1n en rojo son elementos de alta prioridad. Tenga en cuenta que el precio es aproximado."
+    "TITLE": "Seleccione un artículo para donar",
+    "FIRST_LINE": "El voluntario seleccionado está buscando los elementos que se muestran a continuación. Seleccione uno de los artículos que le gustaría donar. Tenga en cuenta que los elementos que se muestran en rojo se requieren con urgencia; tenga en cuenta también que los precios son aproximados."
   },
   "STEP_THREE": {
-    "TITLE": "A\u00f1adir a su(s) cesta(s)",
-    "FIRST_LINE": "Tenemos los siguientes enlaces para {{producto}} que entrega a {{pa\u00eds}}. Por favor, especifique cu\u00e1ntos de los art\u00edculos que ha puesto en la cesta de la compra."
+    "TITLE": "Añadir a su(s) cesta(s)",
+    "FIRST_LINE": "El elemento seleccionado tiene los siguientes enlaces disponibles. Seleccione un enlace para abrir la tienda en línea en una nueva pestaña. Indique cuántos artículos selecciona de cada tienda en línea."
   },
   "STEP_FOUR": {
-    "TITLE": "Te gustaría donar más?",
-    "FIRST_LINE": "Te gustaría registrar más artículos? En caso afirmativo, puede seleccionar más",
-    "BACK_BUTTON": "Sí, quiero donar más.",
-    "NEXT_BUTTON": "No. Complete el proceso."
+    "TITLE": "¿Quieres donar otro artículo?",
+    "FIRST_LINE": "¿Te gustaría donar otro artículo?",
+    "SECOND_LINE": "Seleccione Sí si lo hace, y se le presentará de nuevo la lista de elementos. De lo contrario, simplemente seleccione No para continuar.",
+    "BACK_BUTTON": "Sí, quiero donar otro artículo",
+    "NEXT_BUTTON": "No, continuar el proceso"
   },
   "STEP_FIVE": {
-    "TITLE": "Completa tu pedido",
-    "FIRST_LINE": "Ahora puede completar su(s) pedido(s) en los sitios web elegidos. Por favor env\u00edelos a la direcci\u00f3n indicada.",
-    "SECOND_LINE": "Una vez que haya completado sus compras, conf\u00edrmelo cargando capturas de pantalla del pedido. Aseg\u00farese de evitar cualquier informaci\u00f3n personal."
+    "TITLE": "Complete su pedido",
+    "FIRST_LINE": "Ahora puede completar su(s) pedido(s) en la(s) tienda(s) en línea elegida(s). Envíe todos los artículos a la dirección que se muestra a continuación.",
+    "SECOND_LINE": "Cuando haya completado las transacciones, cargue capturas de pantalla que confirmen sus pedidos y muestren los artículos solicitados. Asegúrese de evitar cualquier información personal.",
+    "SCREENSHOTS": "Subir capturas de pantalla",
+    "NO_SCREENSHOT": "Sube una captura de pantalla de la confirmación del pedido de esta tienda online."
   },
   "STEP_SIX": {
-    "TITLE": "Gracias",
-    "FIRST_LINE": "Hemos registrado su pedido en nuestro inventario. Apreciamos mucho tu ayuda. Gracias por apoyar a Ucrania.",
-    "SECOND_LINE": "Si desea pedir otro art\u00edculo, haga clic en pedir otro art\u00edculo. De lo contrario, ahora puede cerrar esta pesta\u00f1a.",
-    "RESTART_PROCESS": "Proceso de reinicio"
+    "TITLE": "¡Gracias!",
+    "FIRST_LINE": "Hemos registrado correctamente su pedido en nuestro inventario. ¡Apreciamos mucho tu ayuda! Gracias por apoyar a Ucrania.",
+    "SECOND_LINE": "Seleccione el botón de abajo para volver a la página de inicio de Medicina para Ucrania.",
+    "HOMEPAGE": "Regresar a la página principal"
   }
 }

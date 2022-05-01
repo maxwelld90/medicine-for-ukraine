@@ -25,7 +25,7 @@ export default function QuantityPicker({ value = 0, max = 50, onChange }) {
       :
         <button className="plus" disabled onClick={onPlusClick}>+</button>
       }
-      
+
       <span className="quantity">{quantity}</span>
 
       {quantity > 0 ?

@@ -9,7 +9,7 @@ import { RequestContext } from "./requestContext";
 import StepDescription from "./components/StepDescription";
 import StepNavigation from "./components/StepNavigation";
 
-export default function Gratitude({ onNext, onBack }) {
+export default function Gratitude({ onNext, onBack, language }) {
   const [request] = useContext(RequestContext);
   const [t] = useTranslation(["translation", "common"]);
 
@@ -24,10 +24,9 @@ export default function Gratitude({ onNext, onBack }) {
             firstLine={t("common:STEP_SIX.FIRST_LINE")}
             secondLine={t("common:STEP_SIX.SECOND_LINE")}
           />
-          <StepNavigation
-            nextButtonTitle={t("common:STEP_SIX.RESTART_PROCESS")}
-            onClickNext={onNext}
-          />
+          <p className="direction">
+            <a href={"/"}>{t("common:STEP_SIX.HOMEPAGE")}</a>
+          </p>
         </>
       )}
     </Content>

@@ -90,6 +90,15 @@ ul.item-list li {
   transition: 0.3s;
 }
 
+ul.item-list.nohover li:hover {
+  background: transparent;
+}
+
+ul.item-list.direction li {
+  background: #005BBB;
+  color: #FFF;
+}
+
 ul.item-list li.high-priority {
   background-color: #e98f8f;
 }
@@ -105,40 +114,43 @@ ul.item-list li:last-child {
   margin-bottom: 0;
 }
 
-ul.item-list.countries li img {
-  height: 30px;
-  min-width: 50px;
+ul.item-list.recipients li {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 30px;
+  height: auto;
+}
+
+ul.item-list.recipients li img {
+  height: 100%;
+  max-width: 70px;
+}
+
+ul.item-list.recipients li span > span.name {
+  display: block;
+  margin-bottom: -5px;
+  font-size: 20pt;
+  font-weight: 700;
+}
+
+ul.item-list.recipients li span > span.warehouse {
   display: inline-block;
-  margin-right: 8px;
+  font-weight: 300;
+  font-size: 12pt;
+  line-height: 12pt;
 }
 
-ul.item-list.countries li span {
-  position: relative;
-  bottom: 4px;
+ul.item-list.recipients li span > span.warehouse strong {
+  font-weight: 700;
 }
 
-ul.item-list.stores li {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: start;
-  height: 50px;
-  align-items: center;
-}
-
-ul.item-list.stores li:hover {
-  cursor: default;
-}
-
-ul.item-list.stores li input {
-  font-size: 20px;
-}
-
-ul.item-list.stores li a {
-  color: #fff;
-}
-
-ul.item-list.stores li:hover a {
-  color: #005bbb;
+ul.item-list.recipients li span > span.tagline {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: 14pt;
+  line-height: 20pt;
 }
 
 ul.file-list li {

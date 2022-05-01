@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./loader.css";
 
 export default function Loader() {
-  return <div className="loader"><div></div><span>Please wait...</span></div>;
+  const [t] = useTranslation(["translation", "common"]);
+  
+  return <div className="loader"><div></div><span>{t("common:LOADING")}</span></div>;
 }

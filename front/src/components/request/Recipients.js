@@ -9,6 +9,8 @@ import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 
+import './request.css';
+
 export default function Recipients({ onNext, onBack, language }) {
   const { loading, error, value } = useAsync(fetchRecipients);
 
@@ -29,9 +31,10 @@ export default function Recipients({ onNext, onBack, language }) {
             step="1/5"
             title={t("common:STEP_ONE.TITLE")}
             firstLine={t("common:STEP_ONE.FIRST_LINE")}
+            secondLine={t("common:STEP_ONE.SECOND_LINE")}
           />
 
-          <ul className="item-list countries direction">
+          <ul className="item-list recipients direction">
             {value.map((recipient, i) => (
               <li
                 key={i}
@@ -39,48 +42,19 @@ export default function Recipients({ onNext, onBack, language }) {
                 // className={
                 //   recipient.code === request.countryCode ? "selected" : ""
                 // }
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                }}
               >
-                <div style={{ width: "70%" }}>
-                  <div>
-                    {recipient.names[language] || recipient.names["default"]}
-                  </div>
-                  <div
-                    style={{
-                      fontWeight: 100,
-                      fontSize: "16pt",
-                      padding: "10px 0",
-                    }}
-                  >
-                    {recipient.tagline[language] ||
-                      recipient.tagline["default"]}
-                  </div>
-                </div>
-
-                <div>
-                  <div
-                    style={{
-                      fontWeight: 100,
-                      fontSize: "12pt",
-                    }}
-                  >
-                    Delivery to:{" "}
-                    {recipient.warehouse_country.names[language] ||
-                      recipient.warehouse_country.names["default"]}
-                  </div>
-                  <img
-                    style={{ width: "50px" }}
+                <span className="text">
+                  <span className="name">{recipient.names[language] || recipient.names["default"]}</span>
+                  <span className="warehouse">{t("common:STEP_ONE.WAREHOUSE_LOCATED")} <strong>{recipient.warehouse_country.names[language] || recipient.warehouse_country.names["default"]}</strong></span>
+                  <span className="tagline">{recipient.tagline[language] || recipient.tagline["default"]}</span>
+                </span>
+                <img
                     src={recipient.warehouse_country.flag_url}
                     alt={`Flag of ${
                       recipient.warehouse_country.names[language] ||
                       recipient.warehouse_country.names["default"]
                     }`}
                   />
-                </div>
               </li>
             ))}
           </ul>

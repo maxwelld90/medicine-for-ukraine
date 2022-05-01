@@ -16,7 +16,7 @@ const isValidRequest = (request) =>
     (s) => s.screenshots && s.screenshots.length > 0
   );
 
-export default function Confirmation({ onNext, onBack }) {
+export default function Confirmation({ onNext, onBack, language }) {
   const [request] = useContext(RequestContext);
   const [isCompletedStep, setIsCompletedStep] = useState(false);
   const [t] = useTranslation(["translation", "common"]);
@@ -42,16 +42,19 @@ export default function Confirmation({ onNext, onBack }) {
             firstLine={t("common:STEP_FIVE.FIRST_LINE")}
           />
 
-          <div className="address-text">{value.warehouse_address.address}</div>
+          <div className="address-box">
+            <span className="name">c/o {value.recipient_name[language] || value.recipient_name["default"]}</span>
+            {value.warehouse_address.address}
+          </div>
 
-          <h2>Upload Screenshot(s)</h2>
+          <h2>{t("common:STEP_FIVE.SCREENSHOTS")}</h2>
 
           <p>{t("common:STEP_FIVE.SECOND_LINE")}</p>
 
           <ul className={"file-list"}>
             {Object.entries(request.stores).map(([i, store]) => (
               <li key={i}>
-                <span>{store.store_domain}</span>
+                <span className="domain">{store.store_domain}</span>
                 <ImageLoader
                   onUpload={getOnUploadHandler(i)}
                   existingFiles={store.screenshots}

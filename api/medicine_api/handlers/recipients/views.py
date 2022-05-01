@@ -49,6 +49,7 @@ class WarehouseAddress(APIView):
         try:
             return_object = {
                 'recipient_id': recipient_id,
+                'recipient_name': serializers.RecipientSerializer(recipient, many=False).data['names'],
                 'warehouse_address': serializers.WarehouseAddressSerializer(recipient.warehouse, many=False).data,
             }
         except Exception as e:

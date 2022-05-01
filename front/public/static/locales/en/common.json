@@ -3,43 +3,50 @@
   "PREV_BUTTON": "Back",
   "NEXT_BUTTON": "Next",
   "FINAL_BUTTON": "Complete Process",
-  "ADD_IMAGE": "Add more images",
-  "UPLOAD_IMAGE": "Upload the image",
+  "ADD_IMAGE": "Upload another Screenshot",
+  "UPLOAD_IMAGE": "Upload a Screenshot",
+  "LOADING": "Please wait...",
+  "APPROXIMATE": "Approx.",
+  "SELECTED_ITEM": "Selected Item",
   "DEFAULT_ERROR_TEXT": "Oops! Something went wrong.",
   "REQUEST_GREETING": {
     "TITLE": "Donate to Ukraine",
-    "FIRST_LINE": "Thank you for your interest in supporting Ukraine. We have created this simple step-by-step process to help you get medicine and other equipment to those who need it.",
-    "SECOND_LINE": "To begin the process, please click or tap Start below.",
+    "FIRST_LINE": "Thank you for your interest in helping Ukraine. We have several volunteers who are waiting to receive your donations and ship them to those who need them the most.",
+    "SECOND_LINE": "To begin the process, select Start below.",
     "BUTTON": "Start"
   },
   "STEP_ONE": {
-    "TITLE": "Who do you want to send items to?",
-    "FIRST_LINE": "We currently have volunteers ready to receive items in the following countries. Select a country that you can pay for items in to continue.",
-    "SECOND_LINE": "Select the country you wish to send items to, and click/tap continue."
+    "TITLE": "Select a Volunteer",
+    "FIRST_LINE": "We have several volunteers who are requesting items to be donated, with new volunteers being added over time. Each volunteer has an address that items should be delivered to.",
+    "SECOND_LINE": "Select the volunteer you wish to donate to below.",
+    "WAREHOUSE_LOCATED": "Warehouse located in"
   },
   "STEP_TWO": {
-    "TITLE": "What do you want to donate?",
-    "FIRST_LINE": "These items are required for frontline troops. Select one of the items below. Those in red are high priority items. Note the price is approximate."
+    "TITLE": "Select an Item to Donate",
+    "FIRST_LINE": "The selected volunteer is seeking the items shown below. Select one of the items you would like to donate. Note that items shown in red are urgently required; note also that prices are approximate."
   },
   "STEP_THREE": {
-    "TITLE": "Add to your basket(s)",
-    "FIRST_LINE": "We have found the following links for the product listed above. Click a link to open the online shop in a new tab, and indicate how many of the item you select from each shop."
+    "TITLE": "Add to your Basket(s)",
+    "FIRST_LINE": "The selected item has the following links available. Select a link to open the online shop in a new tab. Please indicate how many of the item you select from each online shop."
   },
   "STEP_FOUR": {
-    "TITLE": "Would you like to donate more?",
-    "FIRST_LINE": "Would you like to register more items? If yes, you can select more",
-    "BACK_BUTTON": "Yes, I want to donate more.",
-    "NEXT_BUTTON": "No. Complete the process."
+    "TITLE": "Would you like to Donate More?",
+    "FIRST_LINE": "Would you like to donate another item?",
+    "SECOND_LINE": "Select Yes if you do, and you will be presented with the list of items again. Otherwise, simply select No to continue.",
+    "BACK_BUTTON": "Yes, I want to donate another item",
+    "NEXT_BUTTON": "No, continue the process"
   },
   "STEP_FIVE": {
-    "TITLE": "Complete your order",
-    "FIRST_LINE": "You can now complete your order(s) on the chosen websites. Please send them to the address listed.",
-    "SECOND_LINE": "Once you have completed your purchases, please confirm that by uploading order screenshots. Be sure to avoid any personal information."
+    "TITLE": "Complete your Order",
+    "FIRST_LINE": "You can now complete your order(s) on the chosen online shop(s). Please send all items to the address shown below.",
+    "SECOND_LINE": "When you have completed the transactions, please upload screenshots confirming your orders showing the items requested. Be sure to avoid any personal information.",
+    "SCREENSHOTS": "Upload Screenshot(s)",
+    "NO_SCREENSHOT": "Upload a screenshot of the order confirmation for this online shop."
   },
   "STEP_SIX": {
-    "TITLE": "Thank you",
-    "FIRST_LINE": "We have recorded your order in our inventory. We really appreciate your support. Thank you for supporting Ukraine.",
-    "SECOND_LINE": "If you want to order another item, click order another item. Otherwise, you can now close this tab.",
-    "RESTART_PROCESS": "Restart process"
+    "TITLE": "Thank You!",
+    "FIRST_LINE": "We have successfully recorded your order in our inventory. We really appreciate your support! Thank you for supporting Ukraine.",
+    "SECOND_LINE": "Select the button below to return to the Medicine for Ukraine homepage.",
+    "HOMEPAGE": "Return to Homepage"
   }
 }

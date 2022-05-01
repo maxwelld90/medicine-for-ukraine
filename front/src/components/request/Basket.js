@@ -11,6 +11,8 @@ import ItemDeliveryConfirmation from "./components/itemDeliveryConfirmation";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 
+import './request.css';
+
 function getProductName({ names }, language) {
   return names[language] || names.default;
 }
@@ -84,7 +86,7 @@ export default function Basket({ onNext, onBack, language }) {
             title={t("common:STEP_THREE.TITLE")}
             firstLine={t("common:STEP_THREE.FIRST_LINE")}
           />
-
+          
           <ItemDeliveryConfirmation
             itemName={productName}
             country={value.country}
@@ -98,7 +100,7 @@ export default function Basket({ onNext, onBack, language }) {
                 </a>
                 <ul className="right-options">
                   <li className="price">
-                    <span className="approx">Approx.</span>
+                    <span className="approx">{t("common:APPROXIMATE")}</span>
                     {item.price && (
                       <span className="price">&euro;{item.price}</span>
                     )}

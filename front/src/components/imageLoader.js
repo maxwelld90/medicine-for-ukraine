@@ -49,15 +49,22 @@ export default function ImageLoader({ onUpload, existingFiles }) {
     <div>
       <button onClick={handleClick}>{buttonLabel}</button>
 
-      {files.map((file, i) => (
-        <div className="screenshot-item" key={i}>
-          <img src={file.base64} alt={file.name}/>
-          <span className="screenshot-title">{file.name}</span>
-          <div className="screenshot-remove-wrap">
-            <span className="screenshot-remove" onClick={() => deleteItem(i)}>&#10006;</span>
-          </div>
-        </div>
-      ))}
+      {files.length == 0 && 
+      <span className="no-images">{t("common:STEP_FIVE.NO_SCREENSHOT")}</span>
+      }
+
+      {files.length > 0 &&
+      <ul className="screenshots">
+        {files.map((file, i) => (
+          <li key={i}>
+            <img src={file.base64} alt={file.name}/>
+            <span className="screenshot-title">{file.name}</span>
+            <div className="screenshot-remove-wrap">
+              <span className="screenshot-remove" onClick={() => deleteItem(i)}>&#10006;</span>
+            </div>
+          </li>
+        ))}
+      </ul>}
 
       <input
         type="file"

@@ -4,42 +4,49 @@
   "NEXT_BUTTON": "Nast\u0119pny",
   "ADD_IMAGE": "Dodaj wi\u0119cej zdj\u0119\u0107",
   "UPLOAD_IMAGE": "Prze\u015blij obraz",
+  "LOADING": "Proszę czekać...",
+  "APPROXIMATE": "Około.",
+  "SELECTED_ITEM": "Wybrany przedmiot",
   "DEFAULT_ERROR_TEXT": "Oj! Coś poszło nie tak.",
   "FINAL_BUTTON": "Kompletny proces",
   "REQUEST_GREETING": {
-    "TITLE": "Witamy",
-    "FIRST_LINE": "Dziękujemy za wsparcie Ukrainy!",
-    "SECOND_LINE": "To jest kwestionariusz do udzielenia pomocy w zorganizowanym",
+    "TITLE": "Wpłać na Ukrainę",
+    "FIRST_LINE": "Dziękujemy za zainteresowanie pomocą Ukrainie. Mamy kilku wolontariuszy, którzy czekają na Twoje darowizny i wyślą je tym, którzy najbardziej ich potrzebują.",
+    "SECOND_LINE": "Aby rozpocząć proces, wybierz Start poniżej.",
     "BUTTON": "Początek"
   },
   "STEP_ONE": {
-    "TITLE": "Dok\u0105d chcesz wys\u0142a\u0107 przedmioty?",
-    "FIRST_LINE": "Obecnie mamy wolontariuszy gotowych do odbioru przedmiot\u00f3w w nast\u0119puj\u0105cych krajach. Wybierz kraj, w kt\u00f3rym mo\u017cesz zap\u0142aci\u0107 za przedmioty, aby kontynuowa\u0107.",
-    "SECOND_LINE": "Wybierz kraj, do kt\u00f3rego chcesz wys\u0142a\u0107 elementy, i kliknij/dotknij Kontynuuj."
+    "TITLE": "Wybierz wolontariusza",
+    "FIRST_LINE": "Mamy kilku wolontariuszy, którzy proszą o darowizny, a z czasem przybywają nowi wolontariusze. Każdy wolontariusz ma adres, na który należy dostarczyć przedmioty.",
+    "SECOND_LINE": "Wybierz wolontariusza, któremu chcesz przekazać darowiznę poniżej.",
+    "WAREHOUSE_LOCATED": "Magazyn zlokalizowany w"
   },
   "STEP_TWO": {
-    "TITLE": "Co chcesz przekaza\u0107?",
-    "FIRST_LINE": "Te przedmioty s\u0105 wymagane dla oddzia\u0142\u00f3w frontowych. Wybierz jedn\u0105 z poni\u017cszych pozycji. Te zaznaczone na czerwono to przedmioty o wysokim priorytecie. Uwaga, cena jest przybli\u017cona."
+    "TITLE": "Wybierz przedmiot do przekazania",
+    "FIRST_LINE": "Wybrany wolontariusz poszukuje przedmiotów pokazanych poniżej. Wybierz jeden z przedmiotów, które chcesz przekazać. Pamiętaj, że elementy zaznaczone na czerwono są pilnie potrzebne; zauważ również, że ceny są orientacyjne."
   },
   "STEP_THREE": {
-    "TITLE": "Dodaj do koszyka(\u00f3w)",
-    "FIRST_LINE": "Mamy nast\u0119puj\u0105ce linki do {{product}}, kt\u00f3ry dostarcza do {{country}}. Okre\u015bl, ile artyku\u0142\u00f3w w\u0142o\u017cy\u0142e\u015b do koszyka."
+    "TITLE": "Dodaj do koszyka(ów)",
+    "FIRST_LINE": "Wybrany element ma dostępne następujące łącza. Wybierz link, aby otworzyć sklep internetowy w nowej zakładce. Wskaż, ile artykułów wybierzesz z każdego sklepu internetowego."
   },
   "STEP_FOUR": {
-    "TITLE": "Zrealizuj swoje zam\u00f3wienie",
-    "FIRST_LINE": "Mo\u017cesz teraz sfinalizowa\u0107 swoje zam\u00f3wienia na wybranych stronach internetowych. Prosimy o przes\u0142anie ich na podany adres.",
-    "SECOND_LINE": "Po sfinalizowaniu zakup\u00f3w potwierd\u017a to, przesy\u0142aj\u0105c zrzuty ekranu z zam\u00f3wie\u0144. Pami\u0119taj, aby unika\u0107 jakichkolwiek danych osobowych."
+    "TITLE": "Czy chcesz przekazać inny przedmiot?",
+    "FIRST_LINE": "Czy chcesz przekazać inny przedmiot?",
+    "SECOND_LINE": "Wybierz opcję Tak, jeśli to zrobisz, a ponownie zostanie wyświetlona lista elementów. W przeciwnym razie po prostu wybierz Nie, aby kontynuować.",
+    "BACK_BUTTON": "Tak, chcę przekazać inny przedmiot",
+    "NEXT_BUTTON": "Nie, kontynuuj proces"
   },
   "STEP_FIVE": {
-    "TITLE": "Czy chciałbyś przekazać więcej?",
-    "FIRST_LINE": "Czy chcesz zarejestrować więcej pozycji? Jeśli tak, możesz wybrać więcej",
-    "BACK_BUTTON": "Tak, chcę przekazać więcej.",
-    "NEXT_BUTTON": "Nie. Zakończ proces."
+    "TITLE": "Zrealizuj swoje zamówienie",
+    "FIRST_LINE": "Możesz teraz sfinalizować swoje zamówienia w wybranych sklepach internetowych. Prosimy o przesłanie wszystkich przedmiotów na adres podany poniżej.",
+    "SECOND_LINE": "Po sfinalizowaniu transakcji prześlij zrzuty ekranu potwierdzające Twoje zamówienia, przedstawiające żądane przedmioty. Pamiętaj, aby unikać jakichkolwiek danych osobowych.",
+    "SCREENSHOTS": "Prześlij zrzuty ekranu",
+    "NO_SCREENSHOT": "Prześlij zrzut ekranu z potwierdzeniem zamówienia dla tego sklepu internetowego."
   },
   "STEP_SIX": {
-    "TITLE": "Dzi\u0119kuj\u0119 Ci",
-    "FIRST_LINE": "Zarejestrowali\u015bmy Twoje zam\u00f3wienie w naszym ekwipunku. Naprawd\u0119 doceniamy twoje wsparcie. Dzi\u0119kuj\u0119 za wsparcie Ukrainy.",
-    "SECOND_LINE": "Je\u015bli chcesz zam\u00f3wi\u0107 kolejny przedmiot, kliknij Zam\u00f3w kolejny przedmiot. W przeciwnym razie mo\u017cesz teraz zamkn\u0105\u0107 t\u0119 kart\u0119.",
-    "RESTART_PROCESS": "Uruchom ponownie proces"
+    "TITLE": "Dziękuję!",
+    "FIRST_LINE": "Pomyślnie zarejestrowaliśmy Twoje zamówienie w naszym ekwipunku. Naprawdę doceniamy Twoje wsparcie! Dziękuję za wsparcie Ukrainy.",
+    "SECOND_LINE": "Wybierz poniższy przycisk, aby powrócić do strony głównej Medycyny dla Ukrainy.",
+    "HOMEPAGE": "Powrót do strony głównej"
   }
 }

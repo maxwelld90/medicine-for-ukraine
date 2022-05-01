@@ -12,6 +12,7 @@ export default function ActionItem({ onNext, onBack }) {
         step="4/5"
         title={t("common:STEP_FOUR.TITLE")}
         firstLine={t("common:STEP_FOUR.FIRST_LINE")}
+        secondLine={t("common:STEP_FOUR.SECOND_LINE")}
       />
 
       <p className="direction">

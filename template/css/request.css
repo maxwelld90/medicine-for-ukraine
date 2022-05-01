@@ -168,6 +168,37 @@ position: relative;
 bottom: 4px;
 }
 
+/* */
+
+ul.item-list.recipients li {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: auto;
+}
+
+ul.item-list.recipients li img {
+    height: 100%;
+    max-width: 70px;
+}
+
+ul.item-list.recipients li span > span.name {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20pt;
+    font-weight: 700;
+}
+
+ul.item-list.recipients li span > span.tagline {
+    display: inline-block;
+    font-weight: 300;
+    font-size: 14pt;
+    line-height: 20pt;
+}
+
+
+/* */
+
 ul.item-list.stores li {
 display: grid;
 grid-template-columns: 1fr 1fr;

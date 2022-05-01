@@ -4,42 +4,49 @@
   "NEXT_BUTTON": "Weiter",
   "ADD_IMAGE": "Weitere Bilder hinzuf\u00fcgen",
   "UPLOAD_IMAGE": "Laden Sie ein Bild hoch",
+  "LOADING": "Warten Sie mal...",
+  "APPROXIMATE": "Ca.",
+  "SELECTED_ITEM": "Ausgewähltes Objekt",
   "DEFAULT_ERROR_TEXT": "Hoppla! Etwas ist schief gelaufen.",
   "FINAL_BUTTON": "Vollständiger Prozess",
   "REQUEST_GREETING": {
-    "TITLE": "Willkommen",
-    "FIRST_LINE": "Danke, dass Sie die Ukraine unterstützen!",
-    "SECOND_LINE": "Dies ist der Fragebogen für die Hilfestellung im Strukturierten",
+    "TITLE": "Spende für die Ukraine",
+    "FIRST_LINE": "Vielen Dank für Ihr Interesse, der Ukraine zu helfen. Wir haben mehrere Freiwillige, die darauf warten, Ihre Spenden entgegenzunehmen und sie an diejenigen zu versenden, die sie am dringendsten benötigen.",
+    "SECOND_LINE": "Um mit dem Vorgang zu beginnen, wählen Sie unten Start aus.",
     "BUTTON": "Start"
   },
   "STEP_ONE": {
-    "TITLE": "Wohin m\u00f6chten Sie Artikel schicken?",
-    "FIRST_LINE": "Wir haben derzeit Freiwillige in den folgenden L\u00e4ndern, die bereit sind Artikel entgegenzunehmen. W\u00e4hlen Sie ein Land aus, in dem Sie Artikel bezahlen k\u00f6nnen, um fortzufahren.",
-    "SECOND_LINE": "W\u00e4hlen Sie das Land aus, in das Sie Artikel senden m\u00f6chten, und klicken Sie auf Weiter."
+    "TITLE": "Wählen Sie einen Freiwilligen aus",
+    "FIRST_LINE": "Wir haben mehrere Freiwillige, die um Spenden bitten, und im Laufe der Zeit kommen neue Freiwillige hinzu. Jeder Freiwillige hat eine Adresse, an die die Gegenstände geliefert werden sollen.",
+    "SECOND_LINE": "Wählen Sie unten den Freiwilligen aus, für den Sie spenden möchten.",
+    "WAREHOUSE_LOCATED": "Lager in"
   },
   "STEP_TWO": {
-    "TITLE": "Was m\u00f6chten Sie spenden?",
-    "FIRST_LINE": "Diese Gegenst\u00e4nde werden f\u00fcr Truppen an der Front ben\u00f6tigt. W\u00e4hlen Sie einen der folgenden Artikel aus. Rot gekennzeichnete Elemente haben eine hohe Priorit\u00e4t. Beachten Sie, dass der tats\u00e4chliche Preis abweichen kann."
+    "TITLE": "Wählen Sie einen zu spendenden Artikel aus",
+    "FIRST_LINE": "Der ausgewählte Freiwillige sucht die unten gezeigten Gegenstände. Wählen Sie einen der Artikel aus, die Sie spenden möchten. Beachten Sie, dass die rot gekennzeichneten Artikel dringend benötigt werden; Beachten Sie auch, dass die Preise ungefähr sind."
   },
   "STEP_THREE": {
-    "TITLE": "Zu Ihren Warenkorb hinzuf\u00fcgen",
-    "FIRST_LINE": "Wir haben die folgenden Links f\u00fcr {{product}}, das nach {{country}} geliefert wird. Bitte geben Sie an, wie viele der Artikel Sie in den Warenkorb gelegt haben."
+    "TITLE": "Zu Ihrem Warenkorb hinzufügen",
+    "FIRST_LINE": "Für das ausgewählte Element sind die folgenden Links verfügbar. Wählen Sie einen Link aus, um den Online-Shop in einem neuen Tab zu öffnen. Bitte geben Sie an, wie viele der Artikel Sie aus jedem Online-Shop auswählen."
   },
   "STEP_FOUR": {
-    "TITLE": "Sie möchten mehr spenden?",
-    "FIRST_LINE": "Möchten Sie weitere Artikel registrieren? Wenn ja, können Sie weitere auswählen",
-    "BACK_BUTTON": "Ja, ich möchte mehr spenden.",
-    "NEXT_BUTTON": "Nein. Schließen Sie den Vorgang ab."
+    "TITLE": "Möchten Sie mehr spenden?",
+    "FIRST_LINE": "Sie möchten einen weiteren Artikel spenden?",
+    "SECOND_LINE": "Wählen Sie Ja, wenn Sie dies tun, und Ihnen wird erneut die Liste der Elemente angezeigt. Andernfalls wählen Sie einfach Nein, um fortzufahren.",
+    "BACK_BUTTON": "Ja, ich möchte einen weiteren Artikel spenden",
+    "NEXT_BUTTON": "Nein, setzen Sie den Vorgang fort"
   },
   "STEP_FIVE": {
-    "TITLE": "Schlie\u00dfen Sie Ihre Bestellung ab",
-    "FIRST_LINE": "Sie k\u00f6nnen nun Ihre Bestellung(en) auf den ausgew\u00e4hlten Webseiten abschlie\u00dfen. Bitte senden Sie die Artikel an die angegebene Adresse.",
-    "SECOND_LINE": "Laden Sie bitte nach dem Abschluss Ihres Einkaufs Screenshots Ihrer Bestellung(en) hoch um uns diese zu best\u00e4tigen. Achten Sie darauf, pers\u00f6nliche Informationen in den Screenshots zu vermeiden."
+    "TITLE": "Vervollständigen Sie Ihre Bestellung",
+    "FIRST_LINE": "Sie können nun Ihre Bestellung(en) in dem/den ausgewählten Online-Shop(s) abschließen. Bitte senden Sie alle Artikel an die unten angegebene Adresse.",
+    "SECOND_LINE": "Wenn Sie die Transaktionen abgeschlossen haben, laden Sie bitte Screenshots hoch, die Ihre Bestellungen mit den angeforderten Artikeln bestätigen. Achten Sie darauf, persönliche Informationen zu vermeiden.",
+    "SCREENSHOTS": "Screenshot(s) hochladen",
+    "NO_SCREENSHOT": "Laden Sie einen Screenshot der Bestellbestätigung für diesen Onlineshop hoch."
   },
   "STEP_SIX": {
-    "TITLE": "Danke",
-    "FIRST_LINE": "Wir haben Ihre Bestellung in unserem Bestand erfasst. Wir wissen Ihre Unterst\u00fctzung sehr zu sch\u00e4tzen und danken Ihnen, dass Sie die Ukraine unterst\u00fctzen.",
-    "SECOND_LINE": "Wenn Sie einen weiteren Artikel bestellen m\u00f6chten, klicken Sie auf Weitere Artikel bestellen. Andernfalls k\u00f6nnen Sie dieses Fenster jetzt schlie\u00dfen.",
-    "RESTART_PROCESS": "Vorgang neu starten"
+    "TITLE": "Danke!",
+    "FIRST_LINE": "Wir haben Ihre Bestellung erfolgreich in unserem Bestand erfasst. Wir wissen Ihre Unterstützung sehr zu schätzen! Danke, dass Sie die Ukraine unterstützen.",
+    "SECOND_LINE": "Wählen Sie die Schaltfläche unten, um zur Homepage von Medicine for Ukraine zurückzukehren.",
+    "HOMEPAGE": "Zurück zur Startseite"
   }
 }
