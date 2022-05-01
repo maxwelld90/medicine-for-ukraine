@@ -9,6 +9,8 @@ import { RequestContext } from "./requestContext";
 import StepNavigation from "./components/StepNavigation";
 import StepDescription from "./components/StepDescription";
 
+import { getCurrentLanguage } from '../../helpers';
+
 import './request.css';
 
 export default function Recipients({ onNext, onBack, language }) {
@@ -44,14 +46,14 @@ export default function Recipients({ onNext, onBack, language }) {
                 // }
               >
                 <span className="text">
-                  <span className="name">{recipient.names[language] || recipient.names["default"]}</span>
-                  <span className="warehouse">{t("common:STEP_ONE.WAREHOUSE_LOCATED")} <strong>{recipient.warehouse_country.names[language] || recipient.warehouse_country.names["default"]}</strong></span>
-                  <span className="tagline">{recipient.tagline[language] || recipient.tagline["default"]}</span>
+                  <span className="name">{recipient.names[getCurrentLanguage()] || recipient.names["default"]}</span>
+                  <span className="warehouse">{t("common:STEP_ONE.WAREHOUSE_LOCATED")} <strong>{recipient.warehouse_country.names[getCurrentLanguage()] || recipient.warehouse_country.names["default"]}</strong></span>
+                  <span className="tagline">{recipient.tagline[getCurrentLanguage()] || recipient.tagline["default"]}</span>
                 </span>
                 <img
                     src={recipient.warehouse_country.flag_url}
                     alt={`Flag of ${
-                      recipient.warehouse_country.names[language] ||
+                      recipient.warehouse_country.names[getCurrentLanguage()] ||
                       recipient.warehouse_country.names["default"]
                     }`}
                   />

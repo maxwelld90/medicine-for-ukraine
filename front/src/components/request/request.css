@@ -129,13 +129,13 @@ ul.item-list.recipients li img {
 
 ul.item-list.recipients li span > span.name {
   display: block;
-  margin-bottom: -5px;
+  margin-bottom: 8px;
   font-size: 20pt;
   font-weight: 700;
 }
 
 ul.item-list.recipients li span > span.warehouse {
-  display: inline-block;
+  display: block;
   font-weight: 300;
   font-size: 12pt;
   line-height: 12pt;
