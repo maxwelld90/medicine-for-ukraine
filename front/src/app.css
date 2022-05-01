@@ -88,6 +88,7 @@ button.one-per-line {
   display: block;
   margin-right: 0;
   float: right;
+  clear: both;
 }
 
 button:last-child {
