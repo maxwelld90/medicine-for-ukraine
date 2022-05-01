@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Request from "./components/request/index";
@@ -35,6 +35,14 @@ function App() {
   const onStepChange = (step) => {
     setStep(step);
   };
+
+  useEffect(() => {
+    let language = window.localStorage.getItem("MEDICINE-LANGUAGE");
+
+    if (language) {
+      i18n.changeLanguage(language);
+    }
+  });
 
   return (
     <div>
