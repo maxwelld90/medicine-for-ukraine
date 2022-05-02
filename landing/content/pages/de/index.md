@@ -4,7 +4,7 @@ Lang: de
 save_as: index.html
 showlinks: yes
 
-# Helft der Ukraine!
+# Spenden Sie für die Ukraine!
 
 Wir brauchen eure Hilfe um lebensrettendes Material für die Menschen in der Ukraine zu spenden. Hauptsächlich wird medizinisches Material und Verteidigungsmaterial benötigt.
 Wir haben ein Netzwerk von Freiwilligen die bereit sind um eure großzügigen Spenden in Empfang zu nehmen und sie dorthin zu bringen, wo sie am meisten gebraucht werden &mdash; an der Frontlinie oder um verwundeten ukrainische Zivilisten zu helfen.

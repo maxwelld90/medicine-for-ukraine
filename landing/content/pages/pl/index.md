@@ -4,7 +4,7 @@ Lang: pl
 save_as: index.html
 showlinks: yes
 
-# Proszę pomóż Ukrainie!
+# Wpłać na Ukrainę!
 
 Potrzebujemy waszej pomocy, aby zapewnić środki ratunkowe dla ludności Ukrainy. Poszukujemy artykułów medycznych i sprzętu obronnego.
 Mamy sieć ludzi, którzy są gotowi przyjąć Twoje hojne darowizny i dostarczyć je tam, gdzie muszą &mdash; czy to na froncie, czy też na pomoc rannym ukraińskim cywilom.

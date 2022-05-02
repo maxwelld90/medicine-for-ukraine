@@ -4,7 +4,7 @@ Lang: es
 save_as: index.html
 showlinks: yes
 
-# ¡Ayuda a Ucrania!
+# ¡Dona a Ucrania!
 
 Necesitamos su ayuda para proporcionar suministros vitales para el pueblo de Ucrania. Estamos buscando artículos médicos y equipo de defensa.
 Contamos con una red de personas que están listas para recibir sus generosas donaciones y llevarlas a donde necesitan estar &mdash; ya sea en la línea del frente o para ayudar a los civiles ucranianos heridos.

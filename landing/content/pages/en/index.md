@@ -4,7 +4,7 @@ Lang: en
 save_as: index.html
 showlinks: yes
 
-# Please Help Ukraine!
+# Donate to Ukraine!
 
 We need your help to provide life-saving supplies for the people of Ukraine. We're looking for medical items and defence equipment.
 We have a network of people who are ready to receive your generous donations and get them to where they need to be &mdash; whether it be on the frontline, or to aid injured Ukrainian civilians.
