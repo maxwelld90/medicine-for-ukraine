@@ -558,6 +558,26 @@ footer span.header > span.version::before {
   h1 {
     text-align: left;
   }
+
+  ul.file-list li > div {
+    text-align: center;
+  }
+
+  ul.file-list li > span.domain {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    text-align: center;
+  }
+
+  ul.file-list li > div > button {
+    position: static;
+    display: inline-block;
+    font-size: 20pt;
+    padding: 10px;
+    border-radius: 5px;
+  }
   
 }
 
