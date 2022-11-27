@@ -18,6 +18,25 @@
             }
         }
     },
+    "medicineReader": {
+        "document_key": "1qR7voq_HkeurKy-5m8gWjBVcuH1-HoW0x_bhAKbK8q8",
+        "worksheets": {
+            "pokrova": {
+                "sheet_name": "7)Pokrova",
+                "redis_key": "MEDICINE-ITEMS-POKROVA",
+                "drop_rows": [
+                    "Delivery Address",
+                    "Image",
+                    "Category",
+                    "Priority"
+                ],
+                "keys": {
+                    "required": "Need #",
+                    "ordered": "Ordered"
+                }
+            }
+        }
+    },
     "sheetReader": {
         "document_key": "1vmqaQsLm5RAj1f_LT6rqpOfbkCSpvZiJ8PftF8KrJ_E",
         "worksheets": {
